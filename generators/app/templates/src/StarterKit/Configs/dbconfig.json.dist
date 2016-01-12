@@ -1,0 +1,9 @@
+﻿{
+	"starterkit": {
+		"Host": "%%db.postgresql.connection.host%%",
+		"Port": "%%db.postgresql.connection.port%%",
+		"Name": "%%db.postgresql.connection.name%%",
+		"Userid": "%%db.postgresql.auth.userid%%",
+		"Password": "%%db.postgresql.auth.password%%"
+	}
+}

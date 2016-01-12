@@ -1,0 +1,30 @@
+﻿<!--Top navbar-->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top">
+    <div class="container">
+        <div class="navbar-header">
+            <a ui-sref="home" class="navbar-brand"><img width="61" height="61" src="~/lib/images/logo.png"><span>StarterKit</span></a>
+        </div>
+        <a href="#menu-toggle" type="button" id="menu-toggle" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+            <span class="fa fa-bars fa-lg"></span>
+        </a>
+        <div id="bolleketten" style=" float: right; display:none;">
+            <a style=" height: 40px; width: 40px; background-color: red; -moz-border-radius: 100%; -webkit-border-radius: 100%; border-radius: 100%; display: block; margin-top: 10px; float: left;"></a>
+            <a style=" height: 40px; width: 40px; margin-left: 20px; background-color: rgb(137, 137, 137); -moz-border-radius: 100%; -webkit-border-radius: 100%; border-radius: 100%; display: block; float: left; margin-top: 10px; "></a>
+        </div>
+    </div>
+</div>
+
+<div id="wrapper">
+    <div id="page-content-wrapper">
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="scroll-shadow"></div>
+                        <div ui-view></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

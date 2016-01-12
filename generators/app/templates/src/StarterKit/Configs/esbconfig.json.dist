@@ -1,0 +1,22 @@
+﻿{
+	"Service1": {
+        "AuthScheme": "%%user.esb.service1.auth%%",
+        "Domain": "%%user.esb.service1.auth.basic.domain%%",
+		"User": "%%user.esb.service1.auth.basic.user%%",
+		"Password": "%%user.esb.service1.auth.basic.password%%",
+		"Scheme": "%%user.esb.service1.scheme%%",
+        "Host": "%%user.esb.service1.host%%",
+        "Port": "%%user.esb.service1.port%%",
+		"Path": "%%user.esb.service1.path%%"
+	},
+	"Service2": {
+        "AuthScheme": "%%user.esb.service2.auth%%",
+        "Domain": "%%user.esb.service2.auth.basic.domain%%",
+		"User": "%%user.esb.service2.auth.basic.user%%",
+		"Password": "%%user.esb.service2.auth.basic.password%%",
+		"Scheme": "%%user.esb.service2.scheme%%",
+        "Host": "%%user.esb.service2.host%%",
+        "Port": "%%user.esb.service2.port%%",
+		"Path": "%%user.esb.service2.path%%"
+	}
+}

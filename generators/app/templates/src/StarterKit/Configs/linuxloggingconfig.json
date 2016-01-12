@@ -1,0 +1,11 @@
+﻿{
+    "Name": "StarterKit",
+    "FileTarget": 
+    {
+		"Name": "StarterKitLogFile",
+		"Path": "/var/www/logdigipolis/starterkit/",
+        "FileName": "starterkit.log",
+        "Layout": "${date:format=yyyy-MM-dd HH\\:mm\\:ss.fff} ${message}",
+        "Level": "Debug"
+    }
+}

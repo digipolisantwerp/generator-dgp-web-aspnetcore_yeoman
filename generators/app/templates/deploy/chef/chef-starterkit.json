@@ -1,0 +1,52 @@
+{
+    "app": {
+    	"version": "",
+    	"artifact": "",
+        "port": "51003",
+        "enablelogging": true,
+        "enabledebug": true,
+        "templatepath": "/views/",
+        "apiroot": {
+            "uri": {
+                "scheme": "http://",
+                "host": "starterkit-o.antwerpen.be",
+                "port": "51003",
+                "path": "/"
+            }
+        },
+        "uiroot": {
+            "uri": {
+                "scheme": "http://",
+                "host": "starterkit-o.antwerpen.be",
+                "port": "51003",
+                "path": "/ui/"
+            }
+        }
+    },
+    "db": {
+        "postgresql": {
+            "connection": {
+                "host": "starterkit-sql1-o.antwerpen.be",
+                "port": "ppppp",
+                "name": "starterkit"
+            },
+            "auth": {
+                "userid": "starterkit_o",
+                "password": "pwd"
+            }
+        }
+    },
+    "log": {
+        "name": "starterkitLogFile",
+        "layout": "${date:format=yyyy-MM-dd HH\\:mm\\:ss.fff} ${message}",
+        "level": "Debug",
+        "linux": {
+            "path": "/data/projectname/starterkit_aspnet5/log/",
+            "filename": "starterkit.log"
+        },
+        "windows": {
+            "path": "C:/LogDigipolis/starterkit/",
+            "filename": "starterkit.log"
+        }
+    }
+}
