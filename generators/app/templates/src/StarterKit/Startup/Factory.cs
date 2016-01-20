@@ -23,8 +23,7 @@ namespace StarterKit
 
 		private static void ConfigureDataAccess(IServiceCollection services)
 		{
-			services.AddSingleton<IUowProvider, UowProvider>();
-			services.AddTransient(typeof(IRepository<>), typeof(GenericEntityRepository<>));
+
         }
 
 		private static void ConfigureServiceAgents(IServiceCollection services)

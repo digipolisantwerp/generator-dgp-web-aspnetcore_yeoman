@@ -15,19 +15,19 @@ module.exports = function (grunt) {
         copy: {
             scripts: {
                 expand: true,
-                cwd: "WebUI/Scripts/",
+                cwd: "WebClient/Scripts/",
                 src: ["app/**/*", "lib/**/*", "views/**/*"],
                 dest: "wwwroot/"
             },
             styles: {
                 expand: true,
-                cwd: "WebUI/Styles/",
+                cwd: "WebClient/Styles/",
                 src: ["**/*"],
                 dest: "wwwroot/css/"
             },
             templates: {
             	expand: true,
-            	cwd: "WebUI/Templates/",
+            	cwd: "WebClient/Templates/",
             	src: ["**/*"],
             	dest: "wwwroot/templates/"
             }
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
             },
             myTarget: {
                 files: {
-                    "WebUI/Views/Home/Index.cshtml": "WebUI/Views/Home/IndexTemplate.cshtml"
+                    "WebClient/Views/Home/Index.cshtml": "WebClient/Views/Home/IndexTemplate.cshtml"
                 }
             }
         },
@@ -51,7 +51,7 @@ module.exports = function (grunt) {
                     sourceMap: false
                 },
                 files: {
-                    'WebUI/Styles/site.css': 'WebUI/Styles/scss/site.scss'
+                    'WebClient/Styles/site.css': 'WebClient/Styles/scss/site.scss'
                 }
             },
             dev: {
@@ -61,20 +61,20 @@ module.exports = function (grunt) {
                     sourceMap: true
                 },
                 files: {
-                    'WebUI/Styles/site.css': 'WebUI/Styles/scss/site.scss'
+                    'WebClient/Styles/site.css': 'WebClient/Styles/scss/site.scss'
                 }
             }
         },
         watch: {
             scripts: {
-                files: ["WebUI/Scripts/**/*.js", "WebUI/Scripts/**/*.html", "WebUI/Templates/**/*.html"],
+                files: ["WebClient/Scripts/**/*.js", "WebClient/Scripts/**/*.html", "WebClient/Templates/**/*.html"],
                 tasks: ["clean", "copy:scripts", "copy:styles", "copy:templates", "includeSource"],
                 options: {
                     spawn: false,
                 },
             },
             css: {
-                files: ["WebUI/Styles/scss/*.scss"],
+                files: ["WebClient/Styles/scss/*.scss"],
                 tasks: ["sass:dev"],
                 options: {
                     spawn: false,
@@ -100,7 +100,7 @@ module.exports = function (grunt) {
     				"wwwroot/app/**/*.js"
     			],
     			options: {
-    				specs: "WebUI/Scripts/specs/*spec.js",
+    				specs: "WebClient/Scripts/specs/*spec.js",
 					keepRunner: true
     			}
     		}

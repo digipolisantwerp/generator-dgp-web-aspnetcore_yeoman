@@ -4,8 +4,8 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.StaticFiles;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Runtime;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Runtime;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using StarterKit.AppStart;
@@ -21,37 +21,7 @@ namespace StarterKit
 		    _applicationBasePath = appEnv.ApplicationBasePath;
 		}
 		
-		private readonly string _applicationBasePath;
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-		{
-			// lambda middleware voor CORS
-			app.Use(async (context, next) =>
-			{
-				context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-				context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "*" });
-				context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "*" });
-				await next();
-			});
-
-			// static files en wwwroot
-			app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });
-			app.UseStaticFiles(new StaticFileOptions { FileProvider = env.WebRootFileProvider });
-
-			app.UseMvc(routes =>
-			{
-				routes.MapRoute(
-					name: "default",
-					template: "{controller}/{action}/{id?}",
-					defaults: new { controller = "Home", action = "Index" });
-
-				routes.MapRoute(
-					name: "api",
-					template: "{controller}/{id?}");
-			});
-
-			
-		}
+		private readonly string _applicationBasePath;       
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -60,7 +30,6 @@ namespace StarterKit
 			config.Configure(services);
 			
             LoggingConfig.Configure(services);
-            AutoMapperConfiguration.Configure();
 
             Factory.Configure(services);
 
@@ -80,5 +49,34 @@ namespace StarterKit
 				options.InputFormatters.Insert(0, inputFormatter);
 			});
 		}
+        
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			// CORS
+            app.UseCors((policy) => {
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.AllowAnyOrigin();
+                policy.AllowCredentials();
+            });
+
+			// static files en wwwroot
+			app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });
+			app.UseStaticFiles(new StaticFileOptions { FileProvider = env.WebRootFileProvider });
+
+            app.UseIISPlatformHandler();
+
+			app.UseMvc(routes =>
+			{
+				routes.MapRoute(
+					name: "default",
+					template: "{controller=Home}/{action=Index}/{id?}");
+				routes.MapRoute(
+					name: "api",
+					template: "api/{controller}/{id?}");
+			});
+		}  
+        
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);      
     }
 }

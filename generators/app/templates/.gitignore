@@ -3,25 +3,12 @@
 
 node_modules/
 bower_components/
-src/StarterKit/node_modules/
-src/StarterKit/bower_components
 
 .vs/
 
-src/StarterKit/wwwroot/app/
-src/StarterKit/wwwroot/bin/
-src/StarterKit/wwwroot/css/
-src/StarterKit/wwwroot/lib/
-src/StarterKit/wwwroot/views/
+wwwroot/
 
-src/StarterKit/_SpecRunner.html
-src/StarterKit/.grunt/
-
-src/StarterKit/WebUI/Views/Home/Index.cshtml
-
-test/StarterKit.UnitTests/project.lock.json
-test/StarterKit.IntegrationTests/project.lock.json
-src/StarterKit/project.lock.json
+project.lock.json
 
 # site css
 site.css
@@ -213,4 +200,6 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
-.vs/config/applicationhost.config
+
+_SpecRunner.html
+.grunt/
