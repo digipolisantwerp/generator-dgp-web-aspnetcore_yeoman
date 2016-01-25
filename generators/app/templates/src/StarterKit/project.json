@@ -2,7 +2,7 @@
     "webroot": "wwwroot",
     "version": "1.0.0-*",
     "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:51002;https://localhost:51003",
+        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:51002;https://localhost:51003",
         "ef": "EntityFramework.Commands"
     },
 	"dependencies": {
