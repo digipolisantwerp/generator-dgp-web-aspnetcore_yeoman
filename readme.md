@@ -1,6 +1,6 @@
-# generator-dgp-web-aspnet5
+# generator-dgp-web-aspnetcore1
 
-Yeoman generator for a new ASP.NET 5 Web Client project.
+Yeoman generator for a new ASP.NET Core 1.0 Web Client project.
 
 ## Installation
 
@@ -17,15 +17,15 @@ The _**-g**_ flags install it globally so you can run yeoman from anywhere.
 Install the generator :
 
 ``` bash
-npm install generator-dgp-web-aspnet5 -g
+npm install generator-dgp-web-aspnetcore1 -g
 ```
 
-## Generate a new ASP.NET 5 project
+## Generate a new ASP.NET Core 1.0 project
 
 In a command prompt, navigate to the directory where you want to create the new project and type :
 
 ``` bash
-yo dgp-web-aspnet5
+yo dgp-web-aspnetcore1
 ```
 
 Answer the questions :-)
