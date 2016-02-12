@@ -1,13 +1,13 @@
-﻿(function () {
+(function () {
 
     'use strict';
 
     angular.module('theApp').constant('AppConfig', {
-        appName: "starterkit",
+        appName: "helloweb01",
         templateUrl: "",
         enableLogging: true,
         enableDebug: true,
-        apiRoot: "http://localhost:51001/",
+        apiRoot: "http://localhost:55004/",
         apiUser: ""
     });
 

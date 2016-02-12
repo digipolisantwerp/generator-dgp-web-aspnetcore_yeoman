@@ -1,11 +1,10 @@
-﻿(function () {
+(function () {
     'use strict';
     var app = angular.module('theApp', [
         'ngAnimate',
         'AppService',
         'ui.router',
-        'ui.bootstrap',
-        'LocalStorageModule'
+        'ui.bootstrap'
     ]);
 
     angular.module('theApp')
@@ -15,7 +14,7 @@
 			};
 		}]);
 	      
-    app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider, AppConfig) {
+    app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, AppConfig) {
 
         $urlRouterProvider.otherwise("/");
 

@@ -1,4 +1,4 @@
-﻿describe("Testen voor mailToDirective", function () {
+describe("Testen voor mailToDirective", function () {
 
 	var $compile, $rootScope;
 

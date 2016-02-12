@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
     var directiveName = "mailTo";
     var theDirective = function () {

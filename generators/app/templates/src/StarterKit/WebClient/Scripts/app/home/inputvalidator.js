@@ -1,4 +1,4 @@
-﻿// Voorbeeldje van een aparte component die kan geïnjecteerd worden in een controller.
+// Voorbeeldje van een aparte component die kan geïnjecteerd worden in een controller.
 // Deze kan gebruikt worden als template voor een validator component
 
 (function() {

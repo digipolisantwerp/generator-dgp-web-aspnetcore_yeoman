@@ -1,4 +1,4 @@
-﻿describe("Voorbeeldje van test spec", function () {
+describe("Voorbeeldje van test spec", function () {
 
 	var $compile, $rootScope;
 

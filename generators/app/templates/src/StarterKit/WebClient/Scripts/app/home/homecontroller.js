@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
 	'use strict';
 	var ctrlName = "HomeController";
 	var theController = function (appService) {
@@ -6,7 +6,7 @@
 		appService.logger.creation(ctrlName);
 
 		var ctrl = this;
-		ctrl.titel = "StarterKit";
+		ctrl.titel = "HelloWeb01";
 
 		init();
 

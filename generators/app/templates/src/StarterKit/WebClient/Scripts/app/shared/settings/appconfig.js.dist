@@ -1,9 +1,9 @@
-﻿(function () {
+(function () {
 
 	'use strict';
 
 	angular.module('theApp').constant('AppConfig', {
-		appName: "starterkit",
+		appName: "helloweb01",
 		templateUrl: "",
 		enableLogging: "%%app.enablelogging%%",
 		enableDebug: "%%app.enabledebug%%",

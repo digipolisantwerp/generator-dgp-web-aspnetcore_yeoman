@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
 	'use strict';
 	var componentName = "SharedDataService";
 	var theComponent = function (appService) {

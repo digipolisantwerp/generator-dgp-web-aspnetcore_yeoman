@@ -5,40 +5,51 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     sass = require('gulp-sass'),
     sassdoc = require('gulp-sassdoc'),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    inject = require('gulp-inject'),
+    angularFileSort = require('gulp-angular-filesort');
 
 var browsersync = require('browser-sync').create();
 
 var paths = {
-    webRoot: "./wwwroot/",
-    configRoot: "./_config/",
-    apiRoot: "./Api/",
-    serviceAgentsRoot: "./ServiceAgents/",
-    sharedRoot: "./Shared/",
-    startupRoot: "./Startup/",
-    webClientRoot: "./WebClient/",
-    scriptFolder: 'app/',
+    webRoot: './wwwroot/',
+    configRoot: './_config/',
+    apiRoot: './Api/',
+    mvcRoot: './Mvc/',
+    serviceAgentsRoot: './ServiceAgents/',
+    sharedRoot: './Shared/',
+    startupRoot: './Startup/',
+    webClientRoot: './WebClient/',
+    scriptsFolder: 'scripts/',
+    appFolder: 'app/',
     libFolder: 'lib/',
     stylesFolder: 'styles/',
     imagesFolder: 'img/',
     scssFolder: 'scss/',
-    viewsFolder: 'views/'
+    viewsFolder: 'views/',
+    nodeFolder: 'node_modules/'
 };
 
 var sourcePaths = {
-    scripts: paths.webClientRoot + paths.scriptFolder + '**/*.js',
-    styles: paths.webClientRoot + paths.stylesFolder + + paths.scssFolder + '*.scss',
-    lib: paths.webClientRoot + paths.libFolder + '**/*',
+    scripts: paths.webClientRoot + paths.scriptsFolder + paths.appFolder + '**/*.js',
+    styles: paths.webClientRoot + paths.stylesFolder + paths.scssFolder + '*.scss',
+    lib: paths.webClientRoot + paths.scriptsFolder + paths.libFolder + '**/*',
     images: paths.webClientRoot + paths.imagesFolder + '**/*',
-    views: paths.webClientRoot + paths.viewsFolder + '**/*'
+    views: paths.webClientRoot + paths.scriptsFolder + paths.viewsFolder + '**/*'
 };
 
+var nodeSourcePaths = [
+    paths.nodeFolder + 'angular/angular.js',
+    paths.nodeFolder + 'angular-*/angular-*.js',
+    paths.nodeFolder + 'angular-ui-router/release/angular-ui-router.js'
+];
+
 var targetPaths = {
-    scripts: paths.webRoot + paths.scriptFolder,
+    scripts: paths.webRoot + paths.appFolder,
     styles: paths.webRoot + paths.stylesFolder,
     lib: paths.webRoot + paths.libFolder,
     images: paths.webRoot + paths.imagesFolder,
-    views: paths.webClientRoot + paths.viewsFolder
+    views: paths.webRoot + paths.viewsFolder
 };
 
 // Clean tasks
@@ -110,6 +121,10 @@ gulp.task('copy:lib', function() {
     return gulp.src(sourcePaths.lib).pipe(gulp.dest(targetPaths.lib));
 });
 
+gulp.task('copy:nodemodules', function() {
+    return gulp.src(nodeSourcePaths).pipe(gulp.dest(targetPaths.lib));
+});
+
 gulp.task('copy:images', function() {
     return gulp.src(sourcePaths.images).pipe(gulp.dest(targetPaths.images));
 });
@@ -119,25 +134,38 @@ gulp.task('copy:views', function() {
 });
 
 
-gulp.task('copy:all', ['copy:scripts', 'copy:lib', 'copy:images', 'copy:views']);
+gulp.task('copy:all', ['copy:scripts', 'copy:lib', 'copy:nodemodules', 'copy:images', 'copy:views']);
+
+// Inject task
+
+gulp.task('inject-index', function() {
+    var target = gulp.src(paths.mvcRoot + 'Views/Home/Template/Index.cshtml');
+
+    // It's not necessary to read the files (will speed up things), we're only after their paths: 
+    var sources = gulp.src([targetPaths.lib + '**/*.js', targetPaths.scripts + '**/*.js', targetPaths.styles + '**/*.css', targetPaths.lib + '**/*.css'], {read: false});
+
+    return target.pipe(inject(sources, { ignorePath: '/wwwroot' }))
+      //.pipe(angularFileSort())
+      .pipe(gulp.dest(paths.mvcRoot + 'Views/Home'));
+});
 
 // Default tasks
 
-gulp.task('default', ['clean:all', 'copy:all', 'sass:dev', 'sassdoc']);
-gulp.task('dev', ['clean:scripts', 'clean:views', 'clean:styles', 'copy:scripts', 'copy:views', 'sass:dev']);
-gulp.task('prod', ['clean:all', 'copy:all', 'sass:prod', 'sassdoc']);
+gulp.task('default', ['clean:all', 'copy:all', 'sass:dev', 'sassdoc', 'inject-index']);
+gulp.task('dev', ['clean:scripts', 'clean:views', 'clean:styles', 'copy:scripts', 'copy:views', 'sass:dev', 'inject-index']);
+gulp.task('prod', ['clean:all', 'copy:all', 'sass:prod', 'sassdoc', 'inject-index']);
 
 // watch tasks
 
 gulp.task('watch:sass', function() {
-    return gulp.watch(sourcePaths.styles, ['clean:styles', 'sass:dev'])
+    return gulp.watch(sourcePaths.styles, ['clean:styles', 'sass:dev', 'inject-index'])
                .on('change', function (event) {
                    console.log('File ' + event.path + ' was ' + event.type + ', running sass tasks...');
                });
 });
 
 gulp.task('watch:scripts', function() {
-    return gulp.watch(sourcePaths.scripts, ['clean:scripts', 'copy:scripts'])
+    return gulp.watch(sourcePaths.scripts, ['clean:scripts', 'copy:scripts', 'inject-index'])
                .on('change', function (event) {
                    console.log('File ' + event.path + ' was ' + event.type + ', running script tasks...');
                });
