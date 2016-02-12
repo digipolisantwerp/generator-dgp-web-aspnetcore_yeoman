@@ -8,6 +8,8 @@ bower_components/
 
 wwwroot/
 
+src/StarterKit/Mvc/Views/Home/Index.cshtml
+
 project.lock.json
 
 # site css

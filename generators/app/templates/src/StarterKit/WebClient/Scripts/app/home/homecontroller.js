@@ -6,7 +6,7 @@
 		appService.logger.creation(ctrlName);
 
 		var ctrl = this;
-		ctrl.titel = "HelloWeb01";
+		ctrl.titel = "StarterKit";
 
 		init();
 

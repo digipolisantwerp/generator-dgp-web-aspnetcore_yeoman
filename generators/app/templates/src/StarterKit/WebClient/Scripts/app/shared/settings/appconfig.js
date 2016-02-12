@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('theApp').constant('AppConfig', {
-        appName: "helloweb01",
+        appName: "starterkit",
         templateUrl: "",
         enableLogging: true,
         enableDebug: true,

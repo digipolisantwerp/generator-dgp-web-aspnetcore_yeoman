@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using HelloWeb01.Options;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.StaticFiles;
@@ -7,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
+using StarterKit.Options;
 using Toolbox.WebApi;
 
 namespace StarterKit

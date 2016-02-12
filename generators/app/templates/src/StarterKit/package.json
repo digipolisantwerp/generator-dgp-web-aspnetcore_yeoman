@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "HelloWeb01",
+  "name": "StarterKit",
 	"devDependencies": {
 		"browser-sync": "2.9.11",
 		"gulp": "3.9.0",
