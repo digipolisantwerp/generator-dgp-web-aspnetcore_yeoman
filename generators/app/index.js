@@ -11,10 +11,10 @@ module.exports = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
-    // Zeg hi to the user
-    this.log(yosay('Welcome to the fantastic Yeoman ' + chalk.red('dgp-web-aspnetcore') + ' generator!'));
+    // greet the user
+    this.log(yosay('Welcome to the fantastic Yeoman ' + chalk.green('dgp-web-aspnetcore') + ' generator!'));
 
-    // Ask project parameters
+    // ask project parameters
     var prompts = [{
       type: 'input',
       name: 'deleteContent',
@@ -28,13 +28,23 @@ module.exports = yeoman.generators.Base.extend({
     }, 
     {
       type: 'input',
-      name: 'httpPort',
-      message: 'Enter the HTTP port for the new project:'
+      name: 'kestrelHttpPort',
+      message: 'Enter the HTTP port for the kestrel server:'
     }, 
     {
       type: 'input',
-      name: 'httpsPort',
-      message: 'Enter the HTTPS port for the new project:'
+      name: 'kestrelHttpsPort',
+      message: 'Enter the HTTPS port for the kestrel server:'
+    },
+    {
+      type: 'input',
+      name: 'iisHttpPort',
+      message: 'Enter the HTTPS port for the IIS Express server:'
+    },
+    {
+      type: 'input',
+      name: 'iisHttpsPort',
+      message: 'Enter the HTTPS port for the IIS Express server:'
     }];
 
     this.prompt(prompts, function (props) {
@@ -45,7 +55,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: function () {
   
-    // empty the directory
+    // empty target directory
     console.log('Emptying target directory...');
     if ( this.props.deleteContent == 'y' ) {
         del.sync(['**/*', '!.git', '!.git/**/*'], { force: true, dot: true });
@@ -61,8 +71,10 @@ module.exports = yeoman.generators.Base.extend({
     var integrationGuid = Guid.create();
     var unitGuid = Guid.create();
     
-    var httpPort = this.props.httpPort;
-    var httpsPort = this.props.httpsPort;
+    var kestrelHttpPort = this.props.kestrelHttpPort;
+    var kestrelHttpsPort = this.props.kestrelHttpsPort;
+    var iisHttpPort = this.props.iisHttpPort;
+    var iisHttpsPort = this.props.iisHttpsPort;
     
     var copyOptions = { 
       process: function(contents) {
@@ -75,29 +87,20 @@ module.exports = yeoman.generators.Base.extend({
                         .replace(/BD79C050-331F-4733-87DE-F650976253B5/g, starterKitGuid.value.toUpperCase())
                         .replace(/948E75FD-C478-4001-AFBE-4D87181E1BEC/g, integrationGuid.value.toUpperCase())
                         .replace(/0A3016FD-A06C-4AA1-A843-DEA6A2F01696/g, unitGuid.value.toUpperCase())
-                        .replace(/http:\/\/localhost:51002/g, "http://localhost:" + httpPort)
-                        .replace(/https:\/\/localhost:51003/g, "http://localhost:" + httpsPort);
+                        .replace(/http:\/\/localhost:51002/g, "http://localhost:" + kestrelHttpPort)
+                        .replace(/https:\/\/localhost:51003/g, "https://localhost:" + kestrelHttpsPort)
+                        .replace(/http:\/\/localhost:51001/g, "http://localhost:" + iisHttpPort)
+                        .replace(/"sslPort": 44300/g, "\"sslPort\": " + iisHttpsPort);
         return result;
       }
     };
-      
-    //  this.fs.copy(
-    //     this.templatePath('**/**.*'),
-    //     this.destinationPath(),
-    //     copyOptions
-    //  );
-     
-     //this.fs.move(this.destinationPath('StarterKit.sln'), this.destinationPath(this.props.projectName + '.sln'));
      
      var source = this.sourceRoot();
      var dest = this.destinationRoot();
      var fs = this.fs;
      
-     //console.log('source: ' + source);
-     //console.log('dest: ' + dest);
-     
-     // copy the files and rename starterkit to projectName
-     
+     // copy files and rename starterkit to projectName
+    
      console.log('Creation project skeleton...');
      
      nd.files(source, function (err, files) {

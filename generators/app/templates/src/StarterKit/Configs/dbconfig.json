@@ -1,9 +1,0 @@
-﻿{
-    "starterkit": {
-		"Host": "starterkit-sql1-o.antwerpen.be",
-		"Port": "99999",
-		"Name": "starterkit",
-		"Userid": "starterkit_o",
-		"Password": "pwd"
-	}
-}
