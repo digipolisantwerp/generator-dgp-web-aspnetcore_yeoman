@@ -21,13 +21,13 @@
         $stateProvider
 			.state("app", {
 			    abstract: true,
-			    templateUrl: AppConfig.templateUrl + "/views/subview.html"
+			    templateUrl: AppConfig.templateUrl + "/subview.html"
 			})
 			.state("app.home", {
 			    url: "/",
 			    controller: "HomeController as ctrl",
 			    controllerAs: 'ctrl',
-			    templateUrl: AppConfig.templateUrl + "/views/home.html",
+			    templateUrl: AppConfig.templateUrl + "/home/home.html",
 			    data: {}
 			})
 
