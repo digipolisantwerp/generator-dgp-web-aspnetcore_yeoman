@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3E0690A-0044-402C-90D2-2DC0FF14980F}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		nuget.config = nuget.config
 	EndProjectSection
 	ProjectSection(FolderGlobals) = preProject
 		global_1json__JSONSchema = http://json.schemastore.org/global
