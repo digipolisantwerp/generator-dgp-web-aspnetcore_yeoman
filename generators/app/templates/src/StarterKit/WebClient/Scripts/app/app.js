@@ -3,8 +3,7 @@
     var app = angular.module('theApp', [
         'ngAnimate',
         'AppService',
-        'ui.router',
-        'ui.bootstrap'
+        'ui.router'
     ]);
 
     angular.module('theApp')
@@ -21,13 +20,13 @@
         $stateProvider
 			.state("app", {
 			    abstract: true,
-			    templateUrl: AppConfig.templateUrl + "/subview.html"
+			    templateUrl: AppConfig.templateUrl + "scripts/app/subview.html"
 			})
 			.state("app.home", {
 			    url: "/",
 			    controller: "HomeController as ctrl",
 			    controllerAs: 'ctrl',
-			    templateUrl: AppConfig.templateUrl + "/home/home.html",
+			    templateUrl: AppConfig.templateUrl + "scripts/app/home/home.html",
 			    data: {}
 			})
 
