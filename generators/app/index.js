@@ -39,7 +39,7 @@ module.exports = yeoman.generators.Base.extend({
     {
       type: 'input',
       name: 'iisHttpPort',
-      message: 'Enter the HTTPS port for the IIS Express server:'
+      message: 'Enter the HTTP port for the IIS Express server:'
     },
     {
       type: 'input',
