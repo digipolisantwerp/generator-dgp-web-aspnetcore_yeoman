@@ -115,8 +115,8 @@ module.exports = yeoman.generators.Base.extend({
   install: function () {
     // this.installDependencies();
     //this.log('----');
-    //this.log('Project naam :' + this.props.projectName);
-    //this.log('Poort :' + this.props.port);
+    //this.log('Project name :' + this.props.projectName);
+    //this.log('Port :' + this.props.port);
     //this.log('templatePath :' + this.templatePath());
     //this.log('destinationPath :' + this.destinationPath());
   }

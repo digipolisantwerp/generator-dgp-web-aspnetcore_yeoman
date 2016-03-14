@@ -1,5 +1,5 @@
 {
-    "name": "%%app.name%%",
+    "name": "StarterKit",
     "private": true,
     "dependencies": {
         "angular": "1.5.0",

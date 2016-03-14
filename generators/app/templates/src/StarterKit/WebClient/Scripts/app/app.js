@@ -39,7 +39,7 @@
         //$locationProvider.html5Mode(true);
 
     }).run(['$rootScope', 'AppService', function($rootScope, appService) {
-        // Todo : opstart logica
+        // Todo : insert your startup logic here
     }]);
 
 })();

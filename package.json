@@ -1,12 +1,12 @@
 {
   "name": "generator-dgp-web-aspnetcore",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generator for a new ASP.NET Core 1.0 Web Client project.",
   "homepage": "",
   "author": {
     "name": "digipolis.be",
     "email": "",
-    "url": ""
+    "url": "https://github.com/digipolisantwerp/generator-dgp-web-aspnetcore_yeoman"
   },
   "files": [
     "generators/app"
@@ -34,10 +34,13 @@
     "gulp-plumber": "^1.0.0",
     "gulp-nsp": "^2.1.0"
   },
-  "repository": "/generator-dgp-web-aspnetcore",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/digipolisantwerp/generator-dgp-web-aspnetcore_yeoman"
+  },
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
   },
-  "private": true
+  "private": false
 }

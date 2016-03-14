@@ -12,7 +12,7 @@ Install Yeoman :
 npm install yo -g
 ``` 
 
-The _**-g**_ flags install it globally so you can run yeoman from anywhere.
+The _**-g**_ flag installs the generator globally so you can run yeoman from anywhere.
 
 Install the generator :
 

@@ -1,5 +1,5 @@
 # generator-dgp-web-aspnetcore
 
-## 1.0
+## 0.0.2
 
 - Initial version.
