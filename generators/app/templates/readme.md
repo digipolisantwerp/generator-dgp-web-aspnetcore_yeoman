@@ -1,5 +1,12 @@
 # StarterKit 
 
-> Here comes the information about my project.
+Description of the project...
 
+## Table of Contents
 
+<!-- START doctoc -->
+<!-- END doctoc -->
+
+## Documentation
+
+Document your project here...

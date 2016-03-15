@@ -6,7 +6,7 @@
             restrict: 'E',
             replace: true,           
             template:
-                '<a href="mailto:{{emailAdres}}">{{emailAdres}}</a>',
+                '<a href="mailto:{{emailAddress}}">{{emailAddress}}</a>',
             scope: {
                 emailAdres: "="
             }

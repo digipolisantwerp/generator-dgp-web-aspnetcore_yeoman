@@ -1,5 +1,4 @@
-// Voorbeeldje van een aparte component die kan geïnjecteerd worden in een controller.
-// Deze kan gebruikt worden als template voor een validator component
+// Example of a component (service) that can be injected in a controller.
 
 (function() {
 
@@ -17,18 +16,18 @@
 
             if (input === undefined || input === null) {
                 result.isValid = false;
-                result.messages.push("Geen gegevens ingevuld.");
+                result.messages.push("No input.");
                 return result;
             }
 
             if (input.field1 === undefined) {
                 result.isValid = false;
-                result.messages.push("field1 is niet ingevuld.");
+                result.messages.push("field1 is empty.");
             }
 
             if (input.field2 === undefined) {
                 result.isValid = false;
-                result.messages.push("field2 is niet ingevuld.");
+                result.messages.push("field2 is empty.");
             }
 
             return result;

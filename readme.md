@@ -20,7 +20,7 @@ Install the generator :
 npm install generator-dgp-web-aspnetcore -g
 ```
 
-## Generate a new ASP.NET Core 1.0 project
+## Generate a new ASP.NET Core project
 
 In a command prompt, navigate to the directory where you want to create the new project and type :
 

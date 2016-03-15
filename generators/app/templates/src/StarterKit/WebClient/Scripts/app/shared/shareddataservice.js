@@ -3,18 +3,19 @@
 	var componentName = "SharedDataService";
 	var theComponent = function (appService) {
 		appService.logger.creation(componentName);
-		var klantDetails = {};
+		
+        var customerDetails = {};
 
-		function _setKlantDetails(data) {
-			klantDetails = data;
+		function _setCustomerDetails(data) {
+			customerDetails = data;
 		}
-		function _getKlantDetails() {
-			return klantDetails;
+		function _getCustomerDetails() {
+			return customerDetails;
 		}
 
 		return {
-			setKlantDetails: _setKlantDetails,
-			getKlantDetails: _getKlantDetails
+			setCustomerDetails: _setCustomerDetails,
+			getCustomerDetails: _getCustomerDetails
 		};
 	};
 	theComponent.$inject = ['AppService'];
