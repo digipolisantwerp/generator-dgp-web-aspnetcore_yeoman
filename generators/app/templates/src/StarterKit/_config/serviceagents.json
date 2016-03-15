@@ -1,21 +1,13 @@
 ﻿{
 	"Service1": {
-        "AuthScheme": "basic",
-        "Domain": "DEV",
-		"User": "user.O",
-		"Password": "pwd",
 		"Scheme": "http://",
-        "Host": "app1.o.esb.local",
+        "Host": "my.host.domain",
         "Port": "80",
 		"Path": "/path1/"
 	},
 	"Service2": {
-        "AuthScheme": "basic",
-        "Domain": "DEV",
-		"User": "user.O",
-		"Password": "pwd",
 		"Scheme": "http://",
-        "Host": "app1.o.esb.local",
+        "Host": "my.host.domain",
         "Port": "80",
 		"Path": "/path2/"
 	}

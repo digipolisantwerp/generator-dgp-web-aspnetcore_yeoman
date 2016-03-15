@@ -1,1 +1,1 @@
-Plaats hier de migration scripts
+Place your migration scripts in this directory.
