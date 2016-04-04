@@ -12,7 +12,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     // greet the user
-    this.log(yosay('Welcome to the fantastic Yeoman ' + chalk.green('dgp-web-aspnetcore') + ' generator!'));
+    this.log(yosay('Welcome to the fantastic Yeoman ' + chalk.green('dgp-web-aspnetcore') + ' ' + chalk.blue('(1.0.1)') + ' generator!'));
 
     // ask project parameters
     var prompts = [{
@@ -30,11 +30,6 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'kestrelHttpPort',
       message: 'Enter the HTTP port for the kestrel server:'
-    }, 
-    {
-      type: 'input',
-      name: 'kestrelHttpsPort',
-      message: 'Enter the HTTPS port for the kestrel server:'
     },
     {
       type: 'input',
@@ -72,7 +67,6 @@ module.exports = yeoman.generators.Base.extend({
     var unitGuid = Guid.create();
     
     var kestrelHttpPort = this.props.kestrelHttpPort;
-    var kestrelHttpsPort = this.props.kestrelHttpsPort;
     var iisHttpPort = this.props.iisHttpPort;
     var iisHttpsPort = this.props.iisHttpsPort;
     
@@ -88,7 +82,6 @@ module.exports = yeoman.generators.Base.extend({
                         .replace(/948E75FD-C478-4001-AFBE-4D87181E1BEC/g, integrationGuid.value.toUpperCase())
                         .replace(/0A3016FD-A06C-4AA1-A843-DEA6A2F01696/g, unitGuid.value.toUpperCase())
                         .replace(/http:\/\/localhost:51002/g, "http://localhost:" + kestrelHttpPort)
-                        .replace(/https:\/\/localhost:51003/g, "https://localhost:" + kestrelHttpsPort)
                         .replace(/http:\/\/localhost:51001/g, "http://localhost:" + iisHttpPort)
                         .replace(/"sslPort": 44300/g, "\"sslPort\": " + iisHttpsPort);
         return result;
@@ -105,7 +98,10 @@ module.exports = yeoman.generators.Base.extend({
      
      nd.files(source, function (err, files) {
       for ( var i = 0; i < files.length; i++ ) {
-        var filename = files[i].replace(/StarterKit/g, projectName).replace(/starterkit/g, lowerProjectName).replace(source, dest);
+        var filename = files[i].replace(/StarterKit/g, projectName)
+                               .replace(/starterkit/g, lowerProjectName)
+                               .replace(".npmignore", ".gitignore")
+                               .replace(source, dest);
         //console.log(files[i] + ' --> ' + filename);
         fs.copy(files[i], filename, copyOptions);
       }
@@ -114,10 +110,5 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function () {
     // this.installDependencies();
-    //this.log('----');
-    //this.log('Project name :' + this.props.projectName);
-    //this.log('Port :' + this.props.port);
-    //this.log('templatePath :' + this.templatePath());
-    //this.log('destinationPath :' + this.destinationPath());
   }
 });
