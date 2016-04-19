@@ -32,3 +32,7 @@
 ## 1.0.7
 
 - added correlation framework
+
+## 1.0.8
+
+- application name in index view

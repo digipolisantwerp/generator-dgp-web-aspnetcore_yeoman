@@ -1,6 +1,6 @@
 {
   "name": "generator-dgp-web-aspnetcore",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Generator for a new ASP.NET Core 1.0 Web Client project.",
   "homepage": "",
   "author": {
