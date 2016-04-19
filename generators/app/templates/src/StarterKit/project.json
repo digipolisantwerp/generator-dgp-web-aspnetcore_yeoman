@@ -28,13 +28,12 @@
         "Swashbuckle.SwaggerGen": "6.0.0-rc1-final",
 		"Swashbuckle.SwaggerUi": "6.0.0-rc1-final",
 		"System.Linq.Dynamic": "1.0.4.0",
-        "Toolbox.Common": "1.1.0",
-        "Toolbox.DataAccess": "1.5.0",
-        "Toolbox.DataAccess.Postgres": "1.0.0",
+        "Toolbox.Common": "1.2.1",
+        "Toolbox.Correlation": "1.0.0",
         "Toolbox.Errors": "1.2.0",
         "Toolbox.Json": "1.0.0",
-        "Toolbox.WebApi": "1.2.2"
-        
+        "Toolbox.ServiceAgents": "1.2.0",        
+        "Toolbox.WebApi": "1.4.1"
 	},
     "frameworks" : {
         "dnx451" : { 

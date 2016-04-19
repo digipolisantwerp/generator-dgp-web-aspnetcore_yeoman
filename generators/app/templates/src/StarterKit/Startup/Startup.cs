@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using StarterKit.Options;
+using Toolbox.Correlation;
 using Toolbox.WebApi;
 
 namespace StarterKit
@@ -35,12 +36,16 @@ namespace StarterKit
         {
            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             
+            services.AddCorrelation();
+            
 			services.AddMvc()
                 .AddActionOverloading()
                 .AddVersioning();
             
             services.AddBusinessServices();
             services.AddAutoMapper();
+            
+            services.AddSwaggerGen();
 		}
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -57,6 +62,12 @@ namespace StarterKit
                 policy.AllowCredentials();
             });
 
+            app.UseExceptionHandling(options => {
+                // add your custom exception mappings here
+            });
+
+            app.UseCorrelation("StarterKit");
+
             // static files en wwwroot
 			app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });
 			app.UseStaticFiles(new StaticFileOptions { FileProvider = env.WebRootFileProvider });
@@ -72,6 +83,14 @@ namespace StarterKit
 					name: "api",
 					template: "api/{controller}/{id?}");
 			});
+            
+            if (env.IsDevelopment())
+            {
+                app.UseRuntimeInfoPage("/admin/runtimeinfo");
+            }          
+            
+            app.UseSwaggerGen();
+            app.UseSwaggerUi();  
 		}
         
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
