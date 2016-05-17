@@ -12,7 +12,8 @@
         "gulp-sourcemaps": "1.6.0",
         "gulp-bower": "0.0.13",
         "main-bower-files": "2.11.1",
-        "del": "2.0.2"
+        "del": "2.0.2",
+        "event-stream": "3.3.2"
     },
     "dependencies": {
         "node-sass": "^3.4.2",

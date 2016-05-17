@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     inject = require('gulp-inject'),
     bower = require('gulp-bower'),
     bowerfiles = require('main-bower-files'),
-    flatten = require('gulp-flatten');
+    flatten = require('gulp-flatten'),
+    es = require('event-stream');
 
 var browsersync = require('browser-sync').create();
 
@@ -56,13 +57,13 @@ gulp.task('clean:wwwRoot', function() {
     return del.sync([targetPaths.scripts, targetPaths.styles, targetPaths.images, '!.gitkeep']);
 });
 
-
 // Copy tasks
-
-gulp.task('copy:webClient', ['clean:wwwRoot'], function() {
-    gulp.src(sourcePaths.images + '**/*').pipe(gulp.dest(targetPaths.images));
-    gulp.src(sourcePaths.app + '**/*').pipe(gulp.dest(targetPaths.app));
-    return gulp.src(sourcePaths.lib + '**/*').pipe(gulp.dest(targetPaths.lib));
+gulp.task('copy:webClient', ['clean:wwwRoot'], function () {
+    return es.concat(
+            gulp.src(sourcePaths.images + '**/*').pipe(gulp.dest(targetPaths.images)),
+            gulp.src(sourcePaths.app + '**/*').pipe(gulp.dest(targetPaths.app)),
+            gulp.src(sourcePaths.lib + '**/*').pipe(gulp.dest(targetPaths.lib))
+        );
 });
 
 gulp.task('copy:all:dev', ['copy:webClient']);
