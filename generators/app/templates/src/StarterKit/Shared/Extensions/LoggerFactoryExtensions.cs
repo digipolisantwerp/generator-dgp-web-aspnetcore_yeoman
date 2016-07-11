@@ -4,6 +4,10 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.RollingFile;
+using Digipolis.Common;
+using Digipolis.Errors;
+using Digipolis.Json;
+using Digipolis.ServiceAgents;
 
 namespace StarterKit
 {
@@ -11,20 +15,22 @@ namespace StarterKit
     {
         public static void AddSeriLog(this ILoggerFactory loggerFactory, IConfiguration config)
         {
-            var minimumLevel = config.Get<LogLevel>("MinimumLevel", LogLevel.Information);
-            var seriLevel = ConvertLogLevel(minimumLevel);
+            //TODO
+            //var minimumLevel = config.Get<LogLevel>("MinimumLevel", LogLevel.Information);
+            //var seriLevel = ConvertLogLevel(minimumLevel);
 
-            loggerFactory.MinimumLevel = minimumLevel;
+            //TODO
+            //loggerFactory.MinimumLevel = minimumLevel;
 
-            var rollingConfig = config.GetSection("RollingLogFile");
-            var path = rollingConfig.Get<string>("Path");
-            var template = rollingConfig.Get<string>("OutputTemplate");
-            var rollingLevel = rollingConfig.Get<LogLevel>("MinimumLevel");
+            //var rollingConfig = config.GetSection("RollingLogFile");
+            //var path = rollingConfig.Get<string>("Path");
+            //var template = rollingConfig.Get<string>("OutputTemplate");
+            //var rollingLevel = rollingConfig.Get<LogLevel>("MinimumLevel");
 
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.RollingFile(path, outputTemplate: template).MinimumLevel.Is(ConvertLogLevel(rollingLevel))
-                .MinimumLevel.Is(seriLevel)
-                .CreateLogger();
+            //Log.Logger = new LoggerConfiguration()
+            //    .WriteTo.RollingFile(path, outputTemplate: template).MinimumLevel.Is(ConvertLogLevel(rollingLevel))
+            //    .MinimumLevel.Is(seriLevel)
+            //    .CreateLogger();
         }
 
         private static LogEventLevel ConvertLogLevel(LogLevel msLevel)
@@ -34,9 +40,9 @@ namespace StarterKit
             switch ( msLevel )
             {
                 case LogLevel.Debug:
-                    seriLevel = LogEventLevel.Verbose;
+                    seriLevel = LogEventLevel.Debug;
                     break;
-                case LogLevel.Verbose:
+                case LogLevel.Trace:
                     seriLevel = LogEventLevel.Debug;
                     break;
                 case LogLevel.Information:

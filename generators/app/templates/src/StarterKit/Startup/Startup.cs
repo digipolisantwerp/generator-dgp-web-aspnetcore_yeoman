@@ -1,23 +1,22 @@
 ﻿using System.IO;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.StaticFiles;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.PlatformAbstractions;
 using StarterKit.Options;
-using Toolbox.Correlation;
-using Toolbox.WebApi;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace StarterKit
 {
     public class Startup
     {
-		public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+		public Startup(IHostingEnvironment env)
 		{
+            var appEnv = PlatformServices.Default.Application;
             ApplicationBasePath = appEnv.ApplicationBasePath;
-            ConfigPath = Path.Combine(ApplicationBasePath, "_config");
+            ConfigPath = Path.Combine(env.ContentRootPath, "_config");
             
             var builder = new ConfigurationBuilder()
                 .SetBasePath(ConfigPath)
@@ -34,18 +33,20 @@ namespace StarterKit
         
         public void ConfigureServices(IServiceCollection services)
         {
-           services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            
-            services.AddCorrelation();
-            
-			services.AddMvc()
-                .AddActionOverloading()
-                .AddVersioning();
-            
+            services.Configure<AppSettings>(opt => Configuration.GetSection("AppSettings"));
+
+            //TODO
+            //services.AddCorrelation();
+
+            services.AddMvc();
+            //.AddActionOverloading()
+            //.AddVersioning();
+
             services.AddBusinessServices();
             services.AddAutoMapper();
-            
-            services.AddSwaggerGen();
+
+            //TODO
+            //services.AddSwaggerGen();
 		}
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -62,17 +63,13 @@ namespace StarterKit
                 policy.AllowCredentials();
             });
 
-            app.UseExceptionHandling(options => {
+            app.UseExceptionHandler(options => {
                 // add your custom exception mappings here
             });
-
-            app.UseCorrelation("StarterKit");
-
+            
             // static files en wwwroot
 			app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });
 			app.UseStaticFiles(new StaticFileOptions { FileProvider = env.WebRootFileProvider });
-
-            app.UseIISPlatformHandler();
 
 			app.UseMvc(routes =>
 			{
@@ -86,14 +83,14 @@ namespace StarterKit
             
             if (env.IsDevelopment())
             {
-                app.UseRuntimeInfoPage("/admin/runtimeinfo");
-            }          
-            
-            app.UseSwaggerGen();
-            app.UseSwaggerUi();  
+                //TODO
+                //app.UseRuntimeInfoPage("/admin/runtimeinfo");
+            }
+
+            //TODO
+            //app.UseSwaggerGen();
+            //app.UseSwaggerUi();  
 		}
-        
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
 
