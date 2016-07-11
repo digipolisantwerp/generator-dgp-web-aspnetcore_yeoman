@@ -1,20 +1,26 @@
 ﻿{
-	"version": "1.0.0-*",
-	"description": "StarterKit unit tests.",
-	"authors": [ "digipolis.be" ],
-	"tags": [ "" ],
-	"projectUrl": "",
-	"licenseUrl": "",
-	"dependencies": {
-		"Moq": "4.2.1510.2205",
-		"xunit": "2.1.0-rc1-build3168",
-		"xunit.runner.dnx": "2.1.0-rc1-build204",
-        "StarterKit": ""        
-	},
-	"commands": {
-		"test": "xunit.runner.dnx"
-	},
-	"frameworks": {
-		"dnx451": { }
-	}
+  "version": "1.0.0-*",
+  "description": "StarterKit unit tests.",
+  "authors": [ "digipolis.be" ],
+  "testRunner": "xunit",
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "xunit": "2.2.0-beta2-build3300",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "moq.netcore": "4.4.0-beta8",
+    "StarterKit": "2.0.0-*"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dnxcore50"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      }
+    }
+  }
 }
