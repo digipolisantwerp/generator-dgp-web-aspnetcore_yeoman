@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StarterKit.Options;
 using Microsoft.Extensions.PlatformAbstractions;
+using Digipolis.Web;
+using Swashbuckle.Swagger.Model;
 
 namespace StarterKit
 {
@@ -35,23 +37,18 @@ namespace StarterKit
         {
             services.Configure<AppSettings>(opt => Configuration.GetSection("AppSettings"));
 
-            //TODO
-            //services.AddCorrelation();
-
             services.AddMvc();
-            //.AddActionOverloading()
+
+            //TODO InvalidOperationException
             //.AddVersioning();
 
             services.AddBusinessServices();
             services.AddAutoMapper();
-
-            //TODO
-            //services.AddSwaggerGen();
-		}
+            services.AddSwaggerGen();
+        }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
-            loggerFactory.AddSeriLog(Configuration.GetSection("SeriLog"));
             loggerFactory.AddConsole(Configuration.GetSection("ConsoleLogging"));
             loggerFactory.AddDebug(LogLevel.Debug);
             
@@ -63,9 +60,10 @@ namespace StarterKit
                 policy.AllowCredentials();
             });
 
-            app.UseExceptionHandler(options => {
-                // add your custom exception mappings here
-            });
+            app.UseExceptionHandling(option =>
+           {
+               // add your custom exception mappings here
+           });
             
             // static files en wwwroot
 			app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });
@@ -80,16 +78,9 @@ namespace StarterKit
 					name: "api",
 					template: "api/{controller}/{id?}");
 			});
-            
-            if (env.IsDevelopment())
-            {
-                //TODO
-                //app.UseRuntimeInfoPage("/admin/runtimeinfo");
-            }
 
-            //TODO
-            //app.UseSwaggerGen();
-            //app.UseSwaggerUi();  
+            app.UseSwagger();
+            app.UseSwaggerUi();  
 		}
     }
 }

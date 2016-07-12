@@ -2,6 +2,10 @@
   "webroot": "wwwroot",
   "version": "1.0.0-*",
   "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0"
+    },
     "AutoMapper": "5.0.2",
     "Microsoft.AspNetCore.Cors": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -18,23 +22,21 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options": "1.0.0",
-    "SeriLog.Extensions.Logging": "1.0.0",
-    "SeriLog.Sinks.RollingFile": "2.0.0",
     "Digipolis.Common": "2.0.0",
     "Digipolis.Errors": "2.0.0",
     "Digipolis.Json": "2.0.0",
     "Digipolis.ServiceAgents": "2.0.0",
+    "Digipolis.Web": "2.0.0",
     "Microsoft.AspNetCore.Hosting": "1.0.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0"
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Swashbuckle": "6.0.0-beta901"
   },
   "frameworks": {
     "netcoreapp1.0": {
-      "dependencies": {
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.0"
-        }
-      }
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
     }
   },
   "tools": {
@@ -62,7 +64,8 @@
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   },
   "compilationOptions": {
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "xmlDoc": true
   },
   "exclude": [
     "wwwroot",
