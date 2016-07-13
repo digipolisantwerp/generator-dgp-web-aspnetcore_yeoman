@@ -1,5 +1,5 @@
 using System;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Hosting;
 
 namespace StarterKit
 {

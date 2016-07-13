@@ -1,63 +1,63 @@
 {
-    "webroot": "wwwroot",
-    "version": "1.0.0-*",
-    "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:51002",
-        "ef": "EntityFramework.Commands"
+  "version": "1.0.0-*",
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0"
     },
-	"dependencies": {
-        "AutoMapper": "4.2.0",
-        "Microsoft.AspNet.Cors": "6.0.0-rc1-final",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",
-        "Microsoft.AspNet.Http": "1.0.0-rc1-final",
-        "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-final",
-		"Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
-        "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
-		"Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
-		"Microsoft.AspNet.WebUtilities": "1.0.0-rc1-final", 
-		"Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
-		"Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-		"Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",
-		"Microsoft.Extensions.Logging": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-		"Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
-        "SeriLog.Extensions.Logging": "1.0.0-rc1-final-10092",
-		"SeriLog.Sinks.RollingFile": "2.0.0-beta-465",
-        "Swashbuckle.SwaggerGen": "6.0.0-rc1-final",
-		"Swashbuckle.SwaggerUi": "6.0.0-rc1-final",
-		"System.Linq.Dynamic": "1.0.4.0",
-        "Toolbox.Common": "1.2.1",
-        "Toolbox.Correlation": "1.0.0",
-        "Toolbox.Errors": "1.2.0",
-        "Toolbox.Json": "1.0.0",
-        "Toolbox.ServiceAgents": "1.2.0",        
-        "Toolbox.WebApi": "1.4.1"
-	},
-    "frameworks" : {
-        "dnx451" : { 
-       		"frameworkAssemblies": {
-                "System.ComponentModel.DataAnnotations": "",
-				"System.Net.Http": "4.0.0.0",
-				"System.Data": "4.0.0.0"
-            }
-        }
-    },
-    "compilationOptions": {
-        "emitEntryPoint": true
-    },
-	"exclude": [
-		"wwwroot",
-		"node_modules",
-		"bower_components",
-		".grunt"
-	],
-    "publishExclude": [
-        "node_modules",
-		"bower_components",
-		"**.xproj",
-		"**.user",
-		"**.vspscc"
+    "AutoMapper": "5.0.2",
+    "Microsoft.AspNetCore.Cors": "1.0.0",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Http": "1.0.0",
+    "Microsoft.AspNetCore.Http.Extensions": "1.0.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.AspNetCore.WebUtilities": "1.0.0",
+    "Microsoft.Extensions.Configuration": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0",
+    "Microsoft.Extensions.Options": "1.0.0",
+    "Digipolis.Common": "2.0.0",
+    "Digipolis.Errors": "2.0.0",
+    "Digipolis.Json": "2.0.0",
+    "Digipolis.ServiceAgents": "2.0.0",
+    "Digipolis.Web": "2.0.0",
+    "Microsoft.AspNetCore.Hosting": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Swashbuckle": "6.0.0-beta901"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "web.config"
     ]
+  },
+
+  "scripts": {
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
 }
