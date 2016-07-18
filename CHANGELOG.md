@@ -44,3 +44,7 @@
 ## 2.0.1
 
 - Digipolis.Web toolbox v2.0.1 
+
+## 2.0.2
+
+- correction startup method : AddVersionEndpoint
