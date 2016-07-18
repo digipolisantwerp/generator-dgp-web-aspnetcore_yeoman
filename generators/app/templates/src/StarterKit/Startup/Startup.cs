@@ -39,8 +39,8 @@ namespace StarterKit
 
             services.AddMvc();
 
-            //TODO InvalidOperationException
-            //.AddVersioning();
+            //TODO : as of Web Toolbox v2.0.1 this throws an InvalidOperationException
+            //services.AddVersionEndpoint();
 
             services.AddBusinessServices();
             services.AddAutoMapper();
