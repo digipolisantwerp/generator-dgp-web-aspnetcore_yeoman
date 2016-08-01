@@ -48,3 +48,7 @@
 ## 2.0.2
 
 - correction startup method : AddVersionEndpoint
+
+## 2.0.3
+
+- added _config to include on publish in project.json
