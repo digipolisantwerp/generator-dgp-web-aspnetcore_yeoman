@@ -52,3 +52,8 @@
 ## 2.0.3
 
 - added _config to include on publish in project.json
+
+## 2.0.4
+
+- update version web toolbox
+- kestrel port
