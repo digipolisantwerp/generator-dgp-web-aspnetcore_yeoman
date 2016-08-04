@@ -37,10 +37,8 @@ namespace StarterKit
         {
             services.Configure<AppSettings>(opt => Configuration.GetSection("AppSettings"));
 
-            services.AddMvc();
-
-            //TODO InvalidOperationException
-            //.AddVersioning();
+            services.AddMvc()
+                .AddVersionEndpoint();
 
             services.AddBusinessServices();
             services.AddAutoMapper();

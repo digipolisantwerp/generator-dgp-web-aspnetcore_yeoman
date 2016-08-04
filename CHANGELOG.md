@@ -36,3 +36,24 @@
 ## 1.0.8
 
 - application name in index view
+
+## 2.0.0
+
+- .NET Core RTM
+
+## 2.0.1
+
+- Digipolis.Web toolbox v2.0.1 
+
+## 2.0.2
+
+- correction startup method : AddVersionEndpoint
+
+## 2.0.3
+
+- added _config to include on publish in project.json
+
+## 2.0.4
+
+- update version web toolbox
+- kestrel port
