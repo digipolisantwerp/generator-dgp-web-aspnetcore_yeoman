@@ -123,7 +123,7 @@ gulp.task('inject-index', function() {
     var target = gulp.src(paths.mvcRoot + 'Views/Home/Template/Index.cshtml');
 
     //// It's not necessary to read the files (will speed up things), we're only after their paths: 
-    var sources = gulp.src([targetPaths.lib + 'jquery/**/*.js', targetPaths.lib + 'angular/**/*.js', targetPaths.lib + 'angular-*/**/*.js', targetPaths.lib + '**/*.js', targetPaths.app + '**/*.js',
+    var sources = gulp.src([targetPaths.lib + 'jquery/**/*.js', targetPaths.lib + 'angular/**/*.js', targetPaths.lib + 'angular-*/**/*.js', targetPaths.lib + '**/*.js', targetPaths.app + 'app.js', targetPaths.app + '**/*.js', targetPaths.app + '**/**/*.js',
         targetPaths.lib + '**/*.css', targetPaths.styles + '**/*.css'], { read: false });
 
     return target.pipe(inject(sources, { ignorePath: '/wwwroot' }))

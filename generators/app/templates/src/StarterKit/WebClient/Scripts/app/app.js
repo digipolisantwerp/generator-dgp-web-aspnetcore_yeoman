@@ -3,9 +3,7 @@
     var app = angular.module('theApp', [
         'ngAnimate',
         'AppService',
-        'ui.router',
-        'tink.tinkApi',
-        'tink.navigation'
+        'ui.router'
     ]);
 
     angular.module('theApp')
