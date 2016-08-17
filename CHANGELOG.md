@@ -57,3 +57,8 @@
 
 - update version web toolbox
 - kestrel port
+
+## 2.0.5
+
+- added appsgroup property to chef config
+- changes needed for hosting the app

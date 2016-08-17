@@ -145,31 +145,25 @@ gulp.task('default', ['dev']);
 // watch tasks
 
 gulp.task('watch', function() {
-    return gulp.watch([sourcePaths.scripts + '**/*', sourcePaths.sass + '*/*.scss'], ['dev'])
-        .on('change', function(event) {
-            console.log('File ' + event.path + ' was ' + event.type + ', running dev tasks...');
-        });
+    return gulp.watch([
+            sourcePaths.scripts + '**/*',
+            sourcePaths.sass + '**/*.scss'
+        ],['reload'])
+            .on('change', function(event) {
+                console.log('File ' + event.path + ' was ' + event.type + ', running dev tasks...');
+            });
 });
 
 // Browser-sync tasks
 
+gulp.task('serve', ['browser-sync', 'watch']);
+
 gulp.task('browser-sync', function() {
     browsersync.init({
-        proxy: "localhost:2230"
+        proxy: "localhost:50084"
     });
 });
 
-gulp.task('serve', function() {
-    browsersync.init({
-        proxy: "localhost:2230"
-    });
-    gulp.watch([sourcePaths.scripts + '**/*', sourcePaths.sass + '*/*.scss'], ['reload'])
-        .on('change', function(event) {
-            console.log('File ' + event.path + ' was ' + event.type + ', running dev tasks...');
-        });
-});
-
-gulp.task('reload', ['dev'], function() {
+gulp.task('reload', ['dev'], function () {
     browsersync.reload();
 });
-
