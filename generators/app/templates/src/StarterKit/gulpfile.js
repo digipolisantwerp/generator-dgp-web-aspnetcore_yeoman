@@ -10,8 +10,7 @@ var gulp = require('gulp'),
     bower = require('gulp-bower'),
     bowerfiles = require('main-bower-files'),
     flatten = require('gulp-flatten'),
-    es = require('event-stream'),
-    sort =require('gulp-natural-sort');
+    es = require('event-stream');
 
 var browsersync = require('browser-sync').create();
 
@@ -54,7 +53,7 @@ var targetPaths = {
 
 // Clean tasks
 
-gulp.task('clean:wwwRoot', function() {
+gulp.task('clean:wwwRoot', function () {
     return del.sync([targetPaths.scripts, targetPaths.styles, targetPaths.images, '!.gitkeep']);
 });
 
@@ -72,23 +71,23 @@ gulp.task('copy:all:prd', ['copy:webClient']);
 
 
 //bower
-gulp.task('bower', function() {
+gulp.task('bower', function () {
     return bower();
 });
 
-gulp.task('bower-files:dev', function() {
+gulp.task('bower-files:dev', function () {
     return gulp.src(bowerfiles(), { base: 'bower_components' })
         .pipe(gulp.dest(paths.webRoot + 'lib/'));
 });
 
-gulp.task('bower-files:prd', function() {
+gulp.task('bower-files:prd', function () {
     return gulp.src(bowerfiles(), { base: 'bower_components' })
         .pipe(gulp.dest(paths.webRoot + 'lib/'));
 });
 
 // Sass tasks
 
-gulp.task('sass:dev', ['copy:all:dev'], function() {
+gulp.task('sass:dev', ['copy:all:dev'], function () {
     var sassOptions = {
         errLogToConsole: true,
         outputStyle: 'expanded'
@@ -101,7 +100,7 @@ gulp.task('sass:dev', ['copy:all:dev'], function() {
         .pipe(gulp.dest(targetPaths.styles));
 });
 
-gulp.task('sass:prd', ['copy:all:prd'], function() {
+gulp.task('sass:prd', ['copy:all:prd'], function () {
     var sassOptions = {
         errLogToConsole: true,
         outputStyle: 'compressed'
@@ -120,58 +119,57 @@ gulp.task('sass:prd', ['copy:all:prd'], function() {
 
 // Inject task
 
-gulp.task('inject-index', function() {
+gulp.task('inject-index', function () {
     var target = gulp.src(paths.mvcRoot + 'Views/Home/Template/Index.cshtml');
 
-    //// It's not necessary to read the files (will speed up things), we're only after their paths:
+    //// It's not necessary to read the files (will speed up things), we're only after their paths: 
     var sources = gulp.src([targetPaths.lib + 'jquery/**/*.js', targetPaths.lib + 'angular/**/*.js', targetPaths.lib + 'angular-*/**/*.js', targetPaths.lib + '**/*.js', targetPaths.app + 'app.js', targetPaths.app + '**/*.js', targetPaths.app + '**/**/*.js',
-        targetPaths.lib + '**/*.css', targetPaths.styles + '**/*.css'], { read: false });
+        targetPaths.lib + 'dgp-bootstrap-sass/dist/css/main.css', targetPaths.lib + '**/*.css', targetPaths.styles + '**/*.css'], { read: false });
 
     return target.pipe(inject(sources, { ignorePath: '/wwwroot' }))
         //  //.pipe(angularFileSort())
-        .pipe(sort())   // to get the injected files sorted correctly
         .pipe(gulp.dest(paths.mvcRoot + 'Views/Home'));
 });
 
 // Default tasks
 
 
-gulp.task('dev', ['sass:dev', 'bower-files:dev'], function() {
+gulp.task('dev', ['sass:dev', 'bower-files:dev'], function () {
     return gulp.start('inject-index');
 });
-gulp.task('prd', ['sass:prd', 'bower-files:prd'], function() {
+gulp.task('prd', ['sass:prd', 'bower-files:prd'], function () {
     return gulp.start('inject-index');
 });
 gulp.task('default', ['dev']);
 
 // watch tasks
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     return gulp.watch([sourcePaths.scripts + '**/*', sourcePaths.sass + '*/*.scss'], ['dev'])
-        .on('change', function(event) {
+        .on('change', function (event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running dev tasks...');
         });
 });
 
 // Browser-sync tasks
 
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', function () {
     browsersync.init({
         proxy: "localhost:2230"
     });
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
     browsersync.init({
         proxy: "localhost:2230"
     });
     gulp.watch([sourcePaths.scripts + '**/*', sourcePaths.sass + '*/*.scss'], ['reload'])
-        .on('change', function(event) {
+        .on('change', function (event) {
             console.log('File ' + event.path + ' was ' + event.type + ', running dev tasks...');
         });
 });
 
-gulp.task('reload', ['dev'], function() {
+gulp.task('reload', ['dev'], function () {
     browsersync.reload();
 });
 
