@@ -3,6 +3,7 @@
     var app = angular.module('theApp', [
         'ngAnimate',
         'AppService',
+        'dgp.navigation',
         'ui.router'
     ]);
 
