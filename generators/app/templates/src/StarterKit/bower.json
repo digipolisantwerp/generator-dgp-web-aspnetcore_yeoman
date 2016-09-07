@@ -9,7 +9,9 @@
     "angular-ui-router": "0.2.18",
     "angular-cookies": "1.5.0",
     "angular-sanitize": "1.5.0",
-    "angular-touch": "1.5.0"
+    "angular-touch": "1.5.0",
+    "dgp-bootstrap-sass": "https://github.com/digipolisantwerp/dgp-bootstrap-sass.git",
+    "dgp-navigation-angular": "https://github.com/digipolisantwerp/dgp-navigation-angular.git"
   },
   "overrides": {},
   "resolutions": {

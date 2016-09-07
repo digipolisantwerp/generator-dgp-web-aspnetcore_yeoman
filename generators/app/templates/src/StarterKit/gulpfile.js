@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     bower = require('gulp-bower'),
     bowerfiles = require('main-bower-files'),
     flatten = require('gulp-flatten'),
-    es = require('event-stream');
+    es = require('event-stream'),
+    sort =require('gulp-natural-sort');
 
 var browsersync = require('browser-sync').create();
 
@@ -122,12 +123,13 @@ gulp.task('sass:prd', ['copy:all:prd'], function() {
 gulp.task('inject-index', function() {
     var target = gulp.src(paths.mvcRoot + 'Views/Home/Template/Index.cshtml');
 
-    //// It's not necessary to read the files (will speed up things), we're only after their paths: 
+    //// It's not necessary to read the files (will speed up things), we're only after their paths:
     var sources = gulp.src([targetPaths.lib + 'jquery/**/*.js', targetPaths.lib + 'angular/**/*.js', targetPaths.lib + 'angular-*/**/*.js', targetPaths.lib + '**/*.js', targetPaths.app + 'app.js', targetPaths.app + '**/*.js', targetPaths.app + '**/**/*.js',
         targetPaths.lib + '**/*.css', targetPaths.styles + '**/*.css'], { read: false });
 
     return target.pipe(inject(sources, { ignorePath: '/wwwroot' }))
         //  //.pipe(angularFileSort())
+        .pipe(sort())   // to get the injected files sorted correctly
         .pipe(gulp.dest(paths.mvcRoot + 'Views/Home'));
 });
 
