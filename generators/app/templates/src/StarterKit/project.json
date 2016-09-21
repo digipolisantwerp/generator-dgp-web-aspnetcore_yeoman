@@ -54,7 +54,8 @@
     "include": [
       "_config",
       "wwwroot",
-      "web.config"
+      "web.config",
+      "Mvc/Views/Home/Index.cshtml"
     ]
   },
 

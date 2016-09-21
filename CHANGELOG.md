@@ -66,3 +66,7 @@
 ## 2.0.6
 
 - BUILDNUMBER placeholder in project.json
+
+## 2.0.7
+
+- index.cshtml include in project.json

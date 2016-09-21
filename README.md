@@ -16,6 +16,14 @@ The _**-g**_ flag installs the generator globally so you can run yeoman from any
 
 Install the generator :
 
+It is recommended to first uninstall any current installed version before installing the latest version to avoid remains of previous versions in the npm cache.
+
+``` bash
+npm uninstall generator-dgp-web-aspnetcore -g
+```
+
+Install the current version.
+
 ``` bash
 npm install generator-dgp-web-aspnetcore -g
 ```
