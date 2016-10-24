@@ -70,3 +70,7 @@
 ## 2.0.7
 
 - index.cshtml include in project.json
+
+## 2.0.8
+
+- removed Tink and replaced it with Bootstrap

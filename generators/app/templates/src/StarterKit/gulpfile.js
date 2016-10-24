@@ -53,7 +53,7 @@ var targetPaths = {
 
 // Clean tasks
 
-gulp.task('clean:wwwRoot', function() {
+gulp.task('clean:wwwRoot', function () {
     return del.sync([targetPaths.scripts, targetPaths.styles, targetPaths.images, '!.gitkeep']);
 });
 
@@ -71,23 +71,23 @@ gulp.task('copy:all:prd', ['copy:webClient']);
 
 
 //bower
-gulp.task('bower', function() {
+gulp.task('bower', function () {
     return bower();
 });
 
-gulp.task('bower-files:dev', function() {
+gulp.task('bower-files:dev', function () {
     return gulp.src(bowerfiles(), { base: 'bower_components' })
         .pipe(gulp.dest(paths.webRoot + 'lib/'));
 });
 
-gulp.task('bower-files:prd', function() {
+gulp.task('bower-files:prd', function () {
     return gulp.src(bowerfiles(), { base: 'bower_components' })
         .pipe(gulp.dest(paths.webRoot + 'lib/'));
 });
 
 // Sass tasks
 
-gulp.task('sass:dev', ['copy:all:dev'], function() {
+gulp.task('sass:dev', ['copy:all:dev'], function () {
     var sassOptions = {
         errLogToConsole: true,
         outputStyle: 'expanded'
@@ -100,7 +100,7 @@ gulp.task('sass:dev', ['copy:all:dev'], function() {
         .pipe(gulp.dest(targetPaths.styles));
 });
 
-gulp.task('sass:prd', ['copy:all:prd'], function() {
+gulp.task('sass:prd', ['copy:all:prd'], function () {
     var sassOptions = {
         errLogToConsole: true,
         outputStyle: 'compressed'
@@ -119,12 +119,12 @@ gulp.task('sass:prd', ['copy:all:prd'], function() {
 
 // Inject task
 
-gulp.task('inject-index', function() {
+gulp.task('inject-index', function () {
     var target = gulp.src(paths.mvcRoot + 'Views/Home/Template/Index.cshtml');
 
     //// It's not necessary to read the files (will speed up things), we're only after their paths: 
-    var sources = gulp.src([targetPaths.lib + 'jquery/**/*.js', targetPaths.lib + 'angular/**/*.js', targetPaths.lib + 'angular-*/**/*.js', targetPaths.lib + '**/*.js', targetPaths.app + '**/*.js',
-        targetPaths.lib + '**/*.css', targetPaths.styles + '**/*.css'], { read: false });
+    var sources = gulp.src([targetPaths.lib + 'jquery/**/*.js', targetPaths.lib + 'angular/**/*.js', targetPaths.lib + 'angular-*/**/*.js', targetPaths.lib + '**/*.js', targetPaths.app + 'app.js', targetPaths.app + '**/*.js', targetPaths.app + '**/**/*.js',
+        targetPaths.lib + 'dgp-bootstrap-sass/dist/css/main.css', targetPaths.lib + '**/*.css', targetPaths.styles + '**/*.css'], { read: false });
 
     return target.pipe(inject(sources, { ignorePath: '/wwwroot' }))
         //  //.pipe(angularFileSort())
@@ -134,10 +134,10 @@ gulp.task('inject-index', function() {
 // Default tasks
 
 
-gulp.task('dev', ['sass:dev', 'bower-files:dev'], function() {
+gulp.task('dev', ['sass:dev', 'bower-files:dev'], function () {
     return gulp.start('inject-index');
 });
-gulp.task('prd', ['sass:prd', 'bower-files:prd'], function() {
+gulp.task('prd', ['sass:prd', 'bower-files:prd'], function () {
     return gulp.start('inject-index');
 });
 gulp.task('default', ['dev']);
@@ -155,6 +155,7 @@ gulp.task('watch', function() {
 });
 
 // Browser-sync tasks
+
 
 gulp.task('serve', ['browser-sync', 'watch']);
 
