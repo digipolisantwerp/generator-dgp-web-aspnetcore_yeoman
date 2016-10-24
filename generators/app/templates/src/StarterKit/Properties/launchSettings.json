@@ -16,7 +16,9 @@
       }
     },
     "web": {
-      "commandName": "web",
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:51002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

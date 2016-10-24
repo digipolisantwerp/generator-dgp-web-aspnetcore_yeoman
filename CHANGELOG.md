@@ -57,3 +57,16 @@
 
 - update version web toolbox
 - kestrel port
+
+## 2.0.5
+
+- added appsgroup property to chef config
+- changes needed for hosting the app
+
+## 2.0.6
+
+- BUILDNUMBER placeholder in project.json
+
+## 2.0.7
+
+- index.cshtml include in project.json

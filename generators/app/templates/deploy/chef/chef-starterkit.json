@@ -1,9 +1,10 @@
 {
+    "appsgroup": "cluster1aspnetcore",
     "app": {
     	"version": "",
     	"artifact": "",
         "port": "51003",
-        "appname": "StarterKit"
+        "appname": "StarterKit",
         "apiroot": {
             "uri": {
                 "scheme": "http://",
