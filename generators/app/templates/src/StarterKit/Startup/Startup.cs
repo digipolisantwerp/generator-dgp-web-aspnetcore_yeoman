@@ -8,7 +8,9 @@ using Microsoft.Extensions.Logging;
 using StarterKit.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Digipolis.Web;
-using Swashbuckle.Swagger.Model;
+using Digipolis.Web.Startup;
+using Digipolis.ApplicationServices;
+using Digipolis.Correlation;
 
 namespace StarterKit
 {
@@ -37,18 +39,40 @@ namespace StarterKit
         {
             services.Configure<AppSettings>(opt => Configuration.GetSection("AppSettings"));
 
-            services.AddMvc()
-                .AddVersionEndpoint();
+            services.AddApplicationServices(opt => {
+                opt.ApplicationId = "enter-your-application-id-here";
+                opt.ApplicationName = "StarterKit";
+            });
 
-            services.AddBusinessServices();
+            services.AddCorrelation();
+
+            services.AddLoggingEngine();
+
+            services.AddMvc()
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                })
+                .AddApiExtensions(null, options =>
+                {
+                    options.DisableVersioning = true;
+                    options.DisableGlobalErrorHandling = true;
+                })
+                .AddVersionEndpoint();;
+
+            services.AddServices();
             services.AddAutoMapper();
+            
             services.AddSwaggerGen();
+
+            services.AddGlobalErrorHandling<ApiExceptionMapper>();
         }
         
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
 		{
             loggerFactory.AddConsole(Configuration.GetSection("ConsoleLogging"));
             loggerFactory.AddDebug(LogLevel.Debug);
+            loggerFactory.AddLoggingEngine(app, appLifetime, Configuration);
             
 			// CORS
             app.UseCors((policy) => {
@@ -58,10 +82,7 @@ namespace StarterKit
                 policy.AllowCredentials();
             });
 
-            app.UseExceptionHandling(option =>
-           {
-               // add your custom exception mappings here
-           });
+            app.UseApiExtensions();
             
             // static files en wwwroot
 			app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });

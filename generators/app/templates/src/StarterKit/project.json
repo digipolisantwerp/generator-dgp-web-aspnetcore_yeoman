@@ -20,15 +20,20 @@
     "Microsoft.Extensions.Logging": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.Extensions.Options": "1.0.0",
+    "Digipolis.ApplicationServices": "1.0.0",
     "Digipolis.Common": "2.0.0",
-    "Digipolis.Errors": "2.0.0",
+    "Digipolis.Correlation": "2.0.0",
+    "Digipolis.Errors": "3.0.0",
     "Digipolis.Json": "2.0.0",
-    "Digipolis.ServiceAgents": "3.0.0",
-    "Digipolis.Web": "2.0.3",
+    "Digipolis.Serilog": "1.2.1",
+    "Digipolis.Serilog.ApplicationServices": "1.2.1",
+    "Digipolis.Serilog.AuthService": "1.2.1",
+    "Digipolis.Serilog.Correlation": "1.2.1",    
+    "Digipolis.ServiceAgents": "4.0.1",
+    "Digipolis.Web": "3.0.5",
     "Microsoft.AspNetCore.Hosting": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
-    "Swashbuckle": "6.0.0-beta901"
+    "Swashbuckle": "6.0.0-beta902"
   },
   "frameworks": {
     "netcoreapp1.0": {

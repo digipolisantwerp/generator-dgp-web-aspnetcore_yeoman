@@ -4,9 +4,62 @@
         "IncludeScopes": false,
         "LogLevel": 
         {
-            "Default": "Debug",
-            "System": "Information",
-            "Microsoft": "Information"
+            "Default": "Warning",
+            "System": "Warning",
+            "Microsoft": "Warning"
         }
-    }
+    },
+	"SystemLog": {
+		"MinimumLevel": {
+			"Default": "Warning",
+			"Override": {
+				"System": "Warning",
+				"Microsoft": "Warning"
+			}
+		},
+		"WriteTo": [
+			{
+				"Name": "LiterateConsole"
+			},
+			{
+				"Name": "Elasticsearch",
+				"Args": {
+					"nodeUris": "%%log.elastic.system.url%%",
+					"indexFormat": "logstash-system-starterkit-{0:yyyy.MM.dd}",
+					"templateName": "starterkit-template",
+					"minimumLogEventLevel": "Information",
+					"batchPostingLimit": 50,
+					"batchBetweenPeriod": 2000,
+					"typeName": "SystemLogEvent",
+					"bufferBaseFilename": "%%log.elastic.system.bufferpath%%"
+				}
+			}
+		],
+		"Enrich": [ "FromLogContext" ]
+	},
+	"ApplicationLog": {
+		"MinimumLevel": {
+			"Default": "Warning",
+			"Override": {
+				"System": "Warning",
+				"Microsoft": "Warning"
+			}
+		},
+		"WriteTo": [
+			{
+				"Name": "Elasticsearch",
+				"Args": {
+					"nodeUris": "%%log.elastic.application.url%%",
+					"indexFormat": "logstash-application-starterkit-{0:yyyy.MM.dd}",
+					"templateName": "starterkit-template",
+					"minimumLogEventLevel": "Information",
+					"batchPostingLimit": 50,
+					"batchBetweenPeriod": 2000,
+					"typeName": "AppLogEvent",
+					"bufferBaseFilename": "%%log.elastic.application.bufferpath%%"
+				}
+			}
+		],
+		"Enrich": [ "FromLogContext" ]
+	}
 }
