@@ -31,7 +31,6 @@
                     "batchPostingLimit": 50,
                     "period": 2000,
                     "bufferBaseFilename": "%%log.elastic.system.bufferpath%%",
-                    "bufferFileSizeLimitBytes": 20971520,
                     "bufferLogShippingInterval": 5000,
                     "minimumLogEventLevel": "Information"
 				}
@@ -58,7 +57,6 @@
                     "batchPostingLimit": 50,
                     "period": 2000,
                     "bufferBaseFilename": "%%log.elastic.application.bufferpath%%",
-                    "bufferFileSizeLimitBytes": 20971520,
                     "bufferLogShippingInterval": 5000,
                     "minimumLogEventLevel": "Information"
 				}

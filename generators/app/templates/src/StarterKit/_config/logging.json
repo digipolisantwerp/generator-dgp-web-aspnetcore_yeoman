@@ -57,7 +57,7 @@
                     "batchPostingLimit": 50,
                     "period": 2000,
                     "bufferBaseFilename": "C:/Temp/LogDigipolis/starterkit-buffer-application",
-                    "bufferFileSizeLimitBytes": 20971520,
+                    "bufferLogShippingInterval": 5000,
                     "minimumLogEventLevel": "Information"
 				}
 			}
