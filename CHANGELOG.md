@@ -1,8 +1,12 @@
 # generator-dgp-web-aspnetcore
 
+## 2.1.8
+
+- docker elasticsearch tooling added.
+
 ## 2.1.7
 
-- removed elasticsearch bufferByteSizeLimit from config.
+- elasticsearch bufferByteSizeLimit removed from config.
 
 ## 2.1.6
 
