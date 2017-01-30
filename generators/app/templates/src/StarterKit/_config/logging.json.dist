@@ -4,17 +4,17 @@
         "IncludeScopes": false,
         "LogLevel": 
         {
-            "Default": "Warning",
-            "System": "Warning",
-            "Microsoft": "Warning"
+            "Default": "Debug",
+            "System": "Information",
+            "Microsoft": "Information"
         }
     },
 	"SystemLog": {
 		"MinimumLevel": {
-			"Default": "Warning",
+			"Default": "Debug",
 			"Override": {
-				"System": "Warning",
-				"Microsoft": "Warning"
+				"System": "Information",
+				"Microsoft": "Information"
 			}
 		},
 		"WriteTo": [
@@ -24,14 +24,16 @@
 			{
 				"Name": "Elasticsearch",
 				"Args": {
-					"nodeUris": "%%log.elastic.system.url%%",
-					"indexFormat": "logstash-system-starterkit-{0:yyyy.MM.dd}",
-					"templateName": "starterkit-template",
-					"minimumLogEventLevel": "Information",
-					"batchPostingLimit": 50,
-					"batchBetweenPeriod": 2000,
-					"typeName": "SystemLogEvent",
-					"bufferBaseFilename": "%%log.elastic.system.bufferpath%%"
+                    "nodeUris": "%%log.elastic.system.url%%",
+                    "indexFormat": "logstash-system-starterkit-{0:yyyy.MM.dd}",
+                    "templateName": "starterkit-template",
+                    "typeName": "SystemLogEvent",
+                    "batchPostingLimit": 50,
+                    "period": 2000,
+                    "bufferBaseFilename": "%%log.elastic.system.bufferpath%%",
+                    "bufferFileSizeLimitBytes": 20971520,
+                    "bufferLogShippingInterval": 5000,
+                    "minimumLogEventLevel": "Information"
 				}
 			}
 		],
@@ -39,24 +41,26 @@
 	},
 	"ApplicationLog": {
 		"MinimumLevel": {
-			"Default": "Warning",
+			"Default": "Debug",
 			"Override": {
-				"System": "Warning",
-				"Microsoft": "Warning"
+				"System": "Information",
+				"Microsoft": "Information"
 			}
 		},
 		"WriteTo": [
 			{
 				"Name": "Elasticsearch",
 				"Args": {
-					"nodeUris": "%%log.elastic.application.url%%",
-					"indexFormat": "logstash-application-starterkit-{0:yyyy.MM.dd}",
-					"templateName": "starterkit-template",
-					"minimumLogEventLevel": "Information",
-					"batchPostingLimit": 50,
-					"batchBetweenPeriod": 2000,
-					"typeName": "AppLogEvent",
-					"bufferBaseFilename": "%%log.elastic.application.bufferpath%%"
+                    "nodeUris": "%%log.elastic.application.url%%",
+                    "indexFormat": "logstash-application-starterkit-{0:yyyy.MM.dd}",
+                    "templateName": "starterkit-template",
+                    "typeName": "AppLogEvent",
+                    "batchPostingLimit": 50,
+                    "period": 2000,
+                    "bufferBaseFilename": "%%log.elastic.application.bufferpath%%",
+                    "bufferFileSizeLimitBytes": 20971520,
+                    "bufferLogShippingInterval": 5000,
+                    "minimumLogEventLevel": "Information"
 				}
 			}
 		],

@@ -24,14 +24,15 @@
 			{
 				"Name": "Elasticsearch",
 				"Args": {
-					"nodeUris": "http://localhost:9200",
-					"indexFormat": "logstash-system-starterkit-{0:yyyy.MM.dd}",
-					"templateName": "starterkit-template",
-					"minimumLogEventLevel": "Information",
-					"batchPostingLimit": 50,
-					"batchBetweenPeriod": 2000,
-					"typeName": "SystemLogEvent",
-					"bufferBaseFilename": "C:/Temp/LogDigipolis/starterkit-buffer-system"
+                    "nodeUris": "http://localhost:9200",
+                    "indexFormat": "logstash-system-starterkit-{0:yyyy.MM.dd}",
+                    "templateName": "starterkit-template",
+                    "typeName": "SystemLogEvent",
+                    "batchPostingLimit": 50,
+                    "period": 2000,
+                    "bufferBaseFilename": "C:/Temp/LogDigipolis/starterkit-buffer-system",
+                    "bufferLogShippingInterval": 5000,
+                    "minimumLogEventLevel": "Information"
 				}
 			}
 		],
@@ -49,14 +50,15 @@
 			{
 				"Name": "Elasticsearch",
 				"Args": {
-					"nodeUris": "http://localhost:9200",
-					"indexFormat": "logstash-application-starterkit-{0:yyyy.MM.dd}",
-					"templateName": "starterkit-template",
-					"minimumLogEventLevel": "Information",
-					"batchPostingLimit": 50,
-					"batchBetweenPeriod": 2000,
-					"typeName": "AppLogEvent",
-					"bufferBaseFilename": "C:/Temp/LogDigipolis/starterkit-buffer-application"
+                    "nodeUris": "http://localhost:9200",
+                    "indexFormat": "logstash-application-starterkit-{0:yyyy.MM.dd}",
+                    "templateName": "starterkit-template",
+                    "typeName": "AppLogEvent",
+                    "batchPostingLimit": 50,
+                    "period": 2000,
+                    "bufferBaseFilename": "C:/Temp/LogDigipolis/starterkit-buffer-application",
+                    "bufferFileSizeLimitBytes": 20971520,
+                    "minimumLogEventLevel": "Information"
 				}
 			}
 		],

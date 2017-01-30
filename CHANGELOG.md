@@ -1,5 +1,9 @@
 # generator-dgp-web-aspnetcore
 
+## 2.1.6
+
+- extra serilog elasticsearch settings in config file.
+
 ## 2.1.5
 
 - conflicting package removed.
