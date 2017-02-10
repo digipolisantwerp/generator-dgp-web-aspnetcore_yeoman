@@ -37,7 +37,7 @@ namespace StarterKit
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(opt => Configuration.GetSection("AppSettings"));
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddApplicationServices(opt => {
                 opt.ApplicationId = "enter-your-application-id-here";
@@ -56,7 +56,6 @@ namespace StarterKit
                 .AddApiExtensions(null, options =>
                 {
                     options.DisableVersioning = true;
-                    options.DisableGlobalErrorHandling = true;
                 })
                 .AddVersionEndpoint();;
 

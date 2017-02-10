@@ -1,5 +1,10 @@
 # generator-dgp-web-aspnetcore
 
+## 2.1.9
+
+- disabled global error handling.
+- fixed wrong AppSettings configuration.
+
 ## 2.1.8
 
 - docker elasticsearch tooling added.
