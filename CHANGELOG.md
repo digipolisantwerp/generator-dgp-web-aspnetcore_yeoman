@@ -1,5 +1,9 @@
 # generator-dgp-web-aspnetcore
 
+## 2.2.0
+
+- IApplicationLogger.
+
 ## 2.1.9
 
 - disabled global error handling.
