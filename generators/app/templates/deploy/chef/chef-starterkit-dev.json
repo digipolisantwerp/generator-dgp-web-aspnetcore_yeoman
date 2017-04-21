@@ -1,0 +1,39 @@
+{
+    "appsgroup": "cluster1aspnetcore",
+    "app": {
+    	"version": "",
+    	"artifact": "",
+        "port": "51003",
+        "appname": "StarterKit",
+        "apiroot": {
+            "uri": {
+                "scheme": "http://",
+                "host": "my.host.domain",
+                "port": "51003",
+                "path": "/"
+            }
+        },
+        "uiroot": {
+            "uri": {
+                "scheme": "http://",
+                "host": "my.host.domain",
+                "port": "51003",
+                "path": "/ui/"
+            }
+        }
+    },
+    "log": {
+        "elastic": {
+            "system": {
+                "url": "https://logging-app1-o.antwerpen.be",
+                "bufferpath": "/data/starterkit/starterkit_web_aspnetcore/log/elk-system-starterkit",
+                "headers": "Authorization=Basic enter_your_basic_credentials_here"
+            },
+            "application": {
+                "url": "https://logging-app1-o.antwerpen.be",
+                "bufferpath": "/data/starterkit/starterkit_web_aspnetcore/log/elk-application-starterkit",
+                "headers": "Authorization=Basic enter_your_basic_credentials_here"
+            }
+        }
+    },
+}

@@ -1,5 +1,9 @@
 # generator-dgp-web-aspnetcore
 
+## 2.4.0
+
+- ElasticSearch auth headers added.
+
 ## 2.3.0
 
 - prevent compilation of .NET source files in node_modules directory.

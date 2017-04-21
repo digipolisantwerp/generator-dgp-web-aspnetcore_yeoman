@@ -25,14 +25,15 @@
 				"Name": "Elasticsearch",
 				"Args": {
                     "nodeUris": "%%log.elastic.system.url%%",
-                    "indexFormat": "logstash-system-starterkit-{0:yyyy.MM.dd}",
+                    "indexFormat": "logstash-application-starterkit-{0:yyyy.MM.dd}",
                     "templateName": "starterkit-template",
                     "typeName": "SystemLogEvent",
                     "batchPostingLimit": 50,
                     "period": 2000,
                     "bufferBaseFilename": "%%log.elastic.system.bufferpath%%",
                     "bufferLogShippingInterval": 5000,
-                    "minimumLogEventLevel": "Information"
+                    "minimumLogEventLevel": "Information",
+					"connectionGlobalHeaders": "%%log.elastic.system.headers%%"
 				}
 			}
 		],
@@ -58,7 +59,8 @@
                     "period": 2000,
                     "bufferBaseFilename": "%%log.elastic.application.bufferpath%%",
                     "bufferLogShippingInterval": 5000,
-                    "minimumLogEventLevel": "Information"
+                    "minimumLogEventLevel": "Information",
+					"connectionGlobalHeaders": "%%log.elastic.application.headers%%"
 				}
 			}
 		],

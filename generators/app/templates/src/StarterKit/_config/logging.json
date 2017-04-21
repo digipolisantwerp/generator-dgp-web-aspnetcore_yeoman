@@ -25,7 +25,7 @@
 				"Name": "Elasticsearch",
 				"Args": {
                     "nodeUris": "http://localhost:9200",
-                    "indexFormat": "logstash-system-starterkit-{0:yyyy.MM.dd}",
+                    "indexFormat": "logstash-application-starterkit-{0:yyyy.MM.dd}",
                     "templateName": "starterkit-template",
                     "typeName": "SystemLogEvent",
                     "batchPostingLimit": 50,
