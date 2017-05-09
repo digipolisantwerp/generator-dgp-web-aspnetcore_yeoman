@@ -1,5 +1,10 @@
 # generator-dgp-web-aspnetcore
 
+## 3.0.0
+
+- conversion to csproj project files and MSBuild.
+- update of the Digipolis.Serilog packages.
+
 ## 2.4.0
 
 - ElasticSearch auth headers added.

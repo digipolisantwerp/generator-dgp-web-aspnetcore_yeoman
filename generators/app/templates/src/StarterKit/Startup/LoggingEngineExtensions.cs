@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Digipolis.Logging;
 using Digipolis.Serilog;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Core;
 using Serilog.Filters;
+using StarterKit.Logging;
 
 namespace StarterKit
 {
@@ -17,13 +17,13 @@ namespace StarterKit
     {
         public static IServiceCollection AddLoggingEngine(this IServiceCollection services)
         {
+            services.AddSingleton<IApplicationLogger, ApplicationLogger>();
+
             services.AddSerilogExtensions(options => {
-                options.MessageVersion = "1";
-                options.EnableApplicationLogger = true;
                 options.AddApplicationServicesEnricher();
                 options.AddAuthServiceEnricher();
                 options.AddCorrelationEnricher();
-                options.AddMessagEnricher();
+                options.AddMessagEnricher(msgOptions => msgOptions.MessageVersion = "1");
             });
 
             return services;
