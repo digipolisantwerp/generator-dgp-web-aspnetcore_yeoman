@@ -1,6 +1,6 @@
 # generator-dgp-web-aspnetcore
 
-Yeoman generator for a new ASP.NET Core 1.0 Web Client project.
+Yeoman generator for a new ASP.NET Core 1.1 Web Client project.
 
 ## Installation
 
