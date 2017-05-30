@@ -1,5 +1,9 @@
 # generator-dgp-web-aspnetcore
 
+## 3.0.1
+
+- update package versions.
+
 ## 3.0.0
 
 - conversion to csproj project files and MSBuild.

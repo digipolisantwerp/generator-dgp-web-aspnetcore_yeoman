@@ -20,37 +20,37 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
-    <PackageReference Include="Digipolis.ApplicationServices" Version="1.0.0" />
-    <PackageReference Include="Digipolis.Common" Version="2.0.0" />
-    <PackageReference Include="Digipolis.Correlation" Version="2.0.0" />
-    <PackageReference Include="Digipolis.Errors" Version="4.0.0" />
-    <PackageReference Include="Digipolis.Json" Version="2.0.0" />
-    <PackageReference Include="Digipolis.Serilog" Version="2.0.1" />
-    <PackageReference Include="Digipolis.Serilog.ApplicationServices" Version="2.0.0" />
-    <PackageReference Include="Digipolis.Serilog.AuthService" Version="2.0.0" />
-    <PackageReference Include="Digipolis.Serilog.Correlation" Version="2.0.0" />
-    <PackageReference Include="Digipolis.Serilog.Message" Version="1.0.0" />
-    <PackageReference Include="Digipolis.ServiceAgents" Version="4.0.3" />
-    <PackageReference Include="Digipolis.Web" Version="4.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="2.2.0" />
-    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.2" />
+    <PackageReference Include="Digipolis.ApplicationServices" Version="2.0.0" />
+    <PackageReference Include="Digipolis.Common" Version="3.0.0" />
+    <PackageReference Include="Digipolis.Correlation" Version="3.0.0" />
+    <PackageReference Include="Digipolis.Errors" Version="5.0.0" />
+    <PackageReference Include="Digipolis.Json" Version="3.0.0" />
+    <PackageReference Include="Digipolis.Serilog" Version="3.0.0" />
+    <PackageReference Include="Digipolis.Serilog.ApplicationServices" Version="3.0.0" />
+    <PackageReference Include="Digipolis.Serilog.AuthService" Version="3.0.0" />
+    <PackageReference Include="Digipolis.Serilog.Correlation" Version="3.0.0" />
+    <PackageReference Include="Digipolis.Serilog.Message" Version="2.0.0" />
+    <PackageReference Include="Digipolis.ServiceAgents" Version="5.0.0" />
+    <PackageReference Include="Digipolis.Web" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.2" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="5.2.0-unstable0004" />
     <PackageReference Include="Swashbuckle" Version="6.0.0-beta902" />
   </ItemGroup>
 
