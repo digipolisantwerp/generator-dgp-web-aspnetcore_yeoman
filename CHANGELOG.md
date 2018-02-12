@@ -1,5 +1,8 @@
 # generator-dgp-web-aspnetcore
 
+## 4.0.0
+ - update to .Net Core 2.0 dependencies
+
 ## 3.0.2
 
 - update version xunit packages and dotnet-xunit CLI tool added to integration test project.
