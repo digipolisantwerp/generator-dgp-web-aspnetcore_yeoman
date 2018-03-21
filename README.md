@@ -37,3 +37,14 @@ yo dgp-web-aspnetcore
 ```
 
 Answer the questions :-)
+
+## The ASP.NET Core solution
+
+### Startup
+
+Enter your application Id, which you can find in AppConfig, in _config\app.json. It will be used in the StartUp class -> ConfigureServices -> services.AddApplicationServices
+
+### Logging
+
+Almost everything is preset for logging to Kibana. Enter the name of your logging index in _config\logging.json -> "indexFormat": "logstash-{tenant}-{your logging index goes here}-{0:yyyy.MM.dd}" .
+The maximum length of tenant (application- or system-) and logging index name is 30 characters !

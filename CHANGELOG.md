@@ -1,5 +1,9 @@
 # generator-dgp-web-aspnetcore
 
+## 4.1.0
+ - Working with environment variables instead of .dist files
+ - Updates for Docker deployment
+ 
 ## 4.0.0
  - update to .Net Core 2.0 dependencies
 
