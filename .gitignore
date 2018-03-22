@@ -9,4 +9,5 @@ generators/app/templates/test/StarterKit.IntegrationTests/obj/
 generators/app/templates/test/StarterKit.UnitTests/bin/
 generators/app/templates/test/StarterKit.UnitTests/obj/
 
-/.vs
+.vscode/
+.vs/

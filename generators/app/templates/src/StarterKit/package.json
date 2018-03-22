@@ -21,6 +21,8 @@
     "bower": "1.7.9"
   },
   "scripts": {
-    "postinstall": "bower install"
+	"postinstall": "bower install",
+	"bower": "./node_modules/.bin/bower install --allow-root",
+	"gulp": "./node_modules/.bin/gulp prd"
   }
 }

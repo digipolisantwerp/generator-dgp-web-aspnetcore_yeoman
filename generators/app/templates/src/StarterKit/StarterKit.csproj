@@ -4,6 +4,7 @@
     <VersionPrefix>1.0.0-BUILDNUMBER</VersionPrefix>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+	<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <AssemblyName>StarterKit</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>StarterKit</PackageId>
@@ -24,14 +25,16 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.0.0" />
+	<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
@@ -44,7 +47,7 @@
     <PackageReference Include="Digipolis.Correlation" Version="4.0.0" />
     <PackageReference Include="Digipolis.Errors" Version="5.1.0" />
     <PackageReference Include="Digipolis.Json" Version="3.0.0" />
-    <PackageReference Include="Digipolis.Auth" Version="3.0.0-beta1" />
+    <PackageReference Include="Digipolis.Auth" Version="3.0.0" />
     <PackageReference Include="Digipolis.Serilog" Version="4.0.0" />
     <PackageReference Include="Digipolis.Serilog.ApplicationServices" Version="3.0.0" />
     <PackageReference Include="Digipolis.Serilog.AuthService" Version="3.0.0" />
@@ -52,8 +55,6 @@
     <PackageReference Include="Digipolis.Serilog.Message" Version="2.0.0" />
     <PackageReference Include="Digipolis.ServiceAgents" Version="5.0.0" />
     <PackageReference Include="Digipolis.Web" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="5.7.0" />
     <PackageReference Include="Swashbuckle" Version="6.0.0-beta902" />
