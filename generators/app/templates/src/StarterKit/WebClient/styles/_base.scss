@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    min-height: 100vh;
+}
+
+app-root {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.u-wrapper {
+    flex: 1 0 auto;
+    width: 100%;
+
+    @include to($screen-xs-max) {
+        padding-left: 0;
+        padding-top: $spacer;
+    }
+}
