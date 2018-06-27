@@ -1,5 +1,8 @@
 # generator-dgp-web-aspnetcore
 
+## 4.2.0
+ - Update Auth toolbox to v3.2.0 (.NET Standard 2.0 compatible)
+
 ## 4.1.0
  - Working with environment variables instead of .dist files
  - Updates for Docker deployment
