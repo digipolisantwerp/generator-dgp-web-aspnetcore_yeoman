@@ -1,0 +1,69 @@
+{
+  /*
+  TODO check that foobar is the correct name for the loggin index and the template name !
+  replace it everywhere if it isn't. remove this comment if it is.
+  */
+  "ConsoleLogging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "SystemLog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "System": "Information",
+        "Microsoft": "Information"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "LiterateConsole"
+      },
+      {
+        "Name": "Elasticsearch",
+        "Args": {
+          "nodeUris": "http://localhost:9200",
+          "indexFormat": "logstash-application-foobar-{0:yyyy.MM.dd}",
+          "templateName": "foobar-template",
+          "typeName": "SystemLogEvent",
+          "batchPostingLimit": 50,
+          "period": 5,
+          "bufferBaseFilename": "C:/Temp/LogDigipolis/foobar-buffer-system",
+          "bufferLogShippingInterval": 5000,
+          "restrictedToMinimumLevel": "Information"
+        }
+      }
+    ],
+    "Enrich": [ "FromLogContext" ]
+  },
+  "ApplicationLog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "System": "Information",
+        "Microsoft": "Information"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Elasticsearch",
+        "Args": {
+          "nodeUris": "http://localhost:9200",
+          "indexFormat": "logstash-application-foobar-{0:yyyy.MM.dd}",
+          "templateName": "foobar-template",
+          "typeName": "AppLogEvent",
+          "batchPostingLimit": 50,
+          "period": 5,
+          "bufferBaseFilename": "C:/Temp/LogDigipolis/foobar-buffer-application",
+          "bufferLogShippingInterval": 5000,
+          "restrictedToMinimumLevel": "Information"
+        }
+      }
+    ],
+    "Enrich": [ "FromLogContext" ]
+  }
+}

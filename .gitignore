@@ -11,3 +11,4 @@ generators/app/templates/test/StarterKit.UnitTests/obj/
 
 .vscode/
 .vs/
+.idea/

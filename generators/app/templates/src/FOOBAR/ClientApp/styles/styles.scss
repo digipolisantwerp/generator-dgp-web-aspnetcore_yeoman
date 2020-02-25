@@ -1,0 +1,19 @@
+/*
+Define which main style the project is going to use.
+Digipolis, Acpaas or Antwerp.
+*/
+
+/* Antwerp */
+@import '~@a-ui/core/dist/main.css';
+@import '~@a-ui/core/src/styles/quarks';
+
+/* Digipolis */
+// @import '~@a-ui/digipolis/dist/main.css';
+// @import '~@a-ui/digipolis/src/styles/quarks';
+
+/* Acpaas */
+// @import '~@a-ui/acpaas/dist/main.css';
+// @import '~@a-ui/acpaas/src/styles/quarks';
+
+/* Global: keep this no matter what style you choose */
+@import '~@a-ui/flexboxgrid/dist/flexboxgrid.min.css';

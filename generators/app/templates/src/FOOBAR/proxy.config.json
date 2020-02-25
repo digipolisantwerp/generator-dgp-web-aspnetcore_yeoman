@@ -1,0 +1,14 @@
+﻿{
+  "/api": {
+    "target": "http://localhost:5000",
+    "secure": false
+  },
+  "/passthroughapi": {
+    "target": "http://localhost:5000",
+    "secure": false
+  },
+  "/home": {
+    "target": "http://localhost:5000",
+    "secure": false
+  }
+}

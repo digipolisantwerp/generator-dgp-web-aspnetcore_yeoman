@@ -1,6 +1,6 @@
 # generator-dgp-web-aspnetcore
 
-Yeoman generator for a new ASP.NET Core 2.0 Web Client project.
+Yeoman generator for a new ASP.NET Core 2.2 Web Client project using Angular 9.0.0
 
 ## Installation
 

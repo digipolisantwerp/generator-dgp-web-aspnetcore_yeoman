@@ -1,5 +1,9 @@
 # generator-dgp-web-aspnetcore
 
+## 5.0.0
+- Update .NET Core 2.2
+- Update Angular 9.0.0
+
 ## 4.2.0
  - Update Auth toolbox to v3.2.0 (.NET Standard 2.0 compatible)
 
