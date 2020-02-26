@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GateKeeperService } from './gate-keeper.service';
+import { GatekeeperService } from './gate-keeper.service';
 
 describe('GateKeeperService', () => {
-  let service: GateKeeperService;
+  let service: GatekeeperService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GateKeeperService);
+    service = TestBed.inject(GatekeeperService);
   });
 
   it('should be created', () => {

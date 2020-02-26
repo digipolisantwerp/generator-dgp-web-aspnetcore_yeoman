@@ -7,7 +7,7 @@ import {of} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GateKeeperService {
+export class GatekeeperService {
 
   constructor(
     private _authenticationService: AuthenticationService,
