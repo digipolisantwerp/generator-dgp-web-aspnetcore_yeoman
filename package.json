@@ -1,6 +1,6 @@
 {
   "name": "generator-dgp-web-aspnetcore",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "Generator for an ASP.NET Core Web project.",
   "homepage": "https://github.com/digipolisantwerp/generator-dgp-web-aspnetcore_yeoman",
   "author": {
@@ -16,32 +16,30 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "chalk": "^1.0.0",
-    "del": "^2.1.0",
-    "guid": "0.0.12",
-    "node-dir": "^0.1.11",
-    "rimraf": "^2.4.4",
-    "update-notifier": "^0.6.3",
-    "yeoman-generator": "^0.21.1",
-    "yosay": "^1.0.2"
+    "chalk": "^3.0.0",
+    "del": "^5.1.0",
+    "uuid": "^7.0.0",
+    "node-dir": "^0.1.17",
+    "rimraf": "^3.0.2",
+    "update-notifier": "^4.1.0",
+    "yeoman-generator": "^4.5.0",
+    "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "yeoman-assert": "^2.0.0",
-    "gulp": "^3.6.0",
-    "gulp-eslint": "^1.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.9.0",
-    "gulp-mocha": "^2.0.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-nsp": "^2.1.0"
+    "yeoman-assert": "^3.1.1",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "gulp-exclude-gitignore": "^1.2.0",
+    "gulp-istanbul": "^1.1.3",
+    "gulp-mocha": "^7.0.2",
+    "gulp-plumber": "^1.2.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/digipolisantwerp/generator-dgp-web-aspnetcore_yeoman"
   },
   "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp test"
   },
   "private": false
 }
