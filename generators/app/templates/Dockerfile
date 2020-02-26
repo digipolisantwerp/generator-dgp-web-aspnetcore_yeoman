@@ -37,6 +37,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 ARG release
 ENV RELEASE_VERSION=$release
 
+ENV TZ Europe/Brussels
+
 WORKDIR /app
 
 COPY --from=build-env /app .

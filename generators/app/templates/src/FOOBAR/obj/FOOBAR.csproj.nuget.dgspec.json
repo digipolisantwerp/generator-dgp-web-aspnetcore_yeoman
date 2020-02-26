@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/florianramakers/www/angular-core-starter/src/FOOBAR/FOOBAR.csproj": {}
+    "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj": {}
   },
   "projects": {
-    "/Users/florianramakers/www/angular-core-starter/src/FOOBAR/FOOBAR.csproj": {
+    "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj": {
       "version": "1.0.0-BUILDNUMBER",
       "restore": {
-        "projectUniqueName": "/Users/florianramakers/www/angular-core-starter/src/FOOBAR/FOOBAR.csproj",
+        "projectUniqueName": "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj",
         "projectName": "FOOBAR",
-        "projectPath": "/Users/florianramakers/www/angular-core-starter/src/FOOBAR/FOOBAR.csproj",
+        "projectPath": "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj",
         "packagesPath": "/Users/florianramakers/.nuget/packages/",
-        "outputPath": "/Users/florianramakers/www/angular-core-starter/src/FOOBAR/obj/",
+        "outputPath": "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/florianramakers/www/angular-core-starter/NuGet.Config",
+          "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/NuGet.Config",
           "/Users/florianramakers/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [

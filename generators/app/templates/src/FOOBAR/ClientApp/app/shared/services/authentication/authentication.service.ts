@@ -3,42 +3,49 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserModel} from '../../models/userModel';
 import {HttpBase} from '../../helpers/httpBase.class';
+import {WebStorageService} from '../web-storage/web-storage.service';
+import {WebStorageKeysEnum} from '../../enums/web-storage-keys.enum';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class AuthenticationService extends HttpBase {
 
-    constructor(
-        private _client: HttpClient
-    ) {
-        super();
-    }
+  get cachedPermissions() {
+    return this._webStorageService.getSessionStorage(WebStorageKeysEnum.PERMISSIONS);
+  }
 
-    hasPermission(permission: string): Observable<boolean> {
-        const url = `${this.bffApiUrl}/authorization/haspermission/?permission=${permission}`;
-        return this._client.get<boolean>(url);
-    }
+  constructor(
+    private _client: HttpClient,
+    private _webStorageService: WebStorageService
+  ) {
+    super();
+  }
 
-    hasPermissionIn(permissions: Array<string>): Observable<boolean> {
-        permissions = permissions.map((permission: string) => {
-            return permission = `permissions=${permission}`;
-        });
+  hasPermission(permission: string): Observable<boolean> {
+    const url = `${this.bffApiUrl}/authorization/haspermission/?permission=${permission}`;
+    return this._client.get<boolean>(url);
+  }
 
-        const url = `${this.bffApiUrl}/authorization/haspermissionin/?${permissions.join('&')}`;
-        return this._client.get<boolean>(url);
-    }
+  hasPermissionIn(permissions: Array<string>): Observable<boolean> {
+    permissions = permissions.map((permission: string) => {
+      return `permissions=${permission}`;
+    });
 
-    logout(): Observable<any> {
-        sessionStorage.clear();
+    const url = `${this.bffApiUrl}/authorization/haspermissionin/?${permissions.join('&')}`;
+    return this._client.get<boolean>(url);
+  }
 
-        const url = `${this.bffApiUrl}/user/logout`;
-        return this._client.get<any>(url);
-    }
+  logout(): Observable<any> {
+    this._webStorageService.clearSessionStorage();
 
-    getCurrentUser(): Observable<UserModel> {
-        const url = `${this.bffApiUrl}/user`;
-        return this._client.get<UserModel>(url);
-    }
+    const url = `${this.bffApiUrl}/user/logout`;
+    return this._client.get<any>(url);
+  }
+
+  getCurrentUser(): Observable<UserModel> {
+    const url = `${this.bffApiUrl}/user`;
+    return this._client.get<UserModel>(url);
+  }
 }
 

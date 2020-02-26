@@ -5,16 +5,18 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 // APP
-import {AppComponent} from './components/app.component';
+import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing.module';
-import {OverviewComponent} from './components/overview/overview.component';
-import {Page1Component} from './components/page1/page1.component';
-import {Page2Component} from './components/page2/page2.component';
+import {OverviewComponent} from './pages/overview/overview.component';
+import {Page1Component} from './pages/page1/page1.component';
+import {Page2Component} from './pages/page2/page2.component';
 
 // COLLECTIONS
 import {AuiModules} from './modules/aui.modules';
 import {ThirdPartyModules} from './modules/third-party.modules';
 import {AuthenticationService} from './shared/services/authentication/authentication.service';
+import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 // Fix for error TS2304: Cannot find name 'process'.
 // import { } from 'node';
@@ -26,7 +28,9 @@ import {AuthenticationService} from './shared/services/authentication/authentica
         AppComponent,
         OverviewComponent,
         Page1Component,
-        Page2Component
+        Page2Component,
+        NotAllowedComponent,
+        NotFoundComponent
     ],
     imports: [
         BrowserModule,

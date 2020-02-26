@@ -8,6 +8,8 @@ generators/app/templates/test/StarterKit.IntegrationTests/bin/
 generators/app/templates/test/StarterKit.IntegrationTests/obj/
 generators/app/templates/test/StarterKit.UnitTests/bin/
 generators/app/templates/test/StarterKit.UnitTests/obj/
+generators/app/templates/src/FOOBAR/C:
+generators/app/templates/src/FOOBAR/wwwroot
 
 .vscode/
 .vs/
