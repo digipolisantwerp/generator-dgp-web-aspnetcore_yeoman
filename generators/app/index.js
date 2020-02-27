@@ -110,13 +110,13 @@ module.exports = class extends Generator {
         return str
           .replace(/FOOBAR/g, projectName)
           .replace(/foobar/g, lowerProjectName)
-          .replace(/153C20F8-826E-4AE7-3087-BE77A1D2A988/g, solutionItemsGuid.toUpperCase())
-          .replace(/B41FC458-86EC-FF29-1691-C526F2000F0E/g, srcGuid.toUpperCase())
-          .replace(/4E6B5AAF-3ED4-7688-C19F-B32717889E89/g, testGuid.toUpperCase())
-          .replace(/6B9C8153-26AA-83A5-4B93-119E48875A86/g, starterKitGuid.toUpperCase())
-          .replace(/43A0EA6E-20EC-C3DE-C04C-D0E086D03DDA/g, integrationGuid.toUpperCase())
-          .replace(/48B7DFB0-4E5F-FDFC-CFFD-33B79F8C342F/g, unitGuid.toUpperCase())
-          .replace(/AA8563B1-CC02-4F01-9FAC-E93764F81C9B/g, applicationGuid)
+          .replace(/SOLUTIONS_ITEMS_GUID/g, solutionItemsGuid.toUpperCase())
+          .replace(/SRC_GUID/g, srcGuid.toUpperCase())
+          .replace(/TEST_GUID/g, testGuid.toUpperCase())
+          .replace(/STARTER_KIT_GUID/g, starterKitGuid.toUpperCase())
+          .replace(/INTEGRATION_GUID/g, integrationGuid.toUpperCase())
+          .replace(/UNIT_GUID/g, unitGuid.toUpperCase())
+          .replace(/APPLICATION_GUID/g, applicationGuid)
           .replace(/UMEFOO/g, applicationUmeName)
           .replace(/TITLEFOO/g, applicationUmeName);
       }
