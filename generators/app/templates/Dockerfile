@@ -25,7 +25,8 @@ WORKDIR /build/src/FOOBAR
 RUN npm install && npm run build
 
 # Build & package App (BFF)
-RUN dotnet restore && dotnet publish -c release -o /app
+RUN dotnet restore
+RUN dotnet publish -c release -o /app --no-restore
 
 WORKDIR /app
 

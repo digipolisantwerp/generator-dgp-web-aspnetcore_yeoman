@@ -2,14 +2,15 @@ node_modules
 coverage
 npm-debug.log
 
-generators/app/templates/src/StarterKit/bin/
-generators/app/templates/src/StarterKit/obj/
-generators/app/templates/test/StarterKit.IntegrationTests/bin/
-generators/app/templates/test/StarterKit.IntegrationTests/obj/
-generators/app/templates/test/StarterKit.UnitTests/bin/
-generators/app/templates/test/StarterKit.UnitTests/obj/
+generators/app/templates/test/FOOBAR.IntegrationTests/bin/
+generators/app/templates/test/FOOBAR.IntegrationTests/obj/
+generators/app/templates/test/FOOBAR.UnitTests/bin/
+generators/app/templates/test/FOOBAR.UnitTests/obj/
+
 generators/app/templates/src/FOOBAR/C:
 generators/app/templates/src/FOOBAR/wwwroot
+generators/app/templates/src/FOOBAR/bin/
+generators/app/templates/src/FOOBAR/obj/
 
 .vscode/
 .vs/
