@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
 
 # dotnet images don't come with npm installed anymore.
 # to update the version change the version number and find the sha for the correct version at
-# https://nodejs.org/download/release/<relase_number>/SHASUMS256.txt
+# https://nodejs.org/download/release/<release_number>/SHASUMS256.txt
 # the variant currently used is the -linux-x64.tar.gz version
 
 ENV NODE_VERSION 10.13.0
@@ -16,6 +16,11 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
 
 WORKDIR /app
 
+# Copy csproj and restore
+COPY FOOBAR.csproj /build
+COPY nuget.config /build
+RUN dotnet restore
+
 # Copy current directory to a build directory
 COPY . /build
 
@@ -25,13 +30,9 @@ WORKDIR /build/src/FOOBAR
 RUN npm install && npm run build
 
 # Build & package App (BFF)
-RUN dotnet restore
 RUN dotnet publish -c release -o /app --no-restore
 
 WORKDIR /app
-
-# Cleanup source ,nuget cache and dotnet sdk
-RUN rm -rf /build && dotnet nuget locals all --clear && rm -rf /usr/share/dotnet/sdk
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 
