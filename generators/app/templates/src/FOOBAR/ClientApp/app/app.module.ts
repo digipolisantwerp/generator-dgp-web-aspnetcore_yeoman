@@ -15,8 +15,9 @@ import {Page2Component} from './pages/page2/page2.component';
 import {AuiModules} from './modules/aui.modules';
 import {ThirdPartyModules} from './modules/third-party.modules';
 import {AuthenticationService} from './shared/services/authentication/authentication.service';
-import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import {NotAllowedComponent} from './pages/not-allowed/not-allowed.component';
+import {NotFoundComponent} from './pages/not-found/not-found.component';
+import {HasRoleDirective} from './shared/directives/has-role/has-role.directive';
 
 // Fix for error TS2304: Cannot find name 'process'.
 // import { } from 'node';
@@ -24,28 +25,29 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 // const DEVMODE = process.env.NODE_ENV === "DEV";
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        OverviewComponent,
-        Page1Component,
-        Page2Component,
-        NotAllowedComponent,
-        NotFoundComponent
-    ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule,
-        AppRoutingModule,
-        ...AuiModules,
-        ...ThirdPartyModules
-    ],
-    providers: [
-        AuthenticationService
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    OverviewComponent,
+    Page1Component,
+    Page2Component,
+    NotAllowedComponent,
+    NotFoundComponent,
+    HasRoleDirective
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule,
+    AppRoutingModule,
+    ...AuiModules,
+    ...ThirdPartyModules
+  ],
+  providers: [
+    AuthenticationService
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
