@@ -1,5 +1,8 @@
 # generator-dgp-web-aspnetcore
 
+## 5.0.2
+- Bugfix: Fixed integration & unit tests
+
 ## 5.0.1
 - Bugfix: remove ignored files
 
