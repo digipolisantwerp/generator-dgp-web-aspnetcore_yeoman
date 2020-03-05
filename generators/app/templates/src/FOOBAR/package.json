@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod && del-cli ./wwwroot/index.html && rename ./wwwroot/manifest.webmanifest manifest.json",
-    "build-dev": "ng build --source-map && del-cli ./wwwroot/index.html && rename ./wwwroot/manifest.webmanifest manifest.json",
+    "build": "ng build --prod && del-cli ./wwwroot/index.html && move-cli ./wwwroot/manifest.webmanifest ./wwwroot/manifest.json",
+    "build-dev": "ng build --source-map && del-cli ./wwwroot/index.html && move-cli ./wwwroot/manifest.webmanifest ./wwwroot/manifest.json",
     "swagger-generate": "del-cli ./ClientApp/app/shared/models/api && mkdirp ./ClientApp/app/shared/models/api && swagger-angular-generator --no-store -s ../swagger/spec.json -d ./ClientApp/app/shared/models/api && for directory in common controllers store; do del-cli ./ClientApp/app/shared/models/api/${directory}; done",
     "swagger-compare": "swagger-diff ../swagger/oldSpec.json ../swagger/newSpec.json",
     "test": "ng test",
@@ -47,6 +47,7 @@
     "@types/node": "13.7.1",
     "codelyzer": "^5.1.2",
     "del-cli": "3.0.0",
+    "move-cli": "^1.2.1",
     "jasmine-core": "3.5.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "4.4.1",
@@ -54,7 +55,6 @@
     "karma-coverage-istanbul-reporter": "2.1.1",
     "karma-jasmine": "3.1.1",
     "karma-jasmine-html-reporter": "1.5.2",
-    "rename-cli": "^6.0.0",
     "swagger-angular-generator": "4.2.1",
     "swagger-diff": "0.6.0",
     "typescript": "3.7.5"

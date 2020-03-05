@@ -1,5 +1,8 @@
 # generator-dgp-web-aspnetcore
 
+## 5.0.3
+- Bugfix: Fixed rename cli command on Windows
+
 ## 5.0.2
 - Bugfix: Fixed integration & unit tests
 
