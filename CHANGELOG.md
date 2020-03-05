@@ -1,5 +1,8 @@
 # generator-dgp-web-aspnetcore
 
+## 5.0.1
+- Bugfix: remove ignored files
+
 ## 5.0.0
 - Update .NET Core 2.2
 - Update Angular 9.0.0
