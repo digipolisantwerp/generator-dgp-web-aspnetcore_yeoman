@@ -7,4 +7,5 @@ Changelog.md
 Makefile
 BuildDockerImage.cmd
 RunDockerImage.cmd
-
+src/FOOBAR/bin
+src/FOOBAR/obj

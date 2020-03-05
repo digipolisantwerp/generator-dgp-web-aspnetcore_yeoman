@@ -1,123 +1,164 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var del = require('del');
-var nd = require('node-dir');
-var Guid = require('guid');
-var updateNotifier = require('update-notifier');
-var pkg = require('./../../package.json');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const del = require('del');
+const nd = require('node-dir');
+const {v4: uuidv4} = require('uuid');
+const updateNotifier = require('update-notifier');
+const pkg = require('./../../package.json');
 
-module.exports = yeoman.generators.Base.extend({
-  
-  prompting: function () {
-    var done = this.async();
+module.exports = class extends Generator {
+
+  constructor(args, opts) {
+    super(args, opts);
+  }
+
+  prompting() {
+    let done = this.async();
 
     // greet the user
     this.log(yosay('Welcome to the fantastic Yeoman ' + chalk.green('dgp-web-aspnetcore') + ' ' + chalk.blue('(' + pkg.version + ')') + ' generator!'));
 
-    var notifier = updateNotifier({
-        pkg,
-        updateCheckInterval: 1000 * 60 * 5      // check every 5 minutes. 
+    let notifier = updateNotifier({
+      pkg,
+      updateCheckInterval: 1000 * 60 * 5 // check every 5 minutes.
     });
     notifier.notify();
-    if (notifier.update != undefined) return;
-    
+
+    if (notifier.update !== undefined) return;
+
     // ask project parameters
-    var prompts = [{
-      type: 'input',
+    let prompts = [{
+      type: 'confirm',
       name: 'deleteContent',
-      message: 'Delete the contents of this directory before generation (.git will be preserved) ? (y/n):',
-      default: 'y'
+      message: 'Delete the contents of this directory before generation (.git will be preserved)?:',
+      default: true
     },
-    {
-      type: 'input',
-      name: 'projectName',
-      message: "Enter the name of the new project (don't forget the Pascal-casing):"
-    }, 
-    {
-      type: 'input',
-      name: 'kestrelHttpPort',
-      message: 'Enter the HTTP port for the kestrel server:'
-    },
-    {
-      type: 'input',
-      name: 'iisHttpPort',
-      message: 'Enter the HTTP port for the IIS Express server:'
-    },
-    {
-      type: 'input',
-      name: 'iisHttpsPort',
-      message: 'Enter the HTTPS port for the IIS Express server:'
-    }];
+      {
+        type: 'input',
+        name: 'projectName',
+        message: "Enter a name for your new project (preferably in PascalCase):"
+      },
+      {
+        type: 'confirm',
+        name: 'hasAppConfig',
+        message: 'Does the project have an AppConfig configuration?',
+        default: false
+      },
+      {
+        type: 'input',
+        name: 'appConfigGuid',
+        message: 'Please enter the unique application key from AppConfig:',
+        when: function (response) {
+          return response.hasAppConfig;
+        }
+      },
+      {
+        type: 'confirm',
+        name: 'hasUMEName',
+        message: 'Does the project already have a UME application name?',
+        default: false
+      },
+      {
+        type: 'input',
+        name: 'appUMName',
+        message: 'Please enter the UME application name:',
+        when: function (response) {
+          return response.hasUMEName;
+        }
+      }
 
-    this.prompt(prompts, function (props) {
-      this.props = props;     // To access props later use this.props.someOption;
+    ];
+
+    this.prompt(prompts).then((props) => {
+      this.props = props;
       done();
-    }.bind(this));
-  },
+    });
+  }
 
-  writing: function () {
-  
-    // empty target directory
-    console.log('Emptying target directory...');
-    if ( this.props.deleteContent == 'y' ) {
-        del.sync(['**/*', '!.git', '!.git/**/*'], { force: true, dot: true });
+  writing() {
+    let done = this.async();
+
+    /**
+     * Empty the target directory first if the user wished to do so.
+     * */
+    if (this.props.deleteContent) {
+      this.log('Emptying target directory... Starting fresh.');
+      del.sync(['**/*', '!.git', '!.git/**/*'], {force: true, dot: true});
     }
-    
-    var projectName = this.props.projectName;
-    var lowerProjectName = projectName.toLowerCase(); 
-    
-    var solutionItemsGuid = Guid.create();
-    var srcGuid = Guid.create();
-    var testGuid = Guid.create();
-    var starterKitGuid = Guid.create();
-    var integrationGuid = Guid.create();
-    var unitGuid = Guid.create();
-    
-    var kestrelHttpPort = this.props.kestrelHttpPort;
-    var iisHttpPort = this.props.iisHttpPort;
-    var iisHttpsPort = this.props.iisHttpsPort;
-    
-    var copyOptions = { 
-      process: function(contents) {
-        var str = contents.toString();
-        var result = str.replace(/StarterKit/g, projectName)
-                        .replace(/starterkit/g, lowerProjectName)
-                        .replace(/C3E0690A-0044-402C-90D2-2DC0FF14980F/g, solutionItemsGuid.value.toUpperCase())
-                        .replace(/05A3A5CE-4659-4E00-A4BB-4129AEBEE7D0/g, srcGuid.value.toUpperCase())
-                        .replace(/079636FA-0D93-4251-921A-013355153BF5/g, testGuid.value.toUpperCase())
-                        .replace(/BD79C050-331F-4733-87DE-F650976253B5/g, starterKitGuid.value.toUpperCase())
-                        .replace(/948E75FD-C478-4001-AFBE-4D87181E1BEC/g, integrationGuid.value.toUpperCase())
-                        .replace(/0A3016FD-A06C-4AA1-A843-DEA6A2F01696/g, unitGuid.value.toUpperCase())
-                        .replace(/http:\/\/localhost:51002/g, "http://localhost:" + kestrelHttpPort)
-                        .replace(/http:\/\/localhost:51001/g, "http://localhost:" + iisHttpPort)
-                        .replace(/"sslPort": 44300/g, "\"sslPort\": " + iisHttpsPort);
-        return result;
+
+    let projectName = this.props.projectName;
+    let lowerProjectName = projectName.toLowerCase();
+    let probableUrlName = lowerProjectName.endsWith('web') ? lowerProjectName.substr(0, lowerProjectName.length - 3) : lowerProjectName;
+    let probableUmeName = probableUrlName.toUpperCase();
+
+    let solutionItemsGuid = uuidv4();
+    let srcGuid = uuidv4();
+    let testGuid = uuidv4();
+    let starterKitGuid = uuidv4();
+    let integrationGuid = uuidv4();
+    let unitGuid = uuidv4();
+
+    let applicationGuid = this.props.hasAppConfig ? this.props.appConfigGuid.trim() : uuidv4();
+
+    let applicationUmeName = this.props.hasUMEName ? this.props.appUMName.toUpperCase() : probableUmeName;
+
+    let copyOptions = {
+      process: function (contents) {
+        let str = contents.toString();
+        return str
+          .replace(/FOOBAR/g, projectName)
+          .replace(/foobar/g, lowerProjectName)
+          .replace(/SOLUTIONS_ITEMS_GUID/g, solutionItemsGuid.toUpperCase())
+          .replace(/SRC_GUID/g, srcGuid.toUpperCase())
+          .replace(/TEST_GUID/g, testGuid.toUpperCase())
+          .replace(/STARTER_KIT_GUID/g, starterKitGuid.toUpperCase())
+          .replace(/INTEGRATION_GUID/g, integrationGuid.toUpperCase())
+          .replace(/UNIT_GUID/g, unitGuid.toUpperCase())
+          .replace(/APPLICATION_GUID/g, applicationGuid)
+          .replace(/UMEFOO/g, applicationUmeName)
+          .replace(/TITLEFOO/g, applicationUmeName);
       }
     };
-     
-     var source = this.sourceRoot();
-     var dest = this.destinationRoot();
-     var fs = this.fs;
-     
-     // copy files and rename starterkit to projectName
-    
-     console.log('Creation project skeleton...');
-     
-     nd.files(source, function (err, files) {
-      for ( var i = 0; i < files.length; i++ ) {
-        var filename = files[i].replace(/StarterKit/g, projectName)
-                               .replace(/starterkit/g, lowerProjectName)
-                               .replace(".npmignore", ".gitignore")
-                               .replace(source, dest);
-        //console.log(files[i] + ' --> ' + filename);
-        fs.copy(files[i], filename, copyOptions);
-      }
-    });
-  },
 
-  install: function () {
-    // this.installDependencies();
+    let source = this.sourceRoot();
+    let dest = this.destinationRoot();
+    let fs = this.fs;
+
+    // copy files and rename starterkit to projectName
+
+    this.log('Creating project skeleton...');
+
+    nd.promiseFiles(source).then((files) => {
+      files.map((file, index) => {
+        let filename = file
+          .replace(/FOOBAR/g, projectName)
+          .replace(/foobar/g, lowerProjectName)
+          .replace(".npmignore", ".gitignore")
+          .replace(source, dest);
+
+        fs.copy(file, filename, copyOptions);
+
+        if (index === (files.length - 1)) {
+          done();
+        }
+      });
+    });
   }
-});
+
+  install() {
+    const packageJsonDir = `${process.cwd()}/src/${this.props.projectName}`;
+    process.chdir(packageJsonDir);
+
+    this.installDependencies({
+      bower: false,
+      npm: true
+    });
+  }
+
+  end() {
+    // Say goodbye
+    this.log(yosay('All done, Enjoy!'));
+  }
+};

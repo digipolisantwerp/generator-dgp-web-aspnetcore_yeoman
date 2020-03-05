@@ -1,0 +1,8 @@
+{
+  "AppSettings": {
+    "AppName": "FOOBAR", //TODO check this name
+    "ApplicationId": "APPLICATION_GUID",
+    "ApiUrl": "http://localhost:5000/v1/", //TODO Replace by the gateway url to the backend for this application
+    "ApiKey": "" //TODO
+  }
+}
