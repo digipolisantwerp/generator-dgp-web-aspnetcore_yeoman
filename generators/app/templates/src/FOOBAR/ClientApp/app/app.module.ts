@@ -1,4 +1,4 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -18,11 +18,6 @@ import {AuthenticationService} from './shared/services/authentication/authentica
 import {NotAllowedComponent} from './pages/not-allowed/not-allowed.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HasRoleDirective} from './shared/directives/has-role/has-role.directive';
-
-// Fix for error TS2304: Cannot find name 'process'.
-// import { } from 'node';
-
-// const DEVMODE = process.env.NODE_ENV === "DEV";
 
 @NgModule({
   declarations: [
