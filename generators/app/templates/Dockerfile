@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
 
 # dotnet images don't come with npm installed anymore.
 # to update the version change the version number and find the sha for the correct version at
-# https://nodejs.org/download/release/<relase_number>/SHASUMS256.txt
+# https://nodejs.org/download/release/<release_number>/SHASUMS256.txt
 # the variant currently used is the -linux-x64.tar.gz version
 
 ENV NODE_VERSION 10.13.0
