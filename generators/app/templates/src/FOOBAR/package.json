@@ -17,9 +17,10 @@
   },
   "private": true,
   "dependencies": {
-    "@acpaas-ui/ngx-forms": "^4.4.0",
+    "@acpaas-ui/ngx-forms": "^4.2.2",
     "@acpaas-ui/ngx-layout": "^4.2.1",
-    "@acpaas-ui/ngx-pagination": "^4.3.0",
+    "@acpaas-ui/ngx-pagination": "^4.2.1",
+    "@acpaas-ui/ngx-table": "^4.5.1",
     "@angular/animations": "10.1.6",
     "@angular/cdk": "10.2.5",
     "@angular/common": "11.0.0-next.4",
