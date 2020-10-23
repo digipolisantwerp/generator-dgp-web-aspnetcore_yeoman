@@ -10,7 +10,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "generate": "swagger-angular-generator --no-store -s ../swagger/spec.json -d ClientApp/app/models/api",
     "swagger:generate": "del-cli ClientApp/app/models/api && mkdirp ./ClientApp/app/shared/models/api && swagger-angular-generator --no-store -s ../swagger/spec.json -d ./ClientApp/app/shared/models/api && for directory in common controllers store; do del-cli ./ClientApp/app/shared/models/api/${directory}; done",
     "compodoc:generate": "./node_modules/.bin/compodoc -p ClientApp/tsconfig.app.json -n \"LEZ documentation\"",
     "compodoc:serve": "./node_modules/.bin/compodoc -s ClientApp/tsconfig.app.json"

@@ -1,6 +1,6 @@
 # generator-dgp-web-aspnetcore
 
-## 5.0.4
+## 5.1.0
 - Update Angular 10
 - Removed @acpaas-ui/ngx-components
 - Added new @acpaas-ui components
