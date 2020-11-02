@@ -43,7 +43,6 @@ namespace FOOBAR
                     config.AddJsonFile("auth.json");
                     config.AddEnvironmentVariables();
                 })
-				.ConfigureLogging((context, logging) => logging.ClearProviders())																 
                 .UseConfiguration(configuration)
                 .UseUrls(serverUrls)
                 .Build();

@@ -12,6 +12,7 @@ using Digipolis.Correlation;
 using Digipolis.Authentication.OAuth;
 using Digipolis.Authentication.OAuth.Options;
 using Microsoft.Extensions.Options;
+using StarterKit.Middleware;
 
 
 namespace FOOBAR
@@ -105,6 +106,7 @@ namespace FOOBAR
             app.UseOAuth(oauthOptions);
 
             app.UseApiExtensions();
+            app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
             if (env.IsDevelopment())
             {

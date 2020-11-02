@@ -13,6 +13,7 @@ using Serilog.Filters;
 using FOOBAR.Logging;
 using System.Collections.Generic;
 using FOOBAR.Framework.Logging;
+using StarterKit.Enrichers;
 
 namespace FOOBAR
 {
@@ -35,33 +36,19 @@ namespace FOOBAR
 
         public static ILoggerFactory AddLoggingEngine(this ILoggerFactory loggerFactory, IApplicationBuilder app, IApplicationLifetime appLifetime, IConfiguration config)
         {
-            var enrichers = app.ApplicationServices.GetServices<ILogEventEnricher>().ToArray();
+          var enrich = app.ApplicationServices.GetServices<ILogEventEnricher>().ToArray();
 
-            var systemLogSection = config.GetSection(Shared.Constants.Config.ConfigurationSection.SystemLog);
-            var applicationLogSection = config.GetSection(Shared.Constants.Config.ConfigurationSection.ApplicationLog);
+          Log.Logger = new LoggerConfiguration()
+            .Enrich.With(enrich)
+            .Enrich.With(new TypeEnricher())
+            .ReadFrom.Configuration(config)
+            .CreateLogger();
 
-            var appLogger = typeof(ApplicationLogger).FullName;
+          loggerFactory.AddSerilog(dispose: true);
 
-            var loggingConfig = new LoggerConfiguration()
-                            .Enrich.With(enrichers)
-                            .WriteTo.Logger(l => l.ReadFrom.ConfigurationSection(systemLogSection).Filter.ByExcluding(Matching.FromSource(appLogger)))
-                            .WriteTo.Logger(l => l.ReadFrom.ConfigurationSection(applicationLogSection).Filter.ByIncludingOnly(Matching.FromSource(appLogger)));
+          appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
 
-
-            foreach (var @override in systemLogSection.GetSection(Shared.Constants.Config.ConfigurationSection.MinimumLevel)?.GetSection(Shared.Constants.Config.ConfigurationSection.Override).GetChildren())
-            {
-                loggingConfig.MinimumLevel.Override(@override.Key, (LogEventLevel)Enum.Parse(typeof(LogEventLevel), @override.Value));
-            }
-
-            loggingConfig.Enrich.With(new PropertyLengthLimitingEnricher(4000));
-
-            Log.Logger = loggingConfig.CreateLogger();
-
-            loggerFactory.AddSerilog(dispose: true);
-
-            appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
-
-            return loggerFactory;
+          return loggerFactory;
         }
 
         /// <summary>
@@ -79,28 +66,13 @@ namespace FOOBAR
             //if this is deployed overwrite some settings from the environment variables
             if (!hostingEnv.IsDevelopment())
             {
-                //CONSOLE
-                FillFromEnvironment($"LOG_ELASTIC_CONSOLE_LEVEL_DEFAULT", "ConsoleLogging:LogLevel:Default", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_CONSOLE_LEVEL_SYSTEM", "ConsoleLogging:LogLevel:System", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_CONSOLE_LEVEL_MICROSOFT", "ConsoleLogging:LogLevel:Microsoft", environmentDict);
+                FillFromEnvironment($"LOG_SYSTEM_BUFFERPATH", "Serilog:WriteTo:1:Args:bufferBaseFilename", environmentDict);
+                FillFromEnvironment($"LOG_SYSTEM_HEADERS", "Serilog:WriteTo:1:Args:connectionGlobalHeaders", environmentDict);
+                FillFromEnvironment($"LOG_SYSTEM_URL", "Serilog:WriteTo:1:Args:nodeUris", environmentDict);
 
-                // APPLICATION
-                FillFromEnvironment($"LOG_ELASTIC_APPLICATION_BUFFERPATH", "ApplicationLog:WriteTo:0:Args:bufferBaseFilename", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_APPLICATION_HEADERS", "ApplicationLog:WriteTo:0:Args:connectionGlobalHeaders", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_APPLICATION_URL", "ApplicationLog:WriteTo:0:Args:nodeUris", environmentDict);
-
-                FillFromEnvironment($"LOG_ELASTIC_APPLICATION_MINIMUMLEVEL_DEFAULT", "ApplicationLog:MinimumLevel:Default", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_APPLICATION_MINIMUMLEVEL_OVERRIDE_SYSTEM", "ApplicationLog:MinimumLevel:Override:System", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_APPLICATION_MINIMUMLEVEL_OVERRIDE_MICROSOFT", "ApplicationLog:MinimumLevel:Override:Microsoft", environmentDict);
-
-                // SYSTEM
-                FillFromEnvironment($"LOG_ELASTIC_SYSTEM_BUFFERPATH", "SystemLog:WriteTo:1:Args:bufferBaseFilename", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_SYSTEM_HEADERS", "SystemLog:WriteTo:1:Args:connectionGlobalHeaders", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_SYSTEM_URL", "SystemLog:WriteTo:1:Args:nodeUris", environmentDict);
-
-                FillFromEnvironment($"LOG_ELASTIC_SYSTEM_MINIMUMLEVEL_DEFAULT", "SystemLog:MinimumLevel:Default", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_SYSTEM_MINIMUMLEVEL_OVERRIDE_SYSTEM", "SystemLog:MinimumLevel:Override:System", environmentDict);
-                FillFromEnvironment($"LOG_ELASTIC_SYSTEM_MINIMUMLEVEL_OVERRIDE_MICROSOFT", "SystemLog:MinimumLevel:Override:Microsoft", environmentDict);
+                FillFromEnvironment($"LOG_SYSTEM_MINIMUMLEVEL_DEFAULT", "Serilog:MinimumLevel:Default", environmentDict);
+                FillFromEnvironment($"LOG_SYSTEM_MINIMUMLEVEL_OVERRIDE_SYSTEM", "Serilog:MinimumLevel:Override:System", environmentDict);
+                FillFromEnvironment($"LOG_SYSTEM_MINIMUMLEVEL_OVERRIDE_MICROSOFT", "Serilog:MinimumLevel:Override:Microsoft", environmentDict);
 
                 configurationBuilder.AddInMemoryCollection(environmentDict);
             }
