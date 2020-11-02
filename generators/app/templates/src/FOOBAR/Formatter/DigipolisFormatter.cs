@@ -1,17 +1,17 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Digipolis.Web;
 using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Formatting.Json;
 using Serilog.Parsing;
-using StarterKit.Framework.Extensions;
 
-namespace StarterKit.Formatter
+ namespace FOOBAR.Formatter
 {
     public class DigipolisFormatter : ITextFormatter
     {
@@ -416,7 +416,7 @@ namespace StarterKit.Formatter
         {
             JsonValueFormatter.WriteQuotedJsonString(value, output);
         }
-        
+
         static string FormatProperty(string property)
         {
             return property.ToCamelCase();

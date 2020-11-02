@@ -12,8 +12,9 @@ using Serilog.Events;
 using Serilog.Filters;
 using FOOBAR.Logging;
 using System.Collections.Generic;
+using FOOBAR.Enrichers;
 using FOOBAR.Framework.Logging;
-using StarterKit.Enrichers;
+
 
 namespace FOOBAR
 {

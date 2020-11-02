@@ -11,8 +11,8 @@ using Digipolis.ApplicationServices;
 using Digipolis.Correlation;
 using Digipolis.Authentication.OAuth;
 using Digipolis.Authentication.OAuth.Options;
+using FOOBAR.Middleware;
 using Microsoft.Extensions.Options;
-using StarterKit.Middleware;
 
 
 namespace FOOBAR

@@ -1,10 +1,10 @@
-﻿﻿using System.Data;
+﻿using System.Data;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace StarterKit.Enrichers
+namespace FOOBAR.Enrichers
 {
     public class TypeEnricher : ILogEventEnricher
     {

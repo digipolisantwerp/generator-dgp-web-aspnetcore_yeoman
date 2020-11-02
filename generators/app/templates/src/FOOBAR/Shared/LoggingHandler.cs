@@ -1,11 +1,11 @@
-﻿﻿using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Serilog;
 using Serilog.Events;
 
-namespace StarterKit.Shared
+namespace FOOBAR.Shared
 {
     public class LoggingHandler : DelegatingHandler
     {

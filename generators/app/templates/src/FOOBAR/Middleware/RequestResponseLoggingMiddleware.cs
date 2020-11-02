@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Serilog;
 using Serilog.Events;
 
-namespace StarterKit.Middleware
+namespace FOOBAR.Middleware
 {
     public class RequestResponseLoggingMiddleware
 {
@@ -45,7 +45,7 @@ namespace StarterKit.Middleware
             //Copy the contents of the new memory stream (which contains the response) to the original stream, which is then returned to the client.
             context.Response.Body = originalBody;
         }
-        
+
     }
 
     private async Task LogRequest(HttpRequest request)
@@ -60,7 +60,7 @@ namespace StarterKit.Middleware
             await request.Body.ReadAsync(buffer, 0, buffer.Length);
             var bodyAsText = Encoding.UTF8.GetString(buffer);
             request.Body = body;
-            
+
             Log.ForContext("Host", request.Host)
                 .ForContext("Headers", request.Headers)
                 .ForContext("Path", request.Path)
@@ -78,7 +78,7 @@ namespace StarterKit.Middleware
                 .ForContext("Method", request.Method)
                 .Information("API-call incoming log Request");
         }
-        
+
     }
 
     private async Task LogResponse(HttpResponse response, Stopwatch sw)
@@ -90,7 +90,7 @@ namespace StarterKit.Middleware
             response.Body.Seek(0, SeekOrigin.Begin);
             string body = await new StreamReader(response.Body).ReadToEndAsync();
             response.Body.Seek(0, SeekOrigin.Begin);
-        
+
             sw.Stop();
 
             Log.ForContext("Headers", response.Headers)
@@ -110,7 +110,7 @@ namespace StarterKit.Middleware
                 .ForContext("Duration", sw.ElapsedMilliseconds)
                 .Information("API-call incoming log Response");
         }
-       
+
     }
 }
 }
