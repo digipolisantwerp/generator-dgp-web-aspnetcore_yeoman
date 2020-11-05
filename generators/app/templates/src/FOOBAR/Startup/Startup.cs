@@ -21,13 +21,13 @@ namespace FOOBAR
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
-			Environment = env;
+			      Environment = env;
         }
 
         public IConfiguration Configuration { get; private set; }
         public string ApplicationBasePath { get; private set; }
         public string ConfigPath { get; private set; }
-		public IHostingEnvironment Environment { get; }
+		    public IHostingEnvironment Environment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -43,6 +43,13 @@ namespace FOOBAR
             });
 
             services.AddCorrelation();
+
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddConfiguration(Configuration.GetSection(Shared.Constants.Config.ConfigurationSection.ConsoleLogging));
+                loggingBuilder.AddConsole();
+                loggingBuilder.AddDebug();
+            });
 
             services.AddLoggingEngine();
 
@@ -70,28 +77,26 @@ namespace FOOBAR
             services.AddHelperServices();
             services.AddProgressiveWebApp();
 
-			//Global error handling in the BFF adds chunked encoding errors with the passthrough
-			//please keep that in mind if you are going to define a BFF API.
+			      //Global error handling in the BFF adds chunked encoding errors with the passthrough
+			      //please keep that in mind if you are going to define a BFF API.
             //services.AddGlobalErrorHandling<ApiExceptionMapper>();
         }
 
         //This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<AppSettings> settings, IOptions<OAuthOptions> oauthOptions, IApplicationLifetime appLifetime, IApplicationLogger appLogger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<AppSettings> settings, IOptions<OAuthOptions> oauthOptions, IApplicationLifetime appLifetime, ILogger<Startup> logger)
         {
-			//used for docker
+			      //used for docker
             app.UseForwardedHeaders();
 
-            loggerFactory.AddConsole(Configuration.GetSection(Shared.Constants.Config.ConfigurationSection.ConsoleLogging));
-            loggerFactory.AddDebug(LogLevel.Debug);
             loggerFactory.AddLoggingEngine(app, appLifetime, Configuration);
             Serilog.Debugging.SelfLog.Enable(System.Console.Out);
 
            var appName = app.ApplicationServices.GetService<IOptions<AppSettings>>().Value.AppName;
 
             //application lifetime events
-            appLifetime.ApplicationStarted.Register(() => appLogger.LogInformation($"Application {appName} Started"));
-            appLifetime.ApplicationStopped.Register(() => appLogger.LogInformation($"Application {appName} Stopped"));
-            appLifetime.ApplicationStopping.Register(() => appLogger.LogInformation($"Application {appName} Stopping"));
+            appLifetime.ApplicationStarted.Register(() => logger.LogInformation($"Application {appName} Started"));
+            appLifetime.ApplicationStopped.Register(() => logger.LogInformation($"Application {appName} Stopped"));
+            appLifetime.ApplicationStopping.Register(() => logger.LogInformation($"Application {appName} Stopping"));
 
             // CORS
             app.UseCors((policy) =>
@@ -114,7 +119,6 @@ namespace FOOBAR
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
 
             // static files en wwwroot
             app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });

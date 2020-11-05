@@ -16,11 +16,6 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
 
 WORKDIR /app
 
-# Copy csproj and restore
-COPY FOOBAR.csproj /build
-COPY nuget.config /build
-RUN dotnet restore
-
 # Copy current directory to a build directory
 COPY . /build
 
@@ -30,16 +25,17 @@ WORKDIR /build/src/FOOBAR
 RUN npm install && npm run build
 
 # Build & package App (BFF)
-RUN dotnet publish -c release -o /app --no-restore
+RUN dotnet restore && dotnet publish -c release -o /app
 
 WORKDIR /app
+
+# Cleanup source ,nuget cache and dotnet sdk
+RUN rm -rf /build && dotnet nuget locals all --clear && rm -rf /usr/share/dotnet/sdk
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 
 ARG release
 ENV RELEASE_VERSION=$release
-
-ENV TZ Europe/Brussels
 
 WORKDIR /app
 
