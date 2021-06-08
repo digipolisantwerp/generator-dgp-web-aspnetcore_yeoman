@@ -84,13 +84,6 @@ namespace FOOBAR
             //services.AddGlobalErrorHandling<ApiExceptionMapper>();
 
             services.ConfigureNonBreakingSameSiteCookies();
-
-            services.ConfigureApplicationCookie(options =>
-            {
-              options.Cookie.IsEssential = true;
-              // we need to disable to allow iframe for authorize requests
-              options.Cookie.SameSite = (SameSiteMode)(-1);
-            });
         }
 
         //This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,12 +95,14 @@ namespace FOOBAR
             loggerFactory.AddLoggingEngine(app, appLifetime, Configuration);
             Serilog.Debugging.SelfLog.Enable(System.Console.Out);
 
-           var appName = app.ApplicationServices.GetService<IOptions<AppSettings>>().Value.AppName;
+            var appName = app.ApplicationServices.GetService<IOptions<AppSettings>>().Value.AppName;
 
             //application lifetime events
             appLifetime.ApplicationStarted.Register(() => logger.LogInformation($"Application {appName} Started"));
             appLifetime.ApplicationStopped.Register(() => logger.LogInformation($"Application {appName} Stopped"));
             appLifetime.ApplicationStopping.Register(() => logger.LogInformation($"Application {appName} Stopping"));
+
+            app.UseCookiePolicy();
 
             // CORS
             app.UseCors((policy) =>
