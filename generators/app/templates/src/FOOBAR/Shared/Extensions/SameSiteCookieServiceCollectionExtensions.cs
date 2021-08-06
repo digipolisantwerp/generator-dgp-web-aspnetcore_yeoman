@@ -111,7 +111,7 @@ namespace FOOBAR.Shared.Extensions
       // and none in this range require it.
       // Note: this covers some pre-Chromium Edge versions,
       // but pre-Chromium Edge does not require SameSite=None.
-      if (userAgent.Contains("Chrome/5") || userAgent.Contains("Chrome/6") || userAgent.Contains("Chrome/8"))
+      if (userAgent.Contains("Chrome/5") || userAgent.Contains("Chrome/6") || userAgent.Contains("Chrome/8") || userAgent.Contains("Chrome/9"))
       {
         return true;
       }
