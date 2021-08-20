@@ -1,43 +1,55 @@
-﻿using Digipolis.Authentication.OAuth.Authorization;
-using Digipolis.Authentication.OAuth.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Digipolis.Auth.Services;
 
 namespace FOOBAR.Mvc.Controllers
 {
     [Route("api/[controller]")]
     public class AuthorizationController : Controller
     {
-        private readonly IOAuthService _authService;
-        private IEnumerable<string> _permissions;
+        private readonly IAuthService _authService;
+        private readonly IPermissionService _permissionService;
 
-        public AuthorizationController(IOAuthService authService)
+        public AuthorizationController(IAuthService authService, IPermissionService permissionService)
         {
             _authService = authService ?? throw new ArgumentNullException($"{nameof(AuthorizationController)}.Ctr parameter {nameof(authService)} cannot be null.");
-            _permissions = _authService.UserPermissions.Select(x => x.ToUpper());
+            _permissionService = permissionService ?? throw new ArgumentNullException($"{nameof(AuthorizationController)}.Ctr parameter {nameof(permissionService)} cannot be null.");
         }
 
         [HttpGet("haspermission")]
-        public bool HasPermission([FromQuery] string permission)
+        public async Task<bool> HasPermission([FromQuery] string permission)
         {
-            return _permissions.Contains(permission.ToUpper());
+            try
+            {
+                var rolesAndPermissions = await _permissionService.GetRolesAndPermissions();
+                var activePermissions = rolesAndPermissions.permissions.Select(x => x.ToUpper());
+                return activePermissions.Contains(permission.ToUpper());
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         [HttpGet("haspermissionin")]
-        public bool HasPermissionIn([FromQuery] IEnumerable<string> permissions)
+        public async Task<bool> HasPermissionIn([FromQuery] IEnumerable<string> permissions)
         {
+            var rolesAndPermissions = await _permissionService.GetRolesAndPermissions();
+            var activePermissions = rolesAndPermissions.permissions.Select(x => x.ToUpper());
             var perms = permissions.Select(x => x.ToUpper());
-            return _permissions.Any(p => perms.Contains(p));
+            return activePermissions.Any(p => perms.Contains(p));
         }
 
         [HttpGet("hasallpermissions")]
-        public bool HasAllPermissions([FromQuery] IEnumerable<string> permissions)
+        public async Task<bool> HasAllPermissions([FromQuery] IEnumerable<string> permissions)
         {
+            var rolesAndPermissions = await _permissionService.GetRolesAndPermissions();
+            var activePermissions = rolesAndPermissions.permissions.Select(x => x.ToUpper());
             var perms = permissions.Select(x => x.ToUpper());
-            return perms.All(p => _permissions.Contains(p));
+            return perms.All(p => activePermissions.Contains(p));
         }
-    }   
+    }
 }

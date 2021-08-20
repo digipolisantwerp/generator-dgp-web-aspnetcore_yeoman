@@ -1,42 +1,61 @@
+using System;
 using System.IO;
+using Digipolis.ApplicationServices;
+using Digipolis.Auth;
+using Digipolis.Auth.Extensions;
+using Digipolis.Auth.Options;
+using Digipolis.Correlation;
+using FOOBAR.Shared.Constants;
+using FOOBAR.Shared.Extensions;
+using FOOBAR.Shared.Options;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using FOOBAR.Shared.Options;
-using Digipolis.Web;
-using Digipolis.ApplicationServices;
-using Digipolis.Correlation;
-using Digipolis.Authentication.OAuth;
-using Digipolis.Authentication.OAuth.Options;
-using FOOBAR.Shared.Extensions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using Serilog.Debugging;
 
-
-namespace FOOBAR
+namespace FOOBAR.Startup
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
-			      Environment = env;
+            Environment = env;
+            ConfigPath = Path.Combine(env.ContentRootPath, "_config");
         }
 
-        public IConfiguration Configuration { get; private set; }
-        public string ApplicationBasePath { get; private set; }
-        public string ConfigPath { get; private set; }
-		    public IHostingEnvironment Environment { get; }
+        private IConfiguration Configuration { get; }
+        private IWebHostEnvironment Environment { get; }
+        private string ConfigPath { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Read settings
 
-            AppSettings.RegisterConfiguration(services, Configuration.GetSection(Shared.Constants.Config.ConfigurationSection.AppSettings));
+            AppSettings.RegisterConfiguration(services, Configuration.GetSection(ConfigurationSectionKey.AppSettings),
+                Environment);
+            services.AddSingleton(Configuration);
 
-            var appSettings = services.BuildServiceProvider().GetService<IOptions<AppSettings>>().Value;
+            var appSettings = Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+
+            #endregion
+
+            #region Add Correlation and application services
+
+            services.AddCorrelation(options =>
+            {
+                options.CorrelationHeaderRequired = !Environment.IsDevelopment();
+            });
 
             services.AddApplicationServices(opt =>
             {
@@ -44,36 +63,81 @@ namespace FOOBAR
                 opt.ApplicationName = appSettings.AppName;
             });
 
-            services.AddCorrelation();
+            #endregion
 
-            services.AddLogging(loggingBuilder =>
-            {
-                loggingBuilder.AddConfiguration(Configuration.GetSection(Shared.Constants.Config.ConfigurationSection.ConsoleLogging));
-                loggingBuilder.AddConsole();
-                loggingBuilder.AddDebug();
-            });
+            #region Logging
 
             services.AddLoggingEngine();
 
-             services.AddOAuth(options => {
-                var configSection = Configuration.GetSection(Shared.Constants.Config.ConfigurationSection.Auth);
-                configSection.Bind(options);
-                AuthSettingsConfig.SetConfig(options);
-                options.ApiKey = appSettings.ApiKey;
-            }, devoptions => {
-                var configSection = Configuration.GetSection(Shared.Constants.Config.ConfigurationSection.DevPermissions);
-                configSection.Bind(devoptions);
-            });
+            #endregion
 
-            services.AddMvc()
-                .AddJsonOptions(options =>
+            #region Add routing and versioning
+
+
+
+            #endregion
+
+            #region Authorization & Authentication
+
+            services.AddAuthFromJsonFile(options =>
+            {
+                options.BasePath = ConfigPath;
+                options.FileName = "auth.json";
+                options.Section = ConfigurationSectionKey.Auth;
+
+                //  var configSection = Configuration.GetSection(ConfigConstants.Auth);
+                // configSection.Bind(options);
+                // AuthSettingsConfig.SetConfig(options);
+            });
+            services.Configure<AuthOptions>(options => AuthSettingsConfig.SetConfig(options));
+            services.AddAuthorization(services.BuildOAuthPolicies());
+
+            #endregion
+
+            // services
+            //     .AddRouting(options =>
+            //     {
+            //         options.LowercaseUrls = true;
+            //         options.LowercaseQueryStrings = true;
+            //     })
+            //     .AddControllers(options =>
+            //     {
+            //         options.EnableEndpointRouting = false;
+            //     })
+            //     .AddNewtonsoftJson(options =>
+            //     {
+            //         options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //         options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+            //         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            //         options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            //         options.SerializerSettings.MetadataPropertyHandling = MetadataPropertyHandling.Ignore;
+            //         options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            //     });
+            services.AddMvc(options => options.EnableEndpointRouting = false)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
+            services
+                .AddApiVersioning(options =>
                 {
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    options.ReportApiVersions = true;
+                    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                    options.UseApiBehavior = false;
                 })
-                .AddApiExtensions(null, options =>
+                .AddVersionedApiExplorer(options =>
                 {
-                    options.DisableVersioning = true;
+                    options.GroupNameFormat = "'v'VVV";
+                    options.SubstituteApiVersionInUrl = true;
                 });
+
+            // .AddJsonOptions(options =>
+            // {
+            //     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            // })
+            // .AddApiExtensions(null, options =>
+            // {
+            //     options.DisableVersioning = true;
+            // });
 
             services.AddServices();
             services.AddHelperServices();
@@ -87,22 +151,24 @@ namespace FOOBAR
 
             services.ConfigureApplicationCookie(options =>
             {
-              options.Cookie.IsEssential = true;
-              // we need to disable to allow iframe for authorize requests
-              options.Cookie.SameSite = (SameSiteMode)(-1);
+                options.Cookie.IsEssential = true;
+                // we need to disable to allow iframe for authorize requests
+                options.Cookie.SameSite = (SameSiteMode) (-1);
             });
         }
 
         //This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<AppSettings> settings, IOptions<OAuthOptions> oauthOptions, IApplicationLifetime appLifetime, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory,
+            IOptions<AppSettings> settings, IOptions<AuthOptions> authOptions, IHostApplicationLifetime appLifetime,
+            ILogger<Startup> logger)
         {
-			      //used for docker
+            //used for docker
             app.UseForwardedHeaders();
 
             loggerFactory.AddLoggingEngine(app, appLifetime, Configuration);
-            Serilog.Debugging.SelfLog.Enable(System.Console.Out);
+            SelfLog.Enable(Console.Out);
 
-           var appName = app.ApplicationServices.GetService<IOptions<AppSettings>>().Value.AppName;
+            var appName = settings.Value.AppName;
 
             //application lifetime events
             appLifetime.ApplicationStarted.Register(() => logger.LogInformation($"Application {appName} Started"));
@@ -110,34 +176,50 @@ namespace FOOBAR
             appLifetime.ApplicationStopping.Register(() => logger.LogInformation($"Application {appName} Stopping"));
 
             // CORS
-            app.UseCors((policy) =>
+            app.UseCors(policy =>
             {
                 policy.AllowAnyHeader();
                 policy.AllowAnyMethod();
                 policy.AllowAnyOrigin();
-                policy.AllowCredentials();
             });
 
-            app.UseOAuth(oauthOptions);
+            // app.UseRouting();
 
-            app.UseApiExtensions();
+            app.UseAuthentication();
+            app.UseOAuth(authOptions);
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                RequireHeaderSymmetry = true,
+                ForwardedHeaders = ForwardedHeaders.XForwardedHost | ForwardedHeaders.XForwardedProto
+            });
 
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseExceptionHandler("/Home/Error");
-            }
 
             // static files en wwwroot
-            app.UseFileServer(new FileServerOptions() { EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider });
-            app.UseStaticFiles(new StaticFileOptions { FileProvider = env.WebRootFileProvider });
+            app.UseFileServer(new FileServerOptions
+                {EnableDirectoryBrowsing = false, FileProvider = env.WebRootFileProvider});
+            app.UseStaticFiles(new StaticFileOptions {FileProvider = env.WebRootFileProvider});
 
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllerRoute("BackendApi", AppSettings.PassThroughPrefix + "/{*queryvalues}",
+            //         new {controller = "PassThrough", action = "Handle"});
+            //     endpoints.MapControllerRoute(
+            //         "default",
+            //         "{*catchall}",
+            //         new {controller = "Home", action = "Index"}
+            //     );
+            // });
             app.UseMvc(routes =>
             {
-                routes.MapRoute("BackendApi", AppSettings.PassThroughPrefix + "/{*queryvalues}", new { controller = "PassThrough", action = "Handle" });
+                routes.MapRoute(
+                    "BackendApi",
+                    AppSettings.PassThroughPrefix + "/{*queryvalues}",
+                    new { controller = "PassThrough", action = "Handle" });
                 routes.MapRoute(
                     "default",
                     "{*catchall}",

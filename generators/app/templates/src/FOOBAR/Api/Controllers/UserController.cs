@@ -1,10 +1,9 @@
-﻿using Digipolis.Authentication.OAuth.Authorization;
-using Digipolis.Authentication.OAuth.Services;
-using FOOBAR.Api.Models;
+﻿using FOOBAR.Api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
+using Digipolis.Auth.Services;
 
 namespace FOOBAR.Api.Controllers
 {
@@ -12,11 +11,11 @@ namespace FOOBAR.Api.Controllers
     [ApiExplorerSettings(IgnoreApi = false)]
     public class UserController : Controller
     {
-        private readonly IOAuthService _oauthService;
+        private readonly IAuthService _authService;
 
-        public UserController(IOAuthService oauthService)
+        public UserController(IAuthService authService)
         {
-            _oauthService = oauthService;
+            _authService = authService;
         }
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace FOOBAR.Api.Controllers
         // [AuthorizeWith(Permission = "put-your-privilege-here")]
         public IActionResult GetUserdata()
         {
-            return Ok(new UserModel { Name = _oauthService.User?.Identity?.Name });
+            return Ok(new UserModel { Name = _authService.User?.Identity?.Name });
         }
 
         /// <summary>
@@ -41,7 +40,7 @@ namespace FOOBAR.Api.Controllers
         [Authorize]
         public async Task<IActionResult> LogoutAsync()
         {
-            await _oauthService.LogoutAsync();
+            await _authService.Logout();
             return NoContent();
         }
     }

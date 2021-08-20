@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FOOBAR
+namespace FOOBAR.Startup
 {
 	public static class DependencyRegistration
 	{

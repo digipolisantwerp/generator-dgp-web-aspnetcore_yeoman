@@ -1,21 +1,19 @@
-﻿using Digipolis.Authentication.OAuth.Options;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
+using Digipolis.Auth.Options;
 
 namespace FOOBAR.Shared.Options
 {
     public class AuthSettingsConfig
     {
-        public static void SetConfig(OAuthOptions authOptions, IOptions<AppSettings> appSetings = null)
+        public static void SetConfig(AuthOptions authOptions, IOptions<AppSettings> appSetings = null)
         {
             var env = Environment.GetEnvironmentVariables();
 
             // *** endpoints ***
             authOptions.AuthorizationEndpoint = env.Contains("AUTH_AUTHORIZATIONENDPOINT") ? env["AUTH_AUTHORIZATIONENDPOINT"].ToString() : authOptions.AuthorizationEndpoint;
-            authOptions.TokenEndpoint = env.Contains("AUTH_TOKENENDPOINT") ? env["AUTH_TOKENENDPOINT"].ToString() : authOptions.TokenEndpoint;
+            authOptions.TokenRefreshUrl = env.Contains("AUTH_TOKENREFRESHURL") ? env["AUTH_TOKENREFRESHURL"].ToString() : authOptions.TokenRefreshUrl;
             authOptions.UserinfoEndpoint = env.Contains("AUTH_USERINFOENDPOINT") ? env["AUTH_USERINFOENDPOINT"].ToString() : authOptions.UserinfoEndpoint;
-            authOptions.UserPermissionsEndpoint = env.Contains("AUTH_USERPERMISSIONSENDPOINT") ? env["AUTH_USERPERMISSIONSENDPOINT"].ToString() : authOptions.UserPermissionsEndpoint;
 
             // ***OAuth options ***
 
@@ -33,7 +31,7 @@ namespace FOOBAR.Shared.Options
             authOptions.Language = env.Contains("AUTH_LANGUAGE") ? env["AUTH_LANGUAGE"].ToString() : authOptions.Language;
             authOptions.ForceAuth = env.Contains("AUTH_FORCEAUTH") ? Convert.ToBoolean(env["AUTH_FORCEAUTH"].ToString()) : authOptions.ForceAuth;
             authOptions.SaveConsent = env.Contains("AUTH_SAVECONSENT") ? Convert.ToBoolean(env["AUTH_SAVECONSENT"].ToString()) : authOptions.SaveConsent;
-            authOptions.CookieLifeTimeInSeconds = env.Contains("AUTH_COOKIELIFETIMEINSECONDS") ? Convert.ToInt32(env["AUTH_COOKIELIFETIMEINSECONDS"].ToString()) : authOptions.CookieLifeTimeInSeconds;
+            authOptions.OAuthCookieLifeTimeInSeconds = env.Contains("AUTH_COOKIELIFETIMEINSECONDS") ? Convert.ToInt32(env["AUTH_COOKIELIFETIMEINSECONDS"].ToString()) : authOptions.OAuthCookieLifeTimeInSeconds;
 
             //It should be sufficient to set the api key in appsettings and use it here. no reason to define it twice...
             //if an api key was defined in the environments it should take precedence over the api key defined in the json file.
@@ -46,7 +44,7 @@ namespace FOOBAR.Shared.Options
 
             // *** other options ***
             authOptions.AccessDeniedRoute = env.Contains("AUTH_ACCESSDENIEDROUTE") ? env["AUTH_ACCESSDENIEDROUTE"].ToString() : authOptions.AccessDeniedRoute;
-            authOptions.UserInfoAndPermissionsCacheDuration = env.Contains("AUTH_CACHEDURATION") ? Convert.ToInt32(env["AUTH_CACHEDURATION"].ToString()) : authOptions.UserInfoAndPermissionsCacheDuration;
+            authOptions.PdpCacheDuration = env.Contains("AUTH_CACHEDURATION") ? Convert.ToInt32(env["AUTH_CACHEDURATION"].ToString()) : authOptions.PdpCacheDuration;
 
             authOptions.SuppressFetchUserProfileFailedException = env.Contains("AUTH_SUPPRESSFETCHUSERPROFILEFAILEDEXCEPTION") ? Convert.ToBoolean(env["AUTH_SUPPRESSFETCHUSERPROFILEFAILEDEXCEPTION"].ToString()) : authOptions.SuppressFetchUserProfileFailedException;
         }

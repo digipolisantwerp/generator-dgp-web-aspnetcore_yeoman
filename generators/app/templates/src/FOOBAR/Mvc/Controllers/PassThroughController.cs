@@ -1,8 +1,4 @@
 ﻿using FOOBAR.Shared.Options;
-using Digipolis.Authentication.OAuth.Options;
-using Digipolis.Authentication.OAuth.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
@@ -10,27 +6,32 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Digipolis.Auth.Options;
+using Digipolis.Auth.Providers;
+using Digipolis.Auth.Services;
 
 namespace FOOBAR.Controllers
 {
     public class PassThroughController : Controller
     {
-        private readonly OAuthOptions _options;
-        private readonly IOAuthService _service;
+        private readonly AuthOptions _options;
+        private readonly IAuthService _service;
         private readonly AppSettings _appSettings;
+        private readonly ITokenProvider _tokenProvider;
 
-        public PassThroughController(IOptions<OAuthOptions> options, IOAuthService service, IOptions<AppSettings> appSettings)
+        public PassThroughController(IOptions<AuthOptions> options, IAuthService service, IOptions<AppSettings> appSettings, ITokenProvider tokenProvider)
         {
             _options = options?.Value ?? throw new ArgumentNullException($"{nameof(PassThroughController)}.ctor() : {nameof(options)} cannot be null");
             _service = service ?? throw new ArgumentNullException($"{nameof(PassThroughController)}.ctor() : {nameof(service)} cannot be null");
             _appSettings = appSettings?.Value ?? throw new ArgumentNullException($"{nameof(PassThroughController)}.ctor() : {nameof(appSettings)} cannot be null");
+            _tokenProvider = tokenProvider ?? throw new ArgumentNullException($"{nameof(PassThroughController)}.ctor() : {nameof(tokenProvider)} cannot be null");
         }
 
         public async Task Handle()
         {
             var apiUrl = _appSettings.ApiUrl;
 
-            var accessToken = await _service.GetAccessTokenAsync();
+            var accessToken = await _tokenProvider.GetOAuthAccessToken();
             var originalRequest = HttpContext.Request;
 
             var originalPath = HttpContext.Request.Path.ToString();

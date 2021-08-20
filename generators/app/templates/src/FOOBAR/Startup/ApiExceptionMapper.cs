@@ -1,16 +1,17 @@
-using FOOBAR.Shared.Extensions;
-using Digipolis.Errors;
-using Digipolis.Errors.Exceptions;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
+using Digipolis.Errors;
+using Digipolis.Errors.Exceptions;
+using FOOBAR.Shared.Extensions;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-namespace FOOBAR
+namespace FOOBAR.Startup
 {
     public class ApiExceptionMapper : ExceptionMapper
     {
-        public ApiExceptionMapper(ILogger<ApiExceptionMapper> logger, IApplicationLogger appLogger, IHostingEnvironment environment) : base()
+        public ApiExceptionMapper(ILogger<ApiExceptionMapper> logger, IApplicationLogger appLogger, IWebHostEnvironment environment) : base()
         {
             Logger = logger ?? throw new ArgumentException($"{GetType().Name}.Ctr parameter {nameof(logger)} cannot be null.");
             AppLogger = appLogger ?? throw new ArgumentException($"{GetType().Name}.Ctr parameter {nameof(appLogger)} cannot be null.");
@@ -19,7 +20,7 @@ namespace FOOBAR
 
         protected ILogger<ApiExceptionMapper> Logger { get; private set; }
         protected IApplicationLogger AppLogger { get; private set; }
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
         protected override void Configure()
         {
@@ -65,7 +66,7 @@ namespace FOOBAR
 
         protected override void CreateValidationMap(Error error, ValidationException exception)
         {
-            error.ExtraParameters = exception.Messages;
+            error.ExtraInfo = exception.Messages;
             base.CreateValidationMap(error, exception);
             error.Title = exception.Message;
             Logger.LogWarning($"Validation error: {exception.GetExceptionMessages()}, {exception.ToString()}");
@@ -75,7 +76,7 @@ namespace FOOBAR
         private void AddInnerExceptions(Error error, Exception exception, int level = 0)
         {
             if (exception.InnerException == null) return;
-            error.ExtraParameters[$"InnerException{level:00}"] = new[] { $"{exception.InnerException.GetType().Name}: {exception.InnerException.Message}" };
+            error.ExtraInfo[$"InnerException{level:00}"] = new[] { $"{exception.InnerException.GetType().Name}: {exception.InnerException.Message}" };
             AddInnerExceptions(error, exception.InnerException, level++);
         }
     }
