@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NotAllowedComponent } from './not-allowed.component';
 
@@ -6,7 +6,7 @@ describe('NotAllowedComponent', () => {
   let component: NotAllowedComponent;
   let fixture: ComponentFixture<NotAllowedComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NotAllowedComponent ]
     })
