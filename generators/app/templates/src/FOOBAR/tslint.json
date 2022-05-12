@@ -28,7 +28,7 @@
         "ignore-pattern": "^import |^export {(.*?)}|class [a-zA-Z]+ implements |// "
       }
     ],
-    "member-access": false,
+    "member-access": true,
     "member-ordering": [
       true,
       {

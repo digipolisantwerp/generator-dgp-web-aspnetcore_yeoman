@@ -22,7 +22,7 @@ export class HasRoleDirective implements OnInit, OnDestroy {
     private _authenticationService: AuthenticationService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this._authenticationService.cachedPermissions) {
       this.appHasRole.some((item) => {
         if (this._authenticationService.cachedPermissions.includes(item)) {
@@ -44,7 +44,7 @@ export class HasRoleDirective implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     if (this.hasRoleSubscription) {
       this.hasRoleSubscription.unsubscribe();
     }
