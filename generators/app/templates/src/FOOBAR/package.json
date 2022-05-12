@@ -21,7 +21,7 @@
     "@acpaas-ui/ngx-pagination": "^4.2.1",
     "@acpaas-ui/ngx-table": "^4.5.1",
     "@angular/animations": "13.3.7",
-    "@angular/cdk": "10.2.5",
+    "@angular/cdk": "11.2.13",
     "@angular/common": "13.3.7",
     "@angular/compiler": "13.3.7",
     "@angular/core": "13.3.7",
