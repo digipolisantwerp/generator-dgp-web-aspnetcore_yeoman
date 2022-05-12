@@ -4,8 +4,8 @@ Digipolis, Acpaas or Antwerp.
 */
 
 /* Antwerp */
-@import '~@a-ui/core/dist/main.css';
-@import '~@a-ui/core/src/styles/quarks';
+@import "~@a-ui/core/dist/main.css";
+@import "~@a-ui/core/src/styles/quarks";
 
 /* Digipolis */
 // @import '~@a-ui/digipolis/dist/main.css';
@@ -16,4 +16,4 @@ Digipolis, Acpaas or Antwerp.
 // @import '~@a-ui/acpaas/src/styles/quarks';
 
 /* Global: keep this no matter what style you choose */
-@import '~@a-ui/flexboxgrid/dist/flexboxgrid.min.css';
+@import "~@a-ui/flexboxgrid/dist/flexboxgrid.min.css";

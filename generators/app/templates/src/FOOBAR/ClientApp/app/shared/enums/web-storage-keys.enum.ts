@@ -2,5 +2,5 @@
  * Web storage keys
  */
 export enum WebStorageKeysEnum {
-  PERMISSIONS = 'user-permissions'
+  PERMISSIONS = "user-permissions",
 }

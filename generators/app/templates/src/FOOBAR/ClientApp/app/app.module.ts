@@ -1,23 +1,23 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import {RouterModule} from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
 
 // APP
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app.routing.module';
-import {OverviewComponent} from './pages/overview/overview.component';
-import {Page1Component} from './pages/page1/page1.component';
-import {Page2Component} from './pages/page2/page2.component';
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app.routing.module";
+import { OverviewComponent } from "./pages/overview/overview.component";
+import { Page1Component } from "./pages/page1/page1.component";
+import { Page2Component } from "./pages/page2/page2.component";
 
 // COLLECTIONS
-import {AuiModules} from './modules/aui.modules';
-import {ThirdPartyModules} from './modules/third-party.modules';
-import {AuthenticationService} from './shared/services/authentication/authentication.service';
-import {NotAllowedComponent} from './pages/not-allowed/not-allowed.component';
-import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {HasRoleDirective} from './shared/directives/has-role/has-role.directive';
+import { AuiModules } from "./modules/aui.modules";
+import { ThirdPartyModules } from "./modules/third-party.modules";
+import { AuthenticationService } from "./shared/services/authentication/authentication.service";
+import { NotAllowedComponent } from "./pages/not-allowed/not-allowed.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
+import { HasRoleDirective } from "./shared/directives/has-role/has-role.directive";
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import {HasRoleDirective} from './shared/directives/has-role/has-role.directive'
     Page2Component,
     NotAllowedComponent,
     NotFoundComponent,
-    HasRoleDirective
+    HasRoleDirective,
   ],
   imports: [
     BrowserModule,
@@ -36,13 +36,10 @@ import {HasRoleDirective} from './shared/directives/has-role/has-role.directive'
     RouterModule,
     AppRoutingModule,
     ...AuiModules,
-    ...ThirdPartyModules
+    ...ThirdPartyModules,
   ],
-  providers: [
-    AuthenticationService
-  ],
+  providers: [AuthenticationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
