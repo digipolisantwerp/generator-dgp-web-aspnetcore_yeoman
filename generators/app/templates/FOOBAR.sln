@@ -1,9 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{SOLUTIONS_ITEMS_GUID}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{443C76D2-F2FC-4B4D-8442-018E210C03B5}"
 	ProjectSection(SolutionItems) = preProject
 		nuget.config = nuget.config
 	EndProjectSection
@@ -11,15 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global_1json__JSONSchema = http://json.schemastore.org/global
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{SRC_GUID}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62DC859E-E8EA-4303-BE4A-3DA611EDEA67}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{TEST_GUID}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4C0FADB4-1DDA-4053-B01F-AE17247F7133}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOOBAR", "src\FOOBAR\FOOBAR.csproj", "{STARTER_KIT_GUID}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOOBAR", "src\FOOBAR\FOOBAR.csproj", "{D5ECE8B3-4BFF-4A86-B05F-CCD509BCA667}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOOBAR.IntegrationTests", "test\FOOBAR.IntegrationTests\FOOBAR.IntegrationTests.csproj", "{INTEGRATION_GUID}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOOBAR.IntegrationTests", "test\FOOBAR.IntegrationTests\FOOBAR.IntegrationTests.csproj", "{2AF9C455-7D8D-46C2-B20B-0F477786B225}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOOBAR.UnitTests", "test\FOOBAR.UnitTests\FOOBAR.UnitTests.csproj", "{UNIT_GUID}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOOBAR.UnitTests", "test\FOOBAR.UnitTests\FOOBAR.UnitTests.csproj", "{801E22B0-EF84-49D3-ABCF-B3BBCB084BEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,25 +26,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{STARTER_KIT_GUID}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{STARTER_KIT_GUID}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{STARTER_KIT_GUID}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{STARTER_KIT_GUID}.Release|Any CPU.Build.0 = Release|Any CPU
-		{INTEGRATION_GUID}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{INTEGRATION_GUID}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{INTEGRATION_GUID}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{INTEGRATION_GUID}.Release|Any CPU.Build.0 = Release|Any CPU
-		{UNIT_GUID}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{UNIT_GUID}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{UNIT_GUID}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{UNIT_GUID}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5ECE8B3-4BFF-4A86-B05F-CCD509BCA667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5ECE8B3-4BFF-4A86-B05F-CCD509BCA667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5ECE8B3-4BFF-4A86-B05F-CCD509BCA667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5ECE8B3-4BFF-4A86-B05F-CCD509BCA667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF9C455-7D8D-46C2-B20B-0F477786B225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF9C455-7D8D-46C2-B20B-0F477786B225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF9C455-7D8D-46C2-B20B-0F477786B225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF9C455-7D8D-46C2-B20B-0F477786B225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{801E22B0-EF84-49D3-ABCF-B3BBCB084BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801E22B0-EF84-49D3-ABCF-B3BBCB084BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801E22B0-EF84-49D3-ABCF-B3BBCB084BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801E22B0-EF84-49D3-ABCF-B3BBCB084BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{STARTER_KIT_GUID} = {SRC_GUID}
-		{INTEGRATION_GUID} = {TEST_GUID}
-		{UNIT_GUID} = {TEST_GUID}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80DD89C6-8016-4AA3-8209-0046CE844F4A}
 	EndGlobalSection
 EndGlobal

@@ -1,36 +1,42 @@
 {
   "format": 1,
   "restore": {
-    "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj": {}
+    "C:\\Users\\jonah\\Projects\\generator-dgp-web-aspnetcore_yeoman\\generators\\app\\templates\\src\\FOOBAR\\FOOBAR.csproj": {}
   },
   "projects": {
-    "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj": {
+    "C:\\Users\\jonah\\Projects\\generator-dgp-web-aspnetcore_yeoman\\generators\\app\\templates\\src\\FOOBAR\\FOOBAR.csproj": {
       "version": "1.0.0-BUILDNUMBER",
       "restore": {
-        "projectUniqueName": "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj",
+        "projectUniqueName": "C:\\Users\\jonah\\Projects\\generator-dgp-web-aspnetcore_yeoman\\generators\\app\\templates\\src\\FOOBAR\\FOOBAR.csproj",
         "projectName": "FOOBAR",
-        "projectPath": "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/FOOBAR.csproj",
-        "packagesPath": "/Users/florianramakers/.nuget/packages/",
-        "outputPath": "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/src/FOOBAR/obj/",
+        "projectPath": "C:\\Users\\jonah\\Projects\\generator-dgp-web-aspnetcore_yeoman\\generators\\app\\templates\\src\\FOOBAR\\FOOBAR.csproj",
+        "packagesPath": "C:\\Users\\jonah\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jonah\\Projects\\generator-dgp-web-aspnetcore_yeoman\\generators\\app\\templates\\src\\FOOBAR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/florianramakers/www/digipolis-aspnetcore-generator/generators/app/templates/NuGet.Config",
-          "/Users/florianramakers/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\jonah\\Projects\\generator-dgp-web-aspnetcore_yeoman\\generators\\app\\templates\\NuGet.Config",
+          "C:\\Users\\jonah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.2"
+          "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nexusrepo.antwerpen.be/repository/nuget-private/": {},
           "https://www.myget.org/F/aspnetmaster/api/v3/index.json": {},
           "https://www.myget.org/F/digipolisantwerp/api/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.2": {
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -41,168 +47,115 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.2": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[6.2.2, )"
-            },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[2.0.1, )"
-            },
             "Digipolis.ApplicationServices": {
               "target": "Package",
-              "version": "[2.0.0, )"
+              "version": "[3.1.1, )"
             },
-            "Digipolis.Authentication.OAuth": {
+            "Digipolis.Auth": {
               "target": "Package",
-              "version": "[1.0.1-beta03, )"
-            },
-            "Digipolis.Common": {
-              "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[8.3.1, )"
             },
             "Digipolis.Correlation": {
               "target": "Package",
-              "version": "[4.1.1, )"
+              "version": "[6.0.1, )"
             },
             "Digipolis.Errors": {
               "target": "Package",
-              "version": "[5.1.0, )"
-            },
-            "Digipolis.Json": {
-              "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[7.0.4, )"
             },
             "Digipolis.Serilog": {
               "target": "Package",
-              "version": "[4.0.0, )"
+              "version": "[5.0.0, )"
             },
             "Digipolis.Serilog.ApplicationServices": {
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[4.0.0, )"
             },
             "Digipolis.Serilog.Correlation": {
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[5.0.0, )"
             },
             "Digipolis.Serilog.Message": {
               "target": "Package",
-              "version": "[2.0.0, )"
+              "version": "[3.0.0, )"
             },
-            "Digipolis.ServiceAgents": {
+            "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.4, )"
             },
-            "Digipolis.Web": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.AspNetCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
-            },
-            "Microsoft.AspNetCore.Cors": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Diagnostics": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Hosting": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Http": {
-              "target": "Package",
-              "version": "[2.2.2, )"
-            },
-            "Microsoft.AspNetCore.Http.Extensions": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Mvc": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Server.IISIntegration": {
-              "target": "Package",
-              "version": "[2.2.1, )"
-            },
-            "Microsoft.AspNetCore.Server.Kestrel": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.StaticFiles": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.WebUtilities": {
-              "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.4, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.Extensions.Logging.Console": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.Extensions.Options.ConfigurationExtensions": {
               "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
+              "version": "[6.0.0, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.2.3, )"
+              "version": "[6.0.3, )"
             },
             "Serilog.Settings.Configuration": {
               "target": "Package",
-              "version": "[2.4.0, )"
+              "version": "[3.2.0, )"
             },
             "Serilog.Sinks.Elasticsearch": {
               "target": "Package",
-              "version": "[6.5.0, )"
+              "version": "[8.4.1, )"
             },
             "WebEssentials.AspNetCore.PWA": {
               "target": "Package",
-              "version": "[1.0.59, )"
+              "version": "[1.0.65, )"
             }
           },
           "imports": [
-            "dotnet5.6",
+            "dotnet56",
             "portable-net45+win8+wp8+wpa81",
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
