@@ -15,3 +15,4 @@ generators/app/templates/src/FOOBAR/obj/
 .vscode/
 .vs/
 .idea/
+generators/app/templates/.editorconfig
