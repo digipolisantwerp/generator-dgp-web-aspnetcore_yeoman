@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\app\auth\" />
-    <Folder Include="Framework\Logging\" />
     <Folder Include="Shared\Options\" />
   </ItemGroup>
 </Project>
