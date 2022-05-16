@@ -1,25 +1,25 @@
-@{}
+@{
+}
 
 <app-root>
-    <div style="display: flex;height: 100vh;justify-content: center;align-items: center;">
-        <p class="u-text-center" style="display: flex; align-items: center;">
-            <span class="a-spinner u-margin-right-xs"></span>
-            <small>TITLEFOO applicatie wordt gestart...</small>
-        </p>
-    </div>
+	<div style="display: flex; height: 100vh; justify-content: center; align-items: center;">
+		<p class="u-text-center" style="display: flex; align-items: center;">
+			<span class="a-spinner u-margin-right-xs"></span>
+			<small>TITLEFOO applicatie wordt gestart...</small>
+		</p>
+	</div>
 </app-root>
 
 @section scripts {
-    <script src="~/runtime.js" asp-append-version="true"></script>
-    <script src="~/polyfills.js" asp-append-version="true"></script>
-    <script src="~/main.js" asp-append-version="true"></script>
+	<script src="~/runtime.js" asp-append-version="true"></script>
+	<script src="~/polyfills.js" asp-append-version="true"></script>
+	<script src="~/main.js" asp-append-version="true"></script>
 }
 
 
-@if (@ViewBag.IsDevelopement == true)
+@if (ViewBag.IsDevelopement == true)
 {
-    @section scripts_dev {
-        <script src="~/styles.js" asp-append-version="true"></script>
-        <script src="~/vendor.js" asp-append-version="true"></script>
-    }
-}
+@section scripts_dev {
+	<script src="~/styles.js" asp-append-version="true"></script>
+	<script src="~/vendor.js" asp-append-version="true"></script>
+}}
