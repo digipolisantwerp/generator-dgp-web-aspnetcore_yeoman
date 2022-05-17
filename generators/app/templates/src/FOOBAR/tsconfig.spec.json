@@ -1,0 +1,10 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": ["jasmine"]
+  },
+  "files": ["ClientApp/test.ts", "ClientApp/polyfills.ts"],
+  "include": ["ClientApp/**/*.spec.ts", "ClientApp/**/*.d.ts"]
+}

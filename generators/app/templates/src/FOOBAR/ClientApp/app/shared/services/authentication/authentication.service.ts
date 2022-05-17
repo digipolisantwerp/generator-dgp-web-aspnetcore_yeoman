@@ -1,32 +1,32 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { UserModel } from "../../models/userModel";
-import { HttpBase } from "../../helpers/httpBase.class";
-import { WebStorageService } from "../web-storage/web-storage.service";
-import { WebStorageKeysEnum } from "../../enums/web-storage-keys.enum";
-import { map, tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { UserModel } from '../../models/userModel';
+import { HttpBase } from '../helpers/httpBase.class';
+import { WebStorageService } from '../web-storage/web-storage.service';
+import { WebStorageKeysEnum } from '../../models/enums/web-storage-keys.enum';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthenticationService extends HttpBase {
   public get cachedPermissions() {
-    return this._webStorageService.getSessionStorage(
+    return this.webStorageService.getSessionStorage(
       WebStorageKeysEnum.PERMISSIONS
     );
   }
 
   constructor(
-    private _client: HttpClient,
-    private _webStorageService: WebStorageService
+    private client: HttpClient,
+    private webStorageService: WebStorageService
   ) {
     super();
   }
 
   public hasPermission(permission: string): Observable<boolean> {
     const url = `${this.bffApiUrl}/authorization/haspermission/?permission=${permission}`;
-    return this._client.get<boolean>(url);
+    return this.client.get<boolean>(url);
   }
 
   public hasPermissionIn(permissions: Array<string>): Observable<boolean> {
@@ -40,19 +40,19 @@ export class AuthenticationService extends HttpBase {
   }
 
   public logout(): Observable<any> {
-    this._webStorageService.clearSessionStorage();
+    this.webStorageService.clearSessionStorage();
 
     const url = `${this.bffApiUrl}/user/logout`;
-    return this._client.get<any>(url);
+    return this.client.get<any>(url);
   }
 
   public getCurrentUser(): Observable<UserModel> {
     const url = `${this.bffApiUrl}/user`;
-    return this._client.get<UserModel>(url);
+    return this.client.get<UserModel>(url);
   }
 
   private setCachedPermissions(permissions: string[]): void {
-    this._webStorageService.setSessionStorage(
+    this.webStorageService.setSessionStorage(
       WebStorageKeysEnum.PERMISSIONS,
       permissions
     );
@@ -60,7 +60,7 @@ export class AuthenticationService extends HttpBase {
 
   private getPermissions(): Observable<Array<string>> {
     if (
-      this._webStorageService.hasSessionStorageKey(
+      this.webStorageService.hasSessionStorageKey(
         WebStorageKeysEnum.PERMISSIONS
       )
     ) {
@@ -68,7 +68,7 @@ export class AuthenticationService extends HttpBase {
     }
 
     const url = `${this.bffApiUrl}/authorization/permissions`;
-    return this._client
+    return this.client
       .get<Array<string>>(url)
       .pipe(
         tap((permissions: Array<string>) =>

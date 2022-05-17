@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@a-ui/core/src/styles/quarks";
+
+
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+app-root {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
+}

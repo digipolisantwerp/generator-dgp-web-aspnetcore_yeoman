@@ -1,11 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  // tslint:disable-next-line:component-selector , selector imposed by acpaas ui and used in css
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = "app";
+  constructor(private router: Router) {}
 }
