@@ -34,28 +34,19 @@
           "configurations": {
             "production": {
               "optimization": true,
-              "aot": true,
-              "buildOptimizer": true,
+              "outputHashing": "none",
               "sourceMap": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ],
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
               "fileReplacements": [
                 {
                   "replace": "ClientApp/environments/environment.ts",
                   "with": "ClientApp/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all",
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             },
