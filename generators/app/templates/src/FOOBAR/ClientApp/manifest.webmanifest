@@ -1,0 +1,20 @@
+{
+  "name": "FOOBAR",
+  "short_name": "FOOBAR",
+  "icons": [
+    {
+      "src": "https://cdn.antwerpen.be/core_branding_favicons/citizens/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.antwerpen.be/core_branding_favicons/citizens/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#cf0039",
+  "background_color": "#cf0039",
+  "display": "standalone",
+  "start_url": "/"
+}

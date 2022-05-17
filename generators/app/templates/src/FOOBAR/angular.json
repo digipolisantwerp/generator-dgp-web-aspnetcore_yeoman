@@ -23,7 +23,11 @@
             "polyfills": "ClientApp/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["ClientApp/favicon.ico", "ClientApp/assets"],
+            "assets": [
+              "ClientApp/favicon.ico",
+              "ClientApp/assets",
+              "ClientApp/manifest.webmanifest"
+            ],
             "styles": ["ClientApp/styles.scss"],
             "scripts": []
           },
@@ -96,7 +100,11 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": ["ClientApp/favicon.ico", "ClientApp/assets"],
+            "assets": [
+              "ClientApp/favicon.ico",
+              "ClientApp/assets",
+              "ClientApp/manifest.webmanifest"
+            ],
             "styles": ["ClientApp/styles.scss"],
             "scripts": []
           }
