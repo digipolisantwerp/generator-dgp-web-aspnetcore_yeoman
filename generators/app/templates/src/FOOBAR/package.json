@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng lint && ng build --configuration production && del-cli ./wwwroot/index.html && move-cli ./wwwroot/manifest.webmanifest ./wwwroot/manifest.json",
-    "build:dev": "ng build --source-map && del-cli ./wwwroot/index.html && move-cli ./wwwroot/manifest.webmanifest ./wwwroot/manifest.json",
+    "build": "ng lint && ng build --configuration production && del-cli ./wwwroot/index.html",
+    "build:dev": "ng build --source-map && del-cli ./wwwroot/index.html",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "swagger:generate": "del-cli ClientApp/app/models/api && mkdirp ./ClientApp/app/shared/models/api && swagger-angular-generator --no-store -s ../swagger/spec.json -d ./ClientApp/app/shared/models/api && for directory in common controllers store; do del-cli ./ClientApp/app/shared/models/api/${directory}; done",
