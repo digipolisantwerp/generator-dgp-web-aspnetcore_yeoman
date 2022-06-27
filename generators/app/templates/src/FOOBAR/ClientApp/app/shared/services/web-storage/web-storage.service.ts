@@ -1,15 +1,18 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class WebStorageService {
+  public hasSessionStorageKey(key: string): boolean {
+    return sessionStorage.getItem(key) !== null;
+  }
 
-  setSessionStorage(key: string, value: any) {
+  public setSessionStorage(key: string, value: any) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  getSessionStorage(key: string) {
+  public getSessionStorage(key: string) {
     try {
       const storage = sessionStorage.getItem(key);
 
@@ -23,15 +26,15 @@ export class WebStorageService {
     }
   }
 
-  clearSessionStorage() {
+  public clearSessionStorage() {
     sessionStorage.clear();
   }
 
-  setLocalStorage(key: string, value: any) {
+  public setLocalStorage(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  getLocalStorage(key: string) {
+  public getLocalStorage(key: string) {
     try {
       const storage = localStorage.getItem(key);
 
@@ -45,7 +48,7 @@ export class WebStorageService {
     }
   }
 
-  removeLocalStorage(key: string) {
+  public removeLocalStorage(key: string) {
     localStorage.removeItem(key);
   }
 }

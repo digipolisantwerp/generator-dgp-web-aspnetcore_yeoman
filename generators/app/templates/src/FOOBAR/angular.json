@@ -4,9 +4,15 @@
   "newProjectRoot": "projects",
   "projects": {
     "foobar": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "ClientApp",
-      "projectType": "application",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -14,20 +20,15 @@
             "outputPath": "wwwroot",
             "index": "ClientApp/index.html",
             "main": "ClientApp/main.ts",
-            "tsConfig": "ClientApp/tsconfig.app.json",
             "polyfills": "ClientApp/polyfills.ts",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules"
-              ]
-            },
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
+              "ClientApp/favicon.ico",
               "ClientApp/assets",
               "ClientApp/manifest.webmanifest"
             ],
-            "styles": [
-              "ClientApp/styles/styles.scss"
-            ],
+            "styles": ["ClientApp/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -35,7 +36,6 @@
               "optimization": true,
               "outputHashing": "none",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -49,19 +49,32 @@
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "foobar:build",
-            "proxyConfig": "proxy.config.json"
-          },
           "configurations": {
             "production": {
               "browserTarget": "foobar:build:production"
+            },
+            "development": {
+              "browserTarget": "foobar:build:development"
             }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "browserTarget": "foobar:build",
+            "proxyConfig": "proxy.config.json"
           }
         },
         "extract-i18n": {
@@ -74,68 +87,30 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "ClientApp/test.ts",
-            "karmaConfig": "./karma.conf.js",
             "polyfills": "ClientApp/polyfills.ts",
-            "tsConfig": "ClientApp/tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              "ClientApp/styles/styles.scss"
-            ],
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "ClientApp/assets",
               "ClientApp/favicon.ico",
+              "ClientApp/assets",
               "ClientApp/manifest.webmanifest"
-            ]
+            ],
+            "styles": ["ClientApp/styles.scss"],
+            "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "foobar-e2e": {
-      "root": "e2e",
-      "sourceRoot": "e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "foobar:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "lintFilePatterns": ["ClientApp/**/*.ts", "ClientApp/**/*.html"]
           }
         }
       }
     }
   },
   "defaultProject": "foobar",
-  "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "scss"
-    },
-    "@schematics/angular:directive": {
-      "prefix": "app"
-    }
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }

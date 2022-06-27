@@ -1,40 +1,31 @@
-<div class="app-main">
-    <div class="app-main__inner">
-        <aui-header>
-            <div auiHeaderContent>
-                <div auiHeaderLogo class="o-header__logo">
-                    <a routerLink="/">
-                        <img src="https://cdn.antwerpen.be/core_branding_scss/4.0.0/assets/images/a-logo.svg"
-                             alt="Logo Digipolis Antwerpen">
-                    </a>
-                </div>
-            </div>
-            <div auiHeaderMenuItem>
-                <a routerLinkActive="my-app-active-nav" routerLink="page1"
-                   class="a-button a-button--navigation u-hide-on-mobile">
-                    <span>Menu 1</span>
-                </a>
-                <a routerLinkActive="my-app-active-nav" routerLink="page2"
-                   class="a-button a-button--navigation u-hide-on-mobile">
-                    <span>Menu 2 (protected by the gatekeeper)</span>
-                </a>
-            </div>
-        </aui-header>
-        <main class="app-main__container">
-            <div class="app-main__content u-margin-top">
-                <div class="app-main__body">
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-        </main>
-    </div>
-    <div class="app-main__footer">
-        <aui-footer>
-            <div auiFooterBottom>
-                <aui-subfooter>
-                    <aui-copyright domain="Stad Antwerpen"></aui-copyright>
-                </aui-subfooter>
-            </div>
-        </aui-footer>
-    </div>
-</div>
+<aui-header>
+  <div auiHeaderLogo>
+    <aui-logo
+      title="Antwerpen logo."
+      link="/"
+      src="https://cdn.antwerpen.be/core_branding_scss/5.0.2/assets/images/a-logo.svg"
+    >
+    </aui-logo>
+  </div>
+  <div auiHeaderMenuItem>
+    <a routerLink="/home" class="a-button o-header__button">Home</a>
+  </div>
+  <div auiHeaderMenuItem>
+    <a routerLink="/protected" class="a-button o-header__button">Protected</a>
+  </div>
+  <div auiHeaderMenuItem>
+    <a routerLink="/about" class="a-button o-header__button">About</a>
+  </div>
+</aui-header>
+<main class="u-wrapper">
+  <div class="u-container u-margin-top-xx u-margin-bottom-lg" role="main">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+<aui-footer>
+  <div auiFooterBottom>
+    <aui-subfooter>
+      <aui-copyright domain="stad Antwerpen"></aui-copyright>
+    </aui-subfooter>
+  </div>
+</aui-footer>

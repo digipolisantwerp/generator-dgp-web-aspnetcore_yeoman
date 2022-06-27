@@ -6,13 +6,13 @@ namespace FOOBAR
 	{
 		public static IServiceCollection AddServices(this IServiceCollection services)
 		{
-	       // Register your own services here, e.g. services.AddTransient<IMyService, MyService>();
-         return services;
+			// Register your own services here, e.g. services.AddTransient<IMyService, MyService>();
+			return services;
 		}
 
-    public static IServiceCollection AddHelperServices(this IServiceCollection services)
-    {
-      return services;
-    }
-  }
+		public static IServiceCollection AddHelperServices(this IServiceCollection services)
+		{
+			return services;
+		}
+	}
 }

@@ -1,12 +1,12 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
 # dotnet images don't come with npm installed anymore.
 # to update the version change the version number and find the sha for the correct version at
 # https://nodejs.org/download/release/<release_number>/SHASUMS256.txt
 # the variant currently used is the -linux-x64.tar.gz version
 
-ENV NODE_VERSION 10.13.0
-ENV NODE_DOWNLOAD_SHA b4b5d8f73148dcf277df413bb16827be476f4fa117cbbec2aaabc8cc0a8588e1
+ENV NODE_VERSION 12.22.12
+ENV NODE_DOWNLOAD_SHA ff92a45c4d03e8e270bec1ab337b8fff6e9de293dabfe7e8936a41f2fb0b202e
 
 RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz" --output nodejs.tar.gz \
     && echo "$NODE_DOWNLOAD_SHA nodejs.tar.gz" | sha256sum -c - \
@@ -32,7 +32,7 @@ WORKDIR /app
 # Cleanup source ,nuget cache and dotnet sdk
 RUN rm -rf /build && dotnet nuget locals all --clear && rm -rf /usr/share/dotnet/sdk
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine 
 
 ARG release
 ENV RELEASE_VERSION=$release

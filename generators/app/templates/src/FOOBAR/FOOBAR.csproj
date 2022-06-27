@@ -1,13 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <VersionPrefix>1.0.0-BUILDNUMBER</VersionPrefix>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>FOOBAR</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>FOOBAR</PackageId>
-    <RuntimeFrameworkVersion>2.2</RuntimeFrameworkVersion>
     <AssetTargetFallback>$(AssetTargetFallback);dotnet5.6;portable-net45+win8+wp8+wpa81</AssetTargetFallback>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
@@ -27,42 +26,27 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Digipolis.Authentication.OAuth" Version="1.0.1-beta03" />
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
-    <PackageReference Include="Digipolis.ApplicationServices" Version="2.0.0" />
-    <PackageReference Include="Digipolis.Common" Version="3.0.0" />
-    <PackageReference Include="Digipolis.Correlation" Version="4.1.1" />
-    <PackageReference Include="Digipolis.Errors" Version="5.1.0" />
-    <PackageReference Include="Digipolis.Json" Version="3.0.0" />
-    <PackageReference Include="Digipolis.Serilog" Version="4.0.0" />
-    <PackageReference Include="Digipolis.Serilog.ApplicationServices" Version="3.0.0" />
-    <PackageReference Include="Digipolis.Serilog.Correlation" Version="3.0.0" />
-    <PackageReference Include="Digipolis.Serilog.Message" Version="2.0.0" />
-    <PackageReference Include="Digipolis.ServiceAgents" Version="6.0.2" />
-    <PackageReference Include="Digipolis.Web" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
-    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="6.5.0" />
-    <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.59" />
+    <PackageReference Include="Digipolis.Auth" Version="8.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+    <PackageReference Include="Digipolis.ApplicationServices" Version="3.1.1" />
+    <PackageReference Include="Digipolis.Correlation" Version="6.0.1" />
+    <PackageReference Include="Digipolis.Errors" Version="7.0.4" />
+    <PackageReference Include="Digipolis.Serilog" Version="5.0.0" />
+    <PackageReference Include="Digipolis.Serilog.ApplicationServices" Version="4.0.0" />
+    <PackageReference Include="Digipolis.Serilog.Correlation" Version="5.0.0" />
+    <PackageReference Include="Digipolis.Serilog.Message" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.3" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.2.0" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.4.1" />
+    <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.65" />
   </ItemGroup>
 
   <ItemGroup>
@@ -73,5 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\app\auth\" />
+    <Folder Include="Shared\Options\" />
   </ItemGroup>
 </Project>
