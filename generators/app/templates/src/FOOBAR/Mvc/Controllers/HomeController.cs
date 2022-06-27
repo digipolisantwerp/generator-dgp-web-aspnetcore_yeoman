@@ -1,14 +1,14 @@
-using System;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using System;
 
 namespace FOOBAR.Controllers
 {
-	public class HomeController : Controller
+  public class HomeController : Controller
 	{
-		private readonly IHostingEnvironment _env;
+		private readonly IHostEnvironment _env;
 
-		public HomeController(IHostingEnvironment env)
+		public HomeController(IHostEnvironment env)
 		{
 			_env = env ??
 			       throw new ArgumentNullException(

@@ -1,5 +1,8 @@
 # generator-dgp-web-aspnetcore
 
+## 6.0.0
+- Update to .NET 6.0
+
 # 5.1.1
 - Fix: Same site cookie
 
