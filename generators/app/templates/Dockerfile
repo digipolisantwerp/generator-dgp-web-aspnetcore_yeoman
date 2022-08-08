@@ -32,8 +32,9 @@ WORKDIR /app
 # Cleanup source ,nuget cache and dotnet sdk
 RUN rm -rf /build && dotnet nuget locals all --clear && rm -rf /usr/share/dotnet/sdk
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine 
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 
+# Inject version
 ARG release
 ENV RELEASE_VERSION=$release
 

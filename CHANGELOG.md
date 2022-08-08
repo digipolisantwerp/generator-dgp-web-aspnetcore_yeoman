@@ -1,5 +1,8 @@
 # generator-dgp-web-aspnetcore
 
+## 6.0.2
+- use mcr.microsoft.com/dotnet/aspnet:6.0 as docker runtime image instead of alpine version
+
 ## 6.0.1
 - downgrade some node modules used in the yeoman generator scripts to still allow use of require-statement for now instead of ESM dynamic import
 
