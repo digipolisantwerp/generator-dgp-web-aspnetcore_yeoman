@@ -2,12 +2,12 @@
 
 ## Prerequisites
 This project runs on
-* [dotnet core 2.2](https://www.microsoft.com/net/download/core)
-* [nodejs v12.11.0](https://nodejs.org/en/download/)  (or higher)
+* [dotnet 6](https://www.microsoft.com/net/download/core)
+* [nodejs v14.15.0](https://nodejs.org/en/download/)  (or higher)
 
 The angular and typescript version are handled by the npm dependencies specified in `Package.json`:
-* Angular core 10.1.6
-* Typescript 4.0.3
+* Angular core 14.2.9
+* Typescript 4.6
 
 ## TL;DR;
 
