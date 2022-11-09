@@ -28,9 +28,7 @@
               "ClientApp/assets",
               "ClientApp/manifest.webmanifest"
             ],
-            "styles": [
-              "node_modules/@a-ui/core/dist/main.min.css",
-              "ClientApp/styles.scss"],
+            "styles": ["ClientApp/styles.scss"],
             "scripts": []
           },
           "configurations": {
