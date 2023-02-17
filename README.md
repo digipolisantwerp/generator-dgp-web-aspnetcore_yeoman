@@ -2,6 +2,10 @@
 
 Yeoman generator for a new ASP.NET Core 2.2 Web Client project using Angular 10.0.0
 
+> Important! As of October 2022 we deprecated the use of Angular as a frontend solution, as described in the [Digipolis Antwerpen Application Stack](https://docs.google.com/spreadsheets/d/11RhBdWAAvLJ4--xk-REbEAs-sM_P5VJVVqjDXNm8pSY/edit#gid=1163066847) (DAAS). This means that new frontend solutions should always be built using React.js, while older projects can still upgrade to the latest version of Angular (and accompanying components).
+
+Always check https://digitalehuisstijl.antwerpen.be for the latest news and guidelines concerning Antwerp's digital branding guidelines.
+
 ## Installation
 
 Make sure you have installed a recent version of node.js. You can download it here : https://nodejs.org/en/. 
@@ -59,4 +63,4 @@ Pull requests are always welcome, however keep the following things in mind:
 
 ## Support
 
-Marc Wouters (<marc.wouters@digipolis.be>)
+Erik Seynaeve (<erik.seynaeve@digipolis.be>)
